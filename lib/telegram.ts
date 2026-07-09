@@ -9,6 +9,7 @@ function escapeHtml(value: string) {
 }
 
 export async function sendLeadTelegramNotification(lead: {
+  leadNumber: number;
   name: string;
   phone: string;
   source: string;
@@ -28,6 +29,7 @@ export async function sendLeadTelegramNotification(lead: {
 
   const text = [
     "🔔 <b>Нова заявка з сайту VipStudy</b>",
+    `🆔 Заявка №${lead.leadNumber}`,
     `🕐 ${dateTime}`,
     `👤 ${escapeHtml(lead.name)}`,
     `📞 ${escapeHtml(lead.phone)}`,

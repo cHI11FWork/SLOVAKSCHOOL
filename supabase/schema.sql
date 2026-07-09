@@ -18,6 +18,7 @@ create table if not exists public.leads (
 );
 
 alter table public.leads add column if not exists notes text;
+alter table public.leads add column if not exists lead_number bigserial unique;
 
 create table if not exists public.site_sections (
   id uuid primary key default gen_random_uuid(),

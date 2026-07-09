@@ -27,9 +27,10 @@ const SOURCE_LABEL: Record<string, string> = {
 };
 
 function toCsv(rows: LeadRow[]) {
-  const header = ["Ім'я", "Телефон", "Джерело", "Статус", "Нотатки", "Дата"];
+  const header = ["№", "Ім'я", "Телефон", "Джерело", "Статус", "Нотатки", "Дата"];
   const lines = rows.map((l) =>
     [
+      l.lead_number,
       l.name,
       l.phone,
       SOURCE_LABEL[l.source] ?? l.source,
@@ -178,6 +179,7 @@ export function LeadsTable({ leads }: { leads: LeadRow[] }) {
         <Table>
           <TableHeader>
             <TableRow>
+              <TableHead>№</TableHead>
               <TableHead>Ім&rsquo;я</TableHead>
               <TableHead>Телефон</TableHead>
               <TableHead>Джерело</TableHead>
@@ -197,6 +199,7 @@ export function LeadsTable({ leads }: { leads: LeadRow[] }) {
                   exit={{ opacity: 0 }}
                   className="border-b border-gray-100 last:border-0 hover:bg-pink-light/40"
                 >
+                  <TableCell className="text-navy/60">{lead.lead_number}</TableCell>
                   <TableCell className="font-medium text-navy">
                     <div className="flex items-center gap-1.5">
                       {lead.name}

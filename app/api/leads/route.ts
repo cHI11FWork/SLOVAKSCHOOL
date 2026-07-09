@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { createClient } from "@/lib/supabase/server";
+import { createAdminClient } from "@/lib/supabase/admin";
 import { leadSchema } from "@/lib/validations";
 import { sendLeadTelegramNotification } from "@/lib/telegram";
 
@@ -16,18 +16,23 @@ export async function POST(request: Request) {
     return NextResponse.json({ ok: true });
   }
 
-  const supabase = await createClient();
-  const { error } = await supabase.from("leads").insert({
-    name: parsed.data.name,
-    phone: parsed.data.phone,
-    source: parsed.data.source,
-  });
+  const supabase = createAdminClient();
+  const { data, error } = await supabase
+    .from("leads")
+    .insert({
+      name: parsed.data.name,
+      phone: parsed.data.phone,
+      source: parsed.data.source,
+    })
+    .select("lead_number")
+    .single();
 
   if (error) {
     return NextResponse.json({ error: "insert_failed" }, { status: 500 });
   }
 
   await sendLeadTelegramNotification({
+    leadNumber: data.lead_number,
     name: parsed.data.name,
     phone: parsed.data.phone,
     source: parsed.data.source,

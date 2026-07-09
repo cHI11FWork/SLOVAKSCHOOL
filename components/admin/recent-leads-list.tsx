@@ -75,6 +75,7 @@ export function RecentLeadsList({ leads }: { leads: LeadRow[] }) {
             >
               <div className="min-w-0">
                 <div className="flex items-center gap-1.5">
+                  <span className="shrink-0 text-xs text-navy/40">№{lead.lead_number}</span>
                   <p className="truncate font-medium text-navy">{lead.name}</p>
                   {lead.notes && (
                     <MessageSquareText
