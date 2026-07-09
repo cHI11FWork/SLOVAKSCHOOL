@@ -75,6 +75,8 @@ create table if not exists public.top_reasons (
 create table if not exists public.testimonials (
   id uuid primary key default gen_random_uuid(),
   name text not null,
+  name_en text,
+  name_sk text,
   quote text not null,
   quote_en text,
   quote_sk text,
@@ -267,9 +269,9 @@ insert into public.top_reasons (text, text_en, text_sk, position) values
 ('Понад 150 успішних абітурієнтів лише цього року.', 'Over 150 successful applicants this year alone.', 'Viac ako 150 úspešných uchádzačov len tento rok.', 5)
 on conflict do nothing;
 
-insert into public.testimonials (name, quote, quote_en, quote_sk, meta, meta_en, meta_sk, position) values
-('Анна Андріївна', 'Вступила без НМТ, гуртожиток за п''ять хвилин від корпусу. Хлопці супроводжували на кожному кроці — від договору до міграційної поліції.', 'I got in without NMT, and my dorm is five minutes from campus. The team supported me every step — from the contract to the migration office.', 'Dostala som sa bez NMT, internát mám päť minút od budovy. Tím ma sprevádzal na každom kroku — od zmluvy až po cudzineckú políciu.', 'Економічний університет, Братислава', 'University of Economics, Bratislava', 'Ekonomická univerzita, Bratislava', 1),
-('Олексій К.', 'Найбільше боявся документів і нострифікації — усе зробили за мене. Через два місяці вже мав наказ про зарахування.', 'I was most afraid of paperwork and nostrification — they handled it all for me. Two months later I already had my enrollment order.', 'Najviac som sa bál dokumentov a nostrifikácie — všetko za mňa vybavili. O dva mesiace som už mal rozhodnutie o prijatí.', 'Технічний університет, Кошиці', 'Technical University, Košice', 'Technická univerzita, Košice', 2)
+insert into public.testimonials (name, name_en, name_sk, quote, quote_en, quote_sk, meta, meta_en, meta_sk, position) values
+('Анна Андріївна', 'Anna Andriivna', 'Anna Andrijivna', 'Вступила без НМТ, гуртожиток за п''ять хвилин від корпусу. Хлопці супроводжували на кожному кроці — від договору до міграційної поліції.', 'I got in without NMT, and my dorm is five minutes from campus. The team supported me every step — from the contract to the migration office.', 'Dostala som sa bez NMT, internát mám päť minút od budovy. Tím ma sprevádzal na každom kroku — od zmluvy až po cudzineckú políciu.', 'Економічний університет, Братислава', 'University of Economics, Bratislava', 'Ekonomická univerzita, Bratislava', 1),
+('Олексій К.', 'Oleksiy K.', 'Oleksij K.', 'Найбільше боявся документів і нострифікації — усе зробили за мене. Через два місяці вже мав наказ про зарахування.', 'I was most afraid of paperwork and nostrification — they handled it all for me. Two months later I already had my enrollment order.', 'Najviac som sa bál dokumentov a nostrifikácie — všetko za mňa vybavili. O dva mesiace som už mal rozhodnutie o prijatí.', 'Технічний університет, Кошиці', 'Technical University, Košice', 'Technická univerzita, Košice', 2)
 on conflict do nothing;
 
 insert into public.social_links (platform, url, position) values

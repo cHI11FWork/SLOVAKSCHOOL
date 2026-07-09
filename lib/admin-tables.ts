@@ -55,11 +55,21 @@ export const LIST_TABLES: Record<
   testimonials: {
     label: "Відгуки",
     fields: [
-      { key: "name", label: "Ім'я (однакове для всіх мов)", type: "text" },
+      { key: "name", label: "Ім'я", type: "text-i18n" },
       { key: "quote", label: "Відгук", type: "textarea-i18n" },
       { key: "meta", label: "Університет / контекст", type: "text-i18n" },
     ],
-    emptyItem: { name: "", quote: "", quote_en: "", quote_sk: "", meta: "", meta_en: "", meta_sk: "" },
+    emptyItem: {
+      name: "",
+      name_en: "",
+      name_sk: "",
+      quote: "",
+      quote_en: "",
+      quote_sk: "",
+      meta: "",
+      meta_en: "",
+      meta_sk: "",
+    },
   },
   social_links: {
     label: "Соцмережі (наразі не показуються на сайті)",

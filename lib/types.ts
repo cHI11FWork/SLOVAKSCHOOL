@@ -114,6 +114,8 @@ export type TopReasonRow = {
 export type TestimonialRow = {
   id: string;
   name: string;
+  name_en: string | null;
+  name_sk: string | null;
   quote: string;
   quote_en: string | null;
   quote_sk: string | null;

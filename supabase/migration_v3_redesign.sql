@@ -34,6 +34,8 @@ alter table public.testimonials add column if not exists meta_en text;
 alter table public.testimonials add column if not exists meta_sk text;
 alter table public.testimonials add column if not exists quote_en text;
 alter table public.testimonials add column if not exists quote_sk text;
+alter table public.testimonials add column if not exists name_en text;
+alter table public.testimonials add column if not exists name_sk text;
 
 -- =========================================================
 -- 2. Reseed list tables with exact v3 copy (UA/EN/SK)
@@ -72,9 +74,9 @@ insert into public.top_reasons (text, text_en, text_sk, position) values
 ('Понад 150 успішних абітурієнтів лише цього року.', 'Over 150 successful applicants this year alone.', 'Viac ako 150 úspešných uchádzačov len tento rok.', 5);
 
 delete from public.testimonials;
-insert into public.testimonials (name, quote, quote_en, quote_sk, meta, meta_en, meta_sk, position) values
-('Анна Андріївна', 'Вступила без НМТ, гуртожиток за п''ять хвилин від корпусу. Хлопці супроводжували на кожному кроці — від договору до міграційної поліції.', 'I got in without NMT, and my dorm is five minutes from campus. The team supported me every step — from the contract to the migration office.', 'Dostala som sa bez NMT, internát mám päť minút od budovy. Tím ma sprevádzal na každom kroku — od zmluvy až po cudzineckú políciu.', 'Економічний університет, Братислава', 'University of Economics, Bratislava', 'Ekonomická univerzita, Bratislava', 1),
-('Олексій К.', 'Найбільше боявся документів і нострифікації — усе зробили за мене. Через два місяці вже мав наказ про зарахування.', 'I was most afraid of paperwork and nostrification — they handled it all for me. Two months later I already had my enrollment order.', 'Najviac som sa bál dokumentov a nostrifikácie — všetko za mňa vybavili. O dva mesiace som už mal rozhodnutie o prijatí.', 'Технічний університет, Кошиці', 'Technical University, Košice', 'Technická univerzita, Košice', 2);
+insert into public.testimonials (name, name_en, name_sk, quote, quote_en, quote_sk, meta, meta_en, meta_sk, position) values
+('Анна Андріївна', 'Anna Andriivna', 'Anna Andrijivna', 'Вступила без НМТ, гуртожиток за п''ять хвилин від корпусу. Хлопці супроводжували на кожному кроці — від договору до міграційної поліції.', 'I got in without NMT, and my dorm is five minutes from campus. The team supported me every step — from the contract to the migration office.', 'Dostala som sa bez NMT, internát mám päť minút od budovy. Tím ma sprevádzal na každom kroku — od zmluvy až po cudzineckú políciu.', 'Економічний університет, Братислава', 'University of Economics, Bratislava', 'Ekonomická univerzita, Bratislava', 1),
+('Олексій К.', 'Oleksiy K.', 'Oleksij K.', 'Найбільше боявся документів і нострифікації — усе зробили за мене. Через два місяці вже мав наказ про зарахування.', 'I was most afraid of paperwork and nostrification — they handled it all for me. Two months later I already had my enrollment order.', 'Najviac som sa bál dokumentov a nostrifikácie — všetko za mňa vybavili. O dva mesiace som už mal rozhodnutie o prijatí.', 'Технічний університет, Кошиці', 'Technical University, Košice', 'Technická univerzita, Košice', 2);
 
 -- =========================================================
 -- 3. Reseed site_sections content (jsonb, each translatable field is

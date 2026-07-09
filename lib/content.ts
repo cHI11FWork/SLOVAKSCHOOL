@@ -190,8 +190,8 @@ const FALLBACK_TOP_REASONS: TopReasonRow[] = [
 ];
 
 const FALLBACK_TESTIMONIALS: TestimonialRow[] = [
-  { id: "t1", name: "Анна Андріївна", quote: "Вступила без НМТ, гуртожиток за п'ять хвилин від корпусу. Хлопці супроводжували на кожному кроці — від договору до міграційної поліції.", quote_en: "I got in without NMT, and my dorm is five minutes from campus. The team supported me every step — from the contract to the migration office.", quote_sk: "Dostala som sa bez NMT, internát mám päť minút od budovy. Tím ma sprevádzal na každom kroku — od zmluvy až po cudzineckú políciu.", meta: "Економічний університет, Братислава", meta_en: "University of Economics, Bratislava", meta_sk: "Ekonomická univerzita, Bratislava", position: 1, visible: true },
-  { id: "t2", name: "Олексій К.", quote: "Найбільше боявся документів і нострифікації — усе зробили за мене. Через два місяці вже мав наказ про зарахування.", quote_en: "I was most afraid of paperwork and nostrification — they handled it all for me. Two months later I already had my enrollment order.", quote_sk: "Najviac som sa bál dokumentov a nostrifikácie — všetko za mňa vybavili. O dva mesiace som už mal rozhodnutie o prijatí.", meta: "Технічний університет, Кошиці", meta_en: "Technical University, Košice", meta_sk: "Technická univerzita, Košice", position: 2, visible: true },
+  { id: "t1", name: "Анна Андріївна", name_en: "Anna Andriivna", name_sk: "Anna Andrijivna", quote: "Вступила без НМТ, гуртожиток за п'ять хвилин від корпусу. Хлопці супроводжували на кожному кроці — від договору до міграційної поліції.", quote_en: "I got in without NMT, and my dorm is five minutes from campus. The team supported me every step — from the contract to the migration office.", quote_sk: "Dostala som sa bez NMT, internát mám päť minút od budovy. Tím ma sprevádzal na každom kroku — od zmluvy až po cudzineckú políciu.", meta: "Економічний університет, Братислава", meta_en: "University of Economics, Bratislava", meta_sk: "Ekonomická univerzita, Bratislava", position: 1, visible: true },
+  { id: "t2", name: "Олексій К.", name_en: "Oleksiy K.", name_sk: "Oleksij K.", quote: "Найбільше боявся документів і нострифікації — усе зробили за мене. Через два місяці вже мав наказ про зарахування.", quote_en: "I was most afraid of paperwork and nostrification — they handled it all for me. Two months later I already had my enrollment order.", quote_sk: "Najviac som sa bál dokumentov a nostrifikácie — všetko za mňa vybavili. O dva mesiace som už mal rozhodnutie o prijatí.", meta: "Технічний університет, Кошиці", meta_en: "Technical University, Košice", meta_sk: "Technická univerzita, Košice", position: 2, visible: true },
 ];
 
 function resolveNav(lang: Lang) {
@@ -275,7 +275,7 @@ export async function getLandingData(lang: Lang): Promise<LandingData> {
     id: tm.id,
     quote: pickLang(tm, "quote", lang),
     initials: initialsFromName(tm.name),
-    name: tm.name,
+    name: pickLang(tm, "name", lang),
     meta: pickLang(tm, "meta", lang),
   }));
 
