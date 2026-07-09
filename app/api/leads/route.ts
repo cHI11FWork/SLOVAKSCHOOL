@@ -22,6 +22,7 @@ export async function POST(request: Request) {
     .insert({
       name: parsed.data.name,
       phone: parsed.data.phone,
+      grade: parsed.data.grade,
       source: parsed.data.source,
     })
     .select("lead_number")
@@ -35,6 +36,7 @@ export async function POST(request: Request) {
     leadNumber: data.lead_number,
     name: parsed.data.name,
     phone: parsed.data.phone,
+    grade: parsed.data.grade,
     source: parsed.data.source,
   });
 

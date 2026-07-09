@@ -11,6 +11,7 @@ create table if not exists public.leads (
   id uuid primary key default gen_random_uuid(),
   name text not null,
   phone text not null,
+  grade text check (grade in ('8', '9', '10', '11', 'college')),
   source text not null default 'hero_form' check (source in ('hero_form', 'consultation_form', 'feedback_form')),
   status text not null default 'new' check (status in ('new', 'in_progress', 'done')),
   notes text,
@@ -19,6 +20,7 @@ create table if not exists public.leads (
 
 alter table public.leads add column if not exists notes text;
 alter table public.leads add column if not exists lead_number bigserial unique;
+alter table public.leads add column if not exists grade text;
 
 create table if not exists public.site_sections (
   id uuid primary key default gen_random_uuid(),

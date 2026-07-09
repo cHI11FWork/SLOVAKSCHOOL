@@ -143,12 +143,14 @@ export type TestimonialItem = { id: string; quote: string; initials: string; nam
 
 export type LeadSource = "hero_form" | "consultation_form" | "feedback_form";
 export type LeadStatus = "new" | "in_progress" | "done";
+export type LeadGrade = "8" | "9" | "10" | "11" | "college";
 
 export type LeadRow = {
   id: string;
   lead_number: number;
   name: string;
   phone: string;
+  grade: LeadGrade | null;
   source: LeadSource;
   status: LeadStatus;
   notes: string | null;

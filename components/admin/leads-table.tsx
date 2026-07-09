@@ -26,13 +26,22 @@ const SOURCE_LABEL: Record<string, string> = {
   feedback_form: "Форма зв'язку",
 };
 
+const GRADE_LABEL: Record<string, string> = {
+  "8": "8 клас",
+  "9": "9 клас",
+  "10": "10 клас",
+  "11": "11 клас",
+  college: "Коледж",
+};
+
 function toCsv(rows: LeadRow[]) {
-  const header = ["№", "Ім'я", "Телефон", "Джерело", "Статус", "Нотатки", "Дата"];
+  const header = ["№", "Ім'я", "Телефон", "Клас/курс", "Джерело", "Статус", "Нотатки", "Дата"];
   const lines = rows.map((l) =>
     [
       l.lead_number,
       l.name,
       l.phone,
+      l.grade ? GRADE_LABEL[l.grade] ?? l.grade : "",
       SOURCE_LABEL[l.source] ?? l.source,
       STATUS_LABEL[l.status],
       l.notes ?? "",
@@ -182,6 +191,7 @@ export function LeadsTable({ leads }: { leads: LeadRow[] }) {
               <TableHead>№</TableHead>
               <TableHead>Ім&rsquo;я</TableHead>
               <TableHead>Телефон</TableHead>
+              <TableHead>Клас/курс</TableHead>
               <TableHead>Джерело</TableHead>
               <TableHead>Дата</TableHead>
               <TableHead>Статус</TableHead>
@@ -212,6 +222,9 @@ export function LeadsTable({ leads }: { leads: LeadRow[] }) {
                     </div>
                   </TableCell>
                   <TableCell>{lead.phone}</TableCell>
+                  <TableCell className="text-navy/60">
+                    {lead.grade ? GRADE_LABEL[lead.grade] ?? lead.grade : "—"}
+                  </TableCell>
                   <TableCell className="text-navy/60">{SOURCE_LABEL[lead.source] ?? lead.source}</TableCell>
                   <TableCell className="text-navy/60">
                     {new Date(lead.created_at).toLocaleString("uk-UA")}

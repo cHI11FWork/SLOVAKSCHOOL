@@ -8,6 +8,8 @@ const phoneField = z
   .max(20, "Задовгий номер")
   .refine((value) => isValidPhoneNumber(value, "UA"), "Некоректний номер телефону");
 
+const gradeField = z.enum(["8", "9", "10", "11", "college"], "Оберіть клас або курс");
+
 export const leadSchema = z.object({
   name: z
     .string()
@@ -15,6 +17,7 @@ export const leadSchema = z.object({
     .min(2, "Введіть ім'я")
     .max(80, "Задовге ім'я"),
   phone: phoneField,
+  grade: gradeField,
   source: z.enum(["hero_form", "consultation_form", "feedback_form"]),
   // honeypot: humans never fill this in, bots often do
   company: z.string().max(0, "").optional(),
@@ -29,6 +32,7 @@ export const adminLeadSchema = z.object({
     .min(2, "Введіть ім'я")
     .max(80, "Задовге ім'я"),
   phone: phoneField,
+  grade: gradeField,
   source: z.enum(["hero_form", "consultation_form", "feedback_form"]),
   status: z.enum(["new", "in_progress", "done"]),
   notes: z.string().trim().max(2000, "Задовгі нотатки").optional(),

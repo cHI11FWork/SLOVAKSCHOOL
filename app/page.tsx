@@ -70,7 +70,12 @@ export default async function Home() {
               <p className="max-w-[480px] text-[17px] leading-relaxed text-[#777b86]">
                 {data.contact.paragraph}
               </p>
-              <LeadForm source="feedback_form" buttonText={data.contact.submit_label} thankYou={data.thankYou} />
+              <LeadForm
+                source="feedback_form"
+                buttonText={data.contact.submit_label}
+                thankYou={data.thankYou}
+                lang={lang}
+              />
               <div className="text-sm text-[#979799]">{data.contact.footnote}</div>
             </Reveal>
           </section>

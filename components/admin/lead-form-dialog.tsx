@@ -24,9 +24,18 @@ const STATUS_LABEL: Record<AdminLeadInput["status"], string> = {
   done: "Оброблено",
 };
 
+const GRADE_LABEL: Record<AdminLeadInput["grade"], string> = {
+  "8": "8 клас",
+  "9": "9 клас",
+  "10": "10 клас",
+  "11": "11 клас",
+  college: "Коледж",
+};
+
 const EMPTY: AdminLeadInput = {
   name: "",
   phone: "",
+  grade: "8",
   source: "consultation_form",
   status: "new",
   notes: "",
@@ -61,6 +70,7 @@ export function LeadFormDialog({
           ? {
               name: lead.name,
               phone: lead.phone,
+              grade: lead.grade ?? "8",
               source: lead.source,
               status: lead.status,
               notes: lead.notes ?? "",
@@ -100,7 +110,29 @@ export function LeadFormDialog({
             {errors.phone && <p className="mt-1 text-xs text-red-500">{errors.phone.message}</p>}
           </div>
 
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-3 gap-4">
+            <div>
+              <Label>Клас/курс</Label>
+              <Controller
+                control={control}
+                name="grade"
+                render={({ field }) => (
+                  <Select value={field.value} onValueChange={field.onChange}>
+                    <SelectTrigger className="mt-1.5 w-full">
+                      <SelectValue />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {(Object.keys(GRADE_LABEL) as AdminLeadInput["grade"][]).map((g) => (
+                        <SelectItem key={g} value={g}>
+                          {GRADE_LABEL[g]}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                )}
+              />
+            </div>
+
             <div>
               <Label>Джерело</Label>
               <Controller

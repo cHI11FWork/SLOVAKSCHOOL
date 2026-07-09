@@ -117,6 +117,7 @@ export async function createLead(input: AdminLeadInput) {
     .insert({
       name: parsed.name,
       phone: parsed.phone,
+      grade: parsed.grade,
       source: parsed.source,
       status: parsed.status,
       notes: parsed.notes || null,
@@ -138,6 +139,7 @@ export async function updateLead(id: string, input: AdminLeadInput) {
     .update({
       name: parsed.name,
       phone: parsed.phone,
+      grade: parsed.grade,
       source: parsed.source,
       status: parsed.status,
       notes: parsed.notes || null,

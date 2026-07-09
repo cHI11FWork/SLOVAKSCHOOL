@@ -4,6 +4,14 @@ const SOURCE_LABEL: Record<string, string> = {
   feedback_form: "Форма зв'язку",
 };
 
+const GRADE_LABEL: Record<string, string> = {
+  "8": "8 клас",
+  "9": "9 клас",
+  "10": "10 клас",
+  "11": "11 клас",
+  college: "Коледж",
+};
+
 function escapeHtml(value: string) {
   return value.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
 }
@@ -12,6 +20,7 @@ export async function sendLeadTelegramNotification(lead: {
   leadNumber: number;
   name: string;
   phone: string;
+  grade: string;
   source: string;
 }) {
   const token = process.env.TELEGRAM_BOT_TOKEN;
@@ -33,6 +42,7 @@ export async function sendLeadTelegramNotification(lead: {
     `🕐 ${dateTime}`,
     `👤 ${escapeHtml(lead.name)}`,
     `📞 ${escapeHtml(lead.phone)}`,
+    `🎓 ${GRADE_LABEL[lead.grade] ?? lead.grade}`,
     `📍 ${SOURCE_LABEL[lead.source] ?? lead.source}`,
   ].join("\n");
 
