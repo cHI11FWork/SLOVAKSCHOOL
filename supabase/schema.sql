@@ -91,6 +91,23 @@ drop policy if exists "public can insert leads" on public.leads;
 create policy "public can insert leads" on public.leads
   for insert to anon, authenticated with check (true);
 
+-- Admin (authenticated) can read leads client-side, so the admin dashboard
+-- can subscribe to new-lead notifications over Supabase Realtime.
+drop policy if exists "authenticated can read leads" on public.leads;
+create policy "authenticated can read leads" on public.leads
+  for select to authenticated using (true);
+
+-- Enable Realtime change events for leads (idempotent — errors if run twice otherwise).
+do $$
+begin
+  if not exists (
+    select 1 from pg_publication_tables
+    where pubname = 'supabase_realtime' and schemaname = 'public' and tablename = 'leads'
+  ) then
+    alter publication supabase_realtime add table public.leads;
+  end if;
+end $$;
+
 drop policy if exists "public can read site_sections" on public.site_sections;
 create policy "public can read site_sections" on public.site_sections
   for select to anon, authenticated using (true);

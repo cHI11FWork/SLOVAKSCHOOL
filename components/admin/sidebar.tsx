@@ -17,6 +17,7 @@ import {
   LogOut,
 } from "lucide-react";
 import { LogoMark } from "@/components/icons/logo-mark";
+import { NotificationBell } from "@/components/admin/notification-bell";
 import { signOutAction } from "@/app/admin/actions";
 import { cn } from "@/lib/utils";
 
@@ -34,13 +35,20 @@ const NAV = [
   { href: "/admin/content-list/social_links", label: "Соцмережі", icon: Share2 },
 ];
 
-export function Sidebar({ email }: { email: string | undefined }) {
+export function Sidebar({
+  email,
+  newLeadsCount = 0,
+}: {
+  email: string | undefined;
+  newLeadsCount?: number;
+}) {
   const pathname = usePathname();
 
   return (
     <aside className="flex h-full w-[264px] shrink-0 flex-col border-r border-gray-100 bg-white">
-      <div className="flex h-20 items-center px-6">
+      <div className="flex h-20 items-center justify-between px-6">
         <LogoMark className="w-16" />
+        <NotificationBell initialCount={newLeadsCount} />
       </div>
 
       <nav className="flex-1 space-y-1 overflow-y-auto px-3">
