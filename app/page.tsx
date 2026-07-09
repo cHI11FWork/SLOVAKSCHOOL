@@ -1,4 +1,5 @@
 import { getLandingData } from "@/lib/content";
+import { DEFAULT_DESCRIPTION, SITE_NAME, SITE_URL } from "@/lib/seo";
 import { Header } from "@/components/sections/header";
 import { Hero } from "@/components/sections/hero";
 import { WhyUs } from "@/components/sections/why-us";
@@ -18,8 +19,26 @@ export default async function Home() {
   const data = await getLandingData();
   const isVisible = (key: string) => data.sectionVisibility[key] !== false;
 
+  const organizationJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    name: SITE_NAME,
+    url: SITE_URL,
+    logo: `${SITE_URL}/logo.svg`,
+    description: DEFAULT_DESCRIPTION,
+    areaServed: "UA",
+    sameAs: data.socialLinks.map((link) => link.url).filter((url) => /^https?:\/\//.test(url)),
+  };
+
   return (
     <div className="flex min-h-full flex-col">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(organizationJsonLd).replace(/</g, "\\u003c"),
+        }}
+      />
+
       <Header
         content={data.header}
         formTitle={data.hero.form_title}

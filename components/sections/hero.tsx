@@ -39,7 +39,7 @@ export function Hero({ content, thankYou }: { content: HeroContent; thankYou: Th
             <div className="relative aspect-[5/4] w-full overflow-hidden rounded-[24px]">
               <Image
                 src={content.image}
-                alt="Студентка"
+                alt="Українська студентка, яка навчається у Словаччині"
                 fill
                 priority
                 sizes="(min-width: 1024px) 560px, 100vw"

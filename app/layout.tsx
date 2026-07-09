@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Manrope, Poppins } from "next/font/google";
 import "./globals.css";
+import { DEFAULT_DESCRIPTION, DEFAULT_TITLE, SITE_NAME, SITE_URL } from "@/lib/seo";
 
 const manrope = Manrope({
   variable: "--font-manrope",
@@ -15,9 +16,45 @@ const poppins = Poppins({
 });
 
 export const metadata: Metadata = {
-  title: "VipStudy — Навчання у Словаччині",
-  description:
-    "Безкоштовна вища освіта у Словаччині для українців: консультація, супровід вступу, гуртожиток. Залиште заявку — передзвонимо і все розкажемо.",
+  metadataBase: new URL(SITE_URL),
+  title: {
+    default: DEFAULT_TITLE,
+    template: `%s — ${SITE_NAME}`,
+  },
+  description: DEFAULT_DESCRIPTION,
+  keywords: [
+    "навчання у Словаччині",
+    "вища освіта Словаччина",
+    "вступ до університету Словаччини",
+    "навчання для українців за кордоном",
+    "безкоштовна освіта в Європі",
+    "гуртожиток Словаччина",
+    "VipStudy",
+  ],
+  authors: [{ name: SITE_NAME }],
+  alternates: { canonical: "/" },
+  openGraph: {
+    type: "website",
+    locale: "uk_UA",
+    url: SITE_URL,
+    siteName: SITE_NAME,
+    title: DEFAULT_TITLE,
+    description: DEFAULT_DESCRIPTION,
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: DEFAULT_TITLE,
+    description: DEFAULT_DESCRIPTION,
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+    },
+  },
 };
 
 export default function RootLayout({
