@@ -48,6 +48,7 @@ function Field({
 
 function SortableCard({
   item,
+  index,
   fields,
   onChangeField,
   onSave,
@@ -56,6 +57,7 @@ function SortableCard({
   saving,
 }: {
   item: Item;
+  index: number;
   fields: FieldConfig[];
   onChangeField: (key: string, value: string) => void;
   onSave: () => void;
@@ -71,14 +73,22 @@ function SortableCard({
     <motion.div
       ref={setNodeRef}
       layout
+      initial={{ opacity: 0, y: 12 }}
+      animate={{
+        opacity: 1,
+        y: 0,
+        scale: isDragging ? 1.02 : 1,
+        rotate: isDragging ? -1 : 0,
+      }}
+      transition={{ duration: 0.35, delay: index * 0.04, ease: [0.16, 1, 0.3, 1] }}
       style={{ transform: CSS.Transform.toString(transform), transition }}
-      className={`rounded-2xl border bg-white p-5 ${isDragging ? "border-pink shadow-lg" : "border-gray-100"}`}
+      className={`rounded-2xl border bg-white p-5 transition-shadow ${isDragging ? "border-pink shadow-xl" : "border-gray-100 hover:shadow-sm"}`}
     >
       <div className="flex items-start gap-3">
         <button
           {...attributes}
           {...listeners}
-          className="mt-1 cursor-grab touch-none text-navy/30 hover:text-navy/60 active:cursor-grabbing"
+          className="mt-1 cursor-grab touch-none text-navy/30 transition-colors hover:text-navy/60 active:cursor-grabbing"
         >
           <GripVertical className="h-4 w-4" />
         </button>
@@ -203,10 +213,11 @@ export function ListEditor({
         <SortableContext items={items.map((i) => i.id)} strategy={verticalListSortingStrategy}>
           <div className="space-y-3">
             <AnimatePresence initial={false}>
-              {items.map((item) => (
+              {items.map((item, index) => (
                 <SortableCard
                   key={item.id}
                   item={item}
+                  index={index}
                   fields={fields}
                   onChangeField={(k, v) => changeField(item.id, k, v)}
                   onSave={() => save(item.id)}

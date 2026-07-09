@@ -1,4 +1,7 @@
+"use client";
+
 import type { SVGProps } from "react";
+import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 
 /** Hand-drawn-style curved arrow, used pointing into/out of the lead-form cards. */
@@ -30,24 +33,53 @@ export function SquiggleArrow({ className, ...props }: SVGProps<SVGSVGElement>) 
 }
 
 /** Repeating chevron/arrow grid — decorative accent used in the benefits band. */
-export function ChevronPattern({ className, rows = 4, cols = 3 }: { className?: string; rows?: number; cols?: number }) {
+export function ChevronPattern({
+  className,
+  rows = 4,
+  cols = 3,
+  animated = false,
+}: {
+  className?: string;
+  rows?: number;
+  cols?: number;
+  animated?: boolean;
+}) {
   return (
     <div
       className={cn("grid gap-3 opacity-90", className)}
       style={{ gridTemplateColumns: `repeat(${cols}, minmax(0, 1fr))` }}
     >
-      {Array.from({ length: rows * cols }).map((_, i) => (
-        <svg key={i} viewBox="0 0 40 40" className="text-pink-dark">
-          <path
-            d="M6 4l16 16-16 16"
-            stroke="currentColor"
-            strokeWidth="7"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            fill="none"
-          />
-        </svg>
-      ))}
+      {Array.from({ length: rows * cols }).map((_, i) => {
+        const col = i % cols;
+        const row = Math.floor(i / cols);
+        return (
+          <motion.svg
+            key={i}
+            viewBox="0 0 40 40"
+            className="text-pink-dark"
+            animate={animated ? { y: [0, -6, 0] } : undefined}
+            transition={
+              animated
+                ? {
+                    duration: 2.6,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                    delay: col * 0.15 + row * 0.08,
+                  }
+                : undefined
+            }
+          >
+            <path
+              d="M6 4l16 16-16 16"
+              stroke="currentColor"
+              strokeWidth="7"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              fill="none"
+            />
+          </motion.svg>
+        );
+      })}
     </div>
   );
 }

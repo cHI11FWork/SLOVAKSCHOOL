@@ -2,6 +2,8 @@
 
 import { useState, useTransition } from "react";
 import { toast } from "sonner";
+import { motion, AnimatePresence } from "framer-motion";
+import { Check } from "lucide-react";
 import { updateSection } from "@/app/admin/actions";
 import type { FieldConfig, SectionKey } from "@/lib/admin-tables";
 import { Label } from "@/components/ui/label";
@@ -24,6 +26,7 @@ export function SectionForm({
   const [content, setContent] = useState(initialContent);
   const [visible, setVisible] = useState(initialVisible);
   const [pending, startTransition] = useTransition();
+  const [saved, setSaved] = useState(false);
 
   function setField(key: string, value: unknown) {
     setContent((prev) => ({ ...prev, [key]: value }));
@@ -34,6 +37,8 @@ export function SectionForm({
       try {
         await updateSection(sectionKey, content, visible);
         toast.success("Збережено");
+        setSaved(true);
+        setTimeout(() => setSaved(false), 1800);
       } catch {
         toast.error("Не вдалося зберегти");
       }
@@ -91,9 +96,24 @@ export function SectionForm({
         <p className="text-sm text-navy/50">У цієї секції немає текстових полів для редагування.</p>
       )}
 
-      <Button onClick={onSave} disabled={pending}>
-        {pending ? "Зберігаємо…" : "Зберегти зміни"}
-      </Button>
+      <div className="flex items-center gap-3">
+        <Button onClick={onSave} disabled={pending}>
+          {pending ? "Зберігаємо…" : "Зберегти зміни"}
+        </Button>
+        <AnimatePresence>
+          {saved && (
+            <motion.span
+              initial={{ opacity: 0, scale: 0.7, x: -8 }}
+              animate={{ opacity: 1, scale: 1, x: 0 }}
+              exit={{ opacity: 0, scale: 0.7 }}
+              transition={{ type: "spring", duration: 0.4, bounce: 0.5 }}
+              className="flex items-center gap-1 text-sm font-medium text-emerald-600"
+            >
+              <Check className="h-4 w-4" /> Збережено
+            </motion.span>
+          )}
+        </AnimatePresence>
+      </div>
     </div>
   );
 }

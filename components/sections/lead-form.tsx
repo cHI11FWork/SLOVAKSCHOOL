@@ -120,7 +120,28 @@ export function LeadForm({
             transition={{ type: "spring", duration: 0.4 }}
             className="text-center"
           >
-            <DialogTitle className="text-center">{thankYou.title}</DialogTitle>
+            <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-pink-light">
+              <motion.svg
+                viewBox="0 0 24 24"
+                className="h-8 w-8"
+                initial="hidden"
+                animate="show"
+              >
+                <motion.path
+                  d="M5 13l4 4L19 7"
+                  fill="none"
+                  stroke="var(--color-pink)"
+                  strokeWidth="2.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  variants={{
+                    hidden: { pathLength: 0, opacity: 0 },
+                    show: { pathLength: 1, opacity: 1, transition: { duration: 0.5, delay: 0.2, ease: "easeOut" } },
+                  }}
+                />
+              </motion.svg>
+            </div>
+            <DialogTitle className="mt-5 text-center">{thankYou.title}</DialogTitle>
             <DialogDescription className="text-center">{thankYou.message}</DialogDescription>
             <Button className="mt-8" onClick={() => setDone(false)}>
               {thankYou.button}

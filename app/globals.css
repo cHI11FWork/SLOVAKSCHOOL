@@ -81,3 +81,26 @@ body {
   from { opacity: 0; transform: scale(0.95) translateY(-4px); }
   to { opacity: 1; transform: scale(1) translateY(0); }
 }
+
+/* Diagonal shine sweep on hover — used on the primary button variant. */
+.btn-shine {
+  position: relative;
+  overflow: hidden;
+}
+.btn-shine::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  left: -75%;
+  width: 50%;
+  background: linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.55), transparent);
+  transform: skewX(-20deg);
+  pointer-events: none;
+}
+.btn-shine:hover::after {
+  animation: btn-shine-sweep 0.8s ease;
+}
+@keyframes btn-shine-sweep {
+  from { left: -75%; }
+  to { left: 125%; }
+}

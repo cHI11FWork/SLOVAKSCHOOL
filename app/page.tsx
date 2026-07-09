@@ -9,6 +9,7 @@ import { TopReasons } from "@/components/sections/top-reasons";
 import { Testimonials } from "@/components/sections/testimonials";
 import { LeadForm } from "@/components/sections/lead-form";
 import { Footer } from "@/components/sections/footer";
+import { Reveal } from "@/components/motion/reveal";
 
 export const revalidate = 60;
 
@@ -40,7 +41,7 @@ export default async function Home() {
         )}
         {isVisible("feedback_form") && (
           <section className="container-page py-20">
-            <div className="mx-auto max-w-2xl">
+            <Reveal className="mx-auto max-w-2xl">
               <LeadForm
                 title={data.feedbackForm.form_title}
                 subtitle={data.feedbackForm.form_subtitle}
@@ -49,7 +50,7 @@ export default async function Home() {
                 thankYou={data.thankYou}
                 decorated
               />
-            </div>
+            </Reveal>
           </section>
         )}
       </main>

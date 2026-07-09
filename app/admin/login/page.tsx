@@ -34,12 +34,25 @@ export default function LoginPage() {
   }
 
   return (
-    <div className="flex min-h-screen items-center justify-center px-4">
+    <div className="relative flex min-h-screen items-center justify-center overflow-hidden px-4">
+      <motion.div
+        aria-hidden
+        animate={{ x: [0, 30, 0], y: [0, -20, 0] }}
+        transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
+        className="absolute -left-20 -top-20 h-72 w-72 rounded-full bg-pink/10 blur-3xl"
+      />
+      <motion.div
+        aria-hidden
+        animate={{ x: [0, -24, 0], y: [0, 24, 0] }}
+        transition={{ duration: 14, repeat: Infinity, ease: "easeInOut" }}
+        className="absolute -bottom-24 -right-16 h-80 w-80 rounded-full bg-navy/10 blur-3xl"
+      />
+
       <motion.div
         initial={{ opacity: 0, y: 12 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.35 }}
-        className="w-full max-w-sm rounded-[20px] border border-gray-100 bg-white p-10 shadow-xl"
+        className="relative w-full max-w-sm rounded-[20px] border border-gray-100 bg-white p-10 shadow-xl"
       >
         <div className="flex justify-center">
           <LogoMark className="w-16" />
