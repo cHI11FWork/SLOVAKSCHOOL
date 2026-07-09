@@ -20,7 +20,13 @@ export default async function Home() {
 
   return (
     <div className="flex min-h-full flex-col">
-      <Header content={data.header} />
+      <Header
+        content={data.header}
+        formTitle={data.hero.form_title}
+        formSubtitle={data.hero.form_subtitle}
+        formButton={data.hero.form_button}
+        thankYou={data.thankYou}
+      />
 
       <main className="flex-1">
         {isVisible("hero") && <Hero content={data.hero} thankYou={data.thankYou} />}

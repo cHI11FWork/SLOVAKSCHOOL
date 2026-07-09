@@ -4,11 +4,26 @@ import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { LogoMark } from "@/components/icons/logo-mark";
+import { LeadForm } from "@/components/sections/lead-form";
+import { Dialog, DialogTrigger, DialogContent } from "@/components/ui/dialog";
 import { cn } from "@/lib/utils";
-import type { HeaderContent } from "@/lib/types";
+import type { HeaderContent, ThankYouContent } from "@/lib/types";
 
-export function Header({ content }: { content: HeaderContent }) {
+export function Header({
+  content,
+  formTitle,
+  formSubtitle,
+  formButton,
+  thankYou,
+}: {
+  content: HeaderContent;
+  formTitle: string;
+  formSubtitle: string;
+  formButton: string;
+  thankYou: ThankYouContent;
+}) {
   const [open, setOpen] = useState(false);
+  const [contactOpen, setContactOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
@@ -43,13 +58,42 @@ export function Header({ content }: { content: HeaderContent }) {
           ))}
         </nav>
 
-        <button
-          className="flex h-10 w-10 items-center justify-center rounded-full text-navy lg:hidden"
-          onClick={() => setOpen((v) => !v)}
-          aria-label="Меню"
-        >
-          {open ? <X /> : <Menu />}
-        </button>
+        <div className="flex items-center gap-2 sm:gap-4">
+          <Dialog open={contactOpen} onOpenChange={setContactOpen}>
+            <DialogTrigger asChild>
+              <motion.button
+                whileHover={{ scale: 1.04 }}
+                whileTap={{ scale: 0.96 }}
+                className="relative flex h-10 items-center justify-center overflow-hidden rounded-full bg-pink px-4 text-sm font-semibold text-white shadow-[0_8px_20px_-6px_rgba(242,27,148,0.55)] sm:px-6"
+              >
+                <motion.span
+                  animate={{ scale: [1, 1.4, 1], opacity: [0.5, 0, 0.5] }}
+                  transition={{ duration: 2.4, repeat: Infinity, ease: "easeInOut" }}
+                  className="absolute inset-0 rounded-full bg-pink"
+                />
+                <span className="relative">Зв&apos;язатись</span>
+              </motion.button>
+            </DialogTrigger>
+            <DialogContent>
+              <LeadForm
+                title={formTitle}
+                subtitle={formSubtitle}
+                buttonText={formButton}
+                source="consultation_form"
+                thankYou={thankYou}
+                card={false}
+              />
+            </DialogContent>
+          </Dialog>
+
+          <button
+            className="flex h-10 w-10 items-center justify-center rounded-full text-navy lg:hidden"
+            onClick={() => setOpen((v) => !v)}
+            aria-label="Меню"
+          >
+            {open ? <X /> : <Menu />}
+          </button>
+        </div>
       </div>
 
       <AnimatePresence>
