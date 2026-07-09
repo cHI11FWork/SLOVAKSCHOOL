@@ -1,22 +1,26 @@
+import { cookies } from "next/headers";
 import { getLandingData } from "@/lib/content";
+import { DEFAULT_LANG, LANG_COOKIE, isLang } from "@/lib/i18n";
 import { DEFAULT_DESCRIPTION, SITE_NAME, SITE_URL } from "@/lib/seo";
 import { Header } from "@/components/sections/header";
 import { Hero } from "@/components/sections/hero";
 import { WhyUs } from "@/components/sections/why-us";
-import { BenefitsBand } from "@/components/sections/benefits-band";
 import { Steps } from "@/components/sections/steps";
 import { CostSection } from "@/components/sections/cost-section";
 import { TopReasons } from "@/components/sections/top-reasons";
 import { Testimonials } from "@/components/sections/testimonials";
 import { LeadForm } from "@/components/sections/lead-form";
 import { Footer } from "@/components/sections/footer";
-import { FloatingContact } from "@/components/sections/floating-contact";
 import { Reveal } from "@/components/motion/reveal";
 
 export const revalidate = 60;
 
 export default async function Home() {
-  const data = await getLandingData();
+  const cookieStore = await cookies();
+  const rawLang = cookieStore.get(LANG_COOKIE)?.value;
+  const lang = isLang(rawLang) ? rawLang : DEFAULT_LANG;
+
+  const data = await getLandingData(lang);
   const isVisible = (key: string) => data.sectionVisibility[key] !== false;
 
   const organizationJsonLd = {
@@ -27,11 +31,10 @@ export default async function Home() {
     logo: `${SITE_URL}/logo.svg`,
     description: DEFAULT_DESCRIPTION,
     areaServed: "UA",
-    sameAs: data.socialLinks.map((link) => link.url).filter((url) => /^https?:\/\//.test(url)),
   };
 
   return (
-    <div className="flex min-h-full flex-col">
+    <div className="flex min-h-full flex-col bg-white">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
@@ -39,19 +42,12 @@ export default async function Home() {
         }}
       />
 
-      <Header
-        content={data.header}
-        formTitle={data.hero.form_title}
-        formSubtitle={data.hero.form_subtitle}
-        formButton={data.hero.form_button}
-        thankYou={data.thankYou}
-      />
+      <Header content={data.header} lang={lang} />
 
       <main className="flex-1">
-        {isVisible("hero") && <Hero content={data.hero} thankYou={data.thankYou} />}
-        {isVisible("why_us") && data.whyUs && <WhyUs content={data.whyUs} />}
-        {isVisible("benefits_band") && data.benefits.length > 0 && (
-          <BenefitsBand content={data.benefitsBand} benefits={data.benefits} thankYou={data.thankYou} />
+        {isVisible("hero") && <Hero content={data.hero} />}
+        {isVisible("why_us") && data.benefits.length > 0 && (
+          <WhyUs content={data.whyUs} benefits={data.benefits} />
         )}
         {isVisible("steps_intro") && data.steps.length > 0 && (
           <Steps intro={data.stepsIntro} steps={data.steps} />
@@ -66,23 +62,22 @@ export default async function Home() {
           <Testimonials intro={data.testimonialsIntro} testimonials={data.testimonials} />
         )}
         {isVisible("feedback_form") && (
-          <section className="container-page py-20">
-            <Reveal className="mx-auto max-w-2xl">
-              <LeadForm
-                title={data.feedbackForm.form_title}
-                subtitle={data.feedbackForm.form_subtitle}
-                buttonText={data.feedbackForm.form_button}
-                source="feedback_form"
-                thankYou={data.thankYou}
-                decorated
-              />
+          <section id="contact" className="bg-[#fafafb] py-16 min-[900px]:py-24">
+            <Reveal className="mx-auto flex max-w-[720px] flex-col items-center gap-8 px-5 text-center min-[900px]:px-8">
+              <h2 className="font-display text-[34px] font-normal leading-[1.2] tracking-[-0.5px] text-[#17191c] min-[640px]:text-[52px] min-[640px]:tracking-[-0.8px]">
+                {data.contact.title_main} <em className="italic">{data.contact.title_emphasis}</em>
+              </h2>
+              <p className="max-w-[480px] text-[17px] leading-relaxed text-[#777b86]">
+                {data.contact.paragraph}
+              </p>
+              <LeadForm source="feedback_form" buttonText={data.contact.submit_label} thankYou={data.thankYou} />
+              <div className="text-sm text-[#979799]">{data.contact.footnote}</div>
             </Reveal>
           </section>
         )}
       </main>
 
-      <Footer content={data.footer} socialLinks={data.socialLinks} />
-      <FloatingContact socialLinks={data.socialLinks} />
+      <Footer content={data.footer} />
     </div>
   );
 }

@@ -30,7 +30,12 @@ create table if not exists public.site_sections (
 
 create table if not exists public.benefits (
   id uuid primary key default gen_random_uuid(),
+  title text not null default '',
+  title_en text,
+  title_sk text,
   text text not null,
+  text_en text,
+  text_sk text,
   position int not null default 0,
   visible boolean not null default true
 );
@@ -38,7 +43,11 @@ create table if not exists public.benefits (
 create table if not exists public.steps (
   id uuid primary key default gen_random_uuid(),
   title text not null,
+  title_en text,
+  title_sk text,
   description text not null,
+  description_en text,
+  description_sk text,
   image_url text,
   position int not null default 0,
   visible boolean not null default true
@@ -48,6 +57,8 @@ create table if not exists public.cost_items (
   id uuid primary key default gen_random_uuid(),
   amount text not null,
   label text not null,
+  label_en text,
+  label_sk text,
   position int not null default 0,
   visible boolean not null default true
 );
@@ -55,6 +66,8 @@ create table if not exists public.cost_items (
 create table if not exists public.top_reasons (
   id uuid primary key default gen_random_uuid(),
   text text not null,
+  text_en text,
+  text_sk text,
   position int not null default 0,
   visible boolean not null default true
 );
@@ -63,6 +76,11 @@ create table if not exists public.testimonials (
   id uuid primary key default gen_random_uuid(),
   name text not null,
   quote text not null,
+  quote_en text,
+  quote_sk text,
+  meta text,
+  meta_en text,
+  meta_sk text,
   position int not null default 0,
   visible boolean not null default true
 );
@@ -159,104 +177,99 @@ create policy "authenticated can manage site-media" on storage.objects
   with check (bucket_id = 'site-media');
 
 -- =========================================================
--- SEED DATA (exact copy from the Figma design; freely editable via /admin)
+-- SEED DATA (exact copy from the approved v3 design, in UA/EN/SK;
+-- freely editable via /admin). For an EXISTING already-seeded database,
+-- run supabase/migration_v3_redesign.sql instead — it adds the columns
+-- above and replaces old placeholder content; this block only fires on
+-- a fresh install where these tables are still empty.
 -- =========================================================
 
 insert into public.site_sections (key, content) values
-('header', '{
-  "nav": [
-    {"label": "Чому Словаччина?", "href": "#why-us"},
-    {"label": "Співпраця", "href": "#steps"},
-    {"label": "Вартість", "href": "#cost"},
-    {"label": "Відгуки", "href": "#testimonials"}
-  ]
-}'::jsonb),
+('header', '{"cta": {"uk": "Залишити заявку", "en": "Get in touch", "sk": "Nechať žiadosť"}}'::jsonb),
 ('hero', '{
-  "headline": "СТАНЬ СТУДЕНТОМ СЛОВАЦЬКОГО УНІВЕРСИТЕТУ",
-  "bullets": ["Безкоштовна освіта", "Результати ЗНО до уваги не беруться", "Сучасні методи навчання", "Гуртожитки поруч з навчальним корпусом"],
+  "eyebrow": {"uk": "Вища освіта в Європі · для українців", "en": "Higher education in Europe · for Ukrainians", "sk": "Vysokoškolské vzdelanie v Európe · pre Ukrajincov"},
+  "title_main": {"uk": "Стань студентом", "en": "Become a student at a", "sk": "Staň sa študentom"},
+  "title_emphasis": {"uk": "словацького", "en": "Slovak", "sk": "slovenskej"},
+  "title_suffix": {"uk": "університету", "en": "university", "sk": "univerzity"},
+  "paragraph": {"uk": "Безкоштовне навчання, гуртожиток поруч із корпусом і ВНЖ на весь період. Результати НМТ не враховуються — ми супроводжуємо вступ від консультації до зарахування.", "en": "Free tuition, a dormitory right next to campus, and a residence permit for your whole studies. NMT results don''t matter — we guide you from consultation to enrollment.", "sk": "Bezplatné štúdium, internát priamo pri kampuse a povolenie na pobyt na celé štúdium. Výsledky NMT sa neberú do úvahy — sprevádzame ťa od konzultácie až po zápis."},
+  "cta_primary": {"uk": "Отримати консультацію", "en": "Get a consultation", "sk": "Získať konzultáciu"},
+  "cta_secondary": {"uk": "Як це працює", "en": "How it works", "sk": "Ako to funguje"},
+  "bullets": [
+    {"uk": "Безкоштовна освіта", "en": "Free education", "sk": "Bezplatné vzdelanie"},
+    {"uk": "Без результатів НМТ", "en": "No NMT required", "sk": "Bez výsledkov NMT"},
+    {"uk": "Гуртожиток поруч", "en": "Dormitory nearby", "sk": "Internát nablízku"}
+  ],
   "image": "/images/hero.webp",
-  "form_title": "Залиште свої контакти",
-  "form_subtitle": "Наші співробітники зв''яжуться з вами і дадуть відповідь на всі питання",
-  "form_button": "Надіслати"
+  "stat1_value": "150+",
+  "stat1_label": {"uk": "абітурієнтів цього року", "en": "applicants this year", "sk": "uchádzačov tento rok"},
+  "stat2_badge": "100%",
+  "stat2_text": {"uk": "гарантія вступу при вчасній подачі документів", "en": "guarantee of admission with documents submitted on time", "sk": "záruka prijatia pri včasnom podaní dokumentov"}
 }'::jsonb),
 ('why_us', '{
-  "title": "Чому варто поступати у Словаччину?",
-  "tag": "НАСКІЛЬКИ СКЛАДНО ОТРИМАТИ ВИЩУ ОСВІТУ В СЛОВАЧЧИНІ ДЛЯ УКРАЇНЦІВ?",
-  "paragraph": "Якщо підходити до питання вступу професійно, то ніяких особливих труднощів не виникає. Навпаки, навчання в Словаччині, організована за допомогою фахівців нашої компанії «West Study», є цілком доступною і має важливі переваги, серед яких:",
+  "title_main": {"uk": "Чому варто обрати", "en": "Why choose", "sk": "Prečo si vybrať"},
+  "title_emphasis": {"uk": "Словаччину", "en": "Slovakia", "sk": "Slovensko"},
+  "paragraph": {"uk": "З професійним супроводом вступ не складніший, ніж в Україні. А переваг — суттєво більше.", "en": "With professional guidance, admission is no harder than in Ukraine. And the benefits are significantly greater.", "sk": "S odborným sprevádzaním nie je prijatie náročnejšie ako na Ukrajine. A výhod je oveľa viac."},
   "image": "/images/why-us.webp"
 }'::jsonb),
-('benefits_band', '{
-  "title": "5 причин обрати Словаччину для навчання",
-  "form_title": "Отримайте онлайн консультацію",
-  "form_subtitle": "Наш фахівець безкоштовно відповість на всі ваші питання про навчання у Словаччині. Залишайте заявку і отримайте у подарунок «ЩОСЬ»",
-  "form_button": "Зв''язатись"
+('steps_intro', '{
+  "title": {"uk": "Шість кроків до зарахування", "en": "Six steps to enrollment", "sk": "Šesť krokov k zápisu"},
+  "paragraph": {"uk": "Працюємо офіційно, за договором. Ви завжди знаєте, що відбувається і що далі.", "en": "We work officially, under contract. You always know what''s happening and what''s next.", "sk": "Pracujeme oficiálne, na základe zmluvy. Vždy vieš, čo sa deje a čo bude ďalej."}
 }'::jsonb),
-('steps_intro', '{ "title": "Етапи співпраці" }'::jsonb),
 ('cost', '{
-  "title": "Вартість навчання у Словаччині",
-  "paragraph_1": "Сьогодні навчання в Словаччині для українців, вартість якого цілком прийнятна в порівнянні з іншими європейськими країнами, є доступним і вигідним варіантом отримання вищої освіти високого рівня!",
-  "paragraph_2": "Отримати безкоштовну вищу освіту в Словаччині можна в різних ВУЗах, на факультетах медицини, економіки, інформаційних технологій. Також популярними є військові, поліцейські, духовні академії."
+  "title": {"uk": "Скільки коштує життя студента", "en": "How much does student life cost", "sk": "Koľko stojí život študenta"},
+  "paragraph": {"uk": "Навчання в державних вишах — безкоштовне. Медицина, економіка, ІТ, військові та поліцейські академії. Платите лише за побут:", "en": "Tuition at state universities is free. Medicine, economics, IT, military and police academies. You only pay for living costs:", "sk": "Štúdium na štátnych vysokých školách je bezplatné. Medicína, ekonómia, IT, vojenské a policajné akadémie. Platíš len za bývanie a život:"}
 }'::jsonb),
-('top_reasons_intro', '{ "title": "ТОП 5 причин чому обирають VipStudy" }'::jsonb),
-('testimonials_intro', '{ "title": "Відгуки" }'::jsonb),
+('top_reasons_intro', '{
+  "title_main": {"uk": "Чому обирають", "en": "Why they choose", "sk": "Prečo si vyberajú"},
+  "title_emphasis": {"uk": "VipStudy", "en": "VipStudy", "sk": "VipStudy"}
+}'::jsonb),
+('testimonials_intro', '{"title": {"uk": "Відгуки студентів", "en": "Student reviews", "sk": "Recenzie študentov"}}'::jsonb),
 ('feedback_form', '{
-  "form_title": "Форма зворотного зв''язку",
-  "form_subtitle": "Наш фахівець безкоштовно відповість на всі ваші питання про навчання у Словаччині. Залишайте заявку і отримайте у подарунок «ЩОСЬ»",
-  "form_button": "Зв''язатись"
+  "title_main": {"uk": "Залиште контакти —", "en": "Leave your contact —", "sk": "Zanechaj kontakt —"},
+  "title_emphasis": {"uk": "передзвонимо", "en": "we''ll call you back", "sk": "zavoláme ti späť"},
+  "paragraph": {"uk": "Фахівець безкоштовно відповість на всі питання про навчання у Словаччині.", "en": "A specialist will answer all your questions about studying in Slovakia for free.", "sk": "Špecialista bezplatne odpovie na všetky otázky o štúdiu na Slovensku."},
+  "submit_label": {"uk": "Надіслати", "en": "Send", "sk": "Odoslať"},
+  "footnote": {"uk": "Працюємо офіційно · договір у двох примірниках · відповідаємо протягом дня", "en": "We work officially · contract in two copies · we respond within a day", "sk": "Pracujeme oficiálne · zmluva v dvoch vyhotoveniach · odpovedáme do jedného dňa"}
 }'::jsonb),
-('thank_you', '{
-  "title": "Дякуємо!",
-  "message": "Наш менеджер зв''яжеться з Вами протягом 20 хвилин.",
-  "button": "На головну"
-}'::jsonb),
-('footer', '{
-  "nav": [
-    {"label": "Чому Словаччина?", "href": "#why-us"},
-    {"label": "Співпраця", "href": "#steps"},
-    {"label": "Вартість", "href": "#cost"},
-    {"label": "Відгуки", "href": "#testimonials"}
-  ]
-}'::jsonb)
+('thank_you', '{"message": {"uk": "Дякуємо! Зв''яжемося з вами найближчим часом.", "en": "Thank you! We''ll contact you shortly.", "sk": "Ďakujeme! Čoskoro sa vám ozveme."}}'::jsonb),
+('footer', '{"copyright": {"uk": "© 2026 VipStudy · Навчання у Словаччині", "en": "© 2026 VipStudy · Study in Slovakia", "sk": "© 2026 VipStudy · Štúdium na Slovensku"}}'::jsonb)
 on conflict (key) do nothing;
 
-insert into public.benefits (text, position) values
-('Безкоштовне навчання', 1),
-('Успішна і безпечна країна', 2),
-('Мовний бар''єр мінімальний', 3),
-('100% гарантія надходження', 4),
-('Отримання ВНЖ на весь період навчання', 5)
+insert into public.benefits (title, title_en, title_sk, text, text_en, text_sk, position) values
+('Безкоштовне навчання', 'Free education', 'Bezplatné vzdelanie', 'Державні університети не беруть плату зі студентів.', 'State universities charge no tuition fees.', 'Štátne univerzity si od študentov neúčtujú školné.', 1),
+('Без результатів НМТ', 'No NMT required', 'Bez výsledkov NMT', 'Вступ за атестатом — бали НМТ не враховуються.', 'Admission by certificate — NMT scores don''t count.', 'Prijatie na základe vysvedčenia — výsledky NMT sa nepočítajú.', 2),
+('Мінімальний мовний бар''єр', 'Minimal language barrier', 'Minimálna jazyková bariéra', 'Словацька близька до української — адаптація за семестр.', 'Slovak is close to Ukrainian — you adapt within a semester.', 'Slovenčina je blízka ukrajinčine — adaptácia za jeden semester.', 3),
+('ВНЖ на весь період', 'Residence permit for the whole period', 'Povolenie na pobyt na celé štúdium', 'Легальне проживання в ЄС на час навчання.', 'Legal residence in the EU for the duration of your studies.', 'Legálny pobyt v EÚ počas celého štúdia.', 4),
+('Безпечна країна', 'Safe country', 'Bezpečná krajina', 'Стабільна економіка та комфортне студентське життя.', 'Stable economy and comfortable student life.', 'Stabilná ekonomika a pohodlný študentský život.', 5)
 on conflict do nothing;
 
-insert into public.steps (title, description, image_url, position) values
-('КОНСУЛЬТАЦІЯ', 'Консультація в телефонному режимі, де ми розповімо вам про переваги навчання в Словаччині та ознайомимо вас з етапами вступу.', '/images/step-1.webp', 1),
-('ДОГОВІР', 'Підписання угоди. Ми працюємо офіційно як ФОП і всі умови співпраці прописуємо в договорі та відправляємо його вам поштою в 2х примірниках з нашим підписом та печаткою.', '/images/step-2.webp', 2),
-('ПІДГОТОВКА', 'Підбір університета та спеціальності. Ми допомагаємо вам зробити вибір, врахувавши ваші побажання. Для гарантії вступу зазвичай обираємо 2 університета, до яких будемо подавати заявки.', '/images/step-3.webp', 3),
-('Текст', 'Додаємо вас до нашого ТГ каналу, де інформуємо про документи, які ви маєте нам подати та в які терміни.', '/images/step-4.webp', 4),
-('Текст', 'Повідомляємо вас про вступні іспити, якщо вони будуть та форму їх проведення.', '/images/step-5.webp', 5),
-('Текст', 'Після умовного зарахування робимо та подаємо до вуза нострифіковані документи.', '/images/step-6.webp', 6),
-('Текст', 'Потім ви отримуєте від вуза оригінал приказа про остаточне зарахування.', '/images/step-6.webp', 7),
-('Текст', 'При потребі бронюємо вам гуртожиток та оформляємо документи і робимо запис в міграційну поліцію для отримання виду на проживання.', '/images/step-8.webp', 8),
-('Текст', 'Надаємо інформаційну підтримку не тільки під час вступу, але й під час навчання.', '/images/step-9.webp', 9)
+insert into public.steps (title, title_en, title_sk, description, description_en, description_sk, position) values
+('Консультація', 'Consultation', 'Konzultácia', 'Телефонна розмова: переваги навчання, етапи вступу, відповіді на питання.', 'A phone call: benefits of studying, admission stages, answers to your questions.', 'Telefonický rozhovor: výhody štúdia, etapy prijatia, odpovede na otázky.', 1),
+('Договір', 'Contract', 'Zmluva', 'Офіційна угода у двох примірниках з підписом і печаткою — поштою вам.', 'An official agreement in two copies, signed and stamped — mailed to you.', 'Oficiálna dohoda v dvoch vyhotoveniach, podpísaná a opečiatkovaná — pošleme ti ju poštou.', 2),
+('Вибір університету', 'Choosing a university', 'Výber univerzity', 'Підбираємо спеціальність і два виші для гарантії вступу.', 'We select a major and two universities to guarantee admission.', 'Vyberieme odbor a dve univerzity pre záruku prijatia.', 3),
+('Документи', 'Documents', 'Dokumenty', 'Супровід у Telegram: які документи подати та в які терміни. Нострифікація — на нас.', 'Support via Telegram: which documents to submit and by when. Nostrification is on us.', 'Podpora cez Telegram: ktoré dokumenty podať a dokedy. Nostrifikáciu riešime za teba.', 4),
+('Іспити та зарахування', 'Exams and enrollment', 'Skúšky a zápis', 'Інформуємо про вступні іспити, отримуєте оригінал наказу про зарахування.', 'We inform you about entrance exams and you receive the original enrollment order.', 'Informujeme ťa o prijímacích skúškach, dostaneš originál rozhodnutia o prijatí.', 5),
+('Переїзд і супровід', 'Move and support', 'Presťahovanie a podpora', 'Бронюємо гуртожиток, оформлюємо ВНЖ і підтримуємо під час навчання.', 'We book a dormitory, arrange your residence permit, and support you during your studies.', 'Zarezervujeme internát, vybavíme povolenie na pobyt a podporujeme ťa počas štúdia.', 6)
 on conflict do nothing;
 
-insert into public.cost_items (amount, label, position) values
-('60-70 €', 'обійдеться житло в гуртожитку', 1),
-('10 €', 'коштує проїзний квиток', 2),
-('100-130 €', 'знадобиться на харчування (Комплексний обід в їдальні 1,5-2 €)', 3),
-('8 €', 'мобільний зв''язок', 4)
+insert into public.cost_items (amount, label, label_en, label_sk, position) values
+('60–70 €', 'житло в гуртожитку на місяць', 'dormitory housing per month', 'bývanie na internáte mesačne', 1),
+('100–130 €', 'харчування (обід у їдальні — 1,5–2 €)', 'food (a full meal at the canteen — €1.5–2)', 'strava (obed v jedálni — 1,5–2 €)', 2),
+('10 €', 'проїзний квиток', 'transport pass', 'cestovný lístok', 3),
+('8 €', 'мобільний зв''язок', 'mobile plan', 'mobilné služby', 4)
 on conflict do nothing;
 
-insert into public.top_reasons (text, position) values
-('наші люди навчаються в Словаччині та самостійно! пройшли усі етапи вступу', 1),
-('агенство VipStudy пропонує свої послуги зі вступу як під ключ, так і окремо на кожному етапі вступу, що дає вам можливість заощадити кошти', 2),
-('ми даємо 💯 гарантію вступу за умови вчасного подання усіх документів', 3),
-('гнучка цінова політика', 4),
-('понад 150 успішних абітурієнтів, які вже скористались нашою допомогою цього року', 5)
+insert into public.top_reasons (text, text_en, text_sk, position) values
+('Наші люди самі навчаються в Словаччині й особисто пройшли всі етапи вступу.', 'Our own people study in Slovakia and went through every stage of admission themselves.', 'Naši ľudia sami študujú na Slovensku a osobne prešli všetkými etapami prijatia.', 1),
+('Послуги під ключ або окремо на кожному етапі — можна заощадити.', 'Full-service or step-by-step help — so you can save money.', 'Služby na kľúč alebo po jednotlivých etapách — môžeš ušetriť.', 2),
+('100% гарантія вступу за умови вчасного подання документів.', '100% admission guarantee if documents are submitted on time.', '100% záruka prijatia pri včasnom podaní všetkých dokumentov.', 3),
+('Гнучка цінова політика.', 'Flexible pricing.', 'Flexibilná cenová politika.', 4),
+('Понад 150 успішних абітурієнтів лише цього року.', 'Over 150 successful applicants this year alone.', 'Viac ako 150 úspešných uchádzačov len tento rok.', 5)
 on conflict do nothing;
 
-insert into public.testimonials (name, quote, position) values
-('Анна Андріївна', 'Сьогодні навчання в Словаччині для українців, вартість якого цілком прийнятна в порівнянні з іншими європейськими країнами, є доступним і вигідним варіантом отримання вищої освіти високого рівня!', 1),
-('Анна Андріївна', 'Сьогодні навчання в Словаччині для українців, вартість якого цілком прийнятна в порівнянні з іншими європейськими країнами, є доступним і вигідним варіантом отримання вищої освіти високого рівня!', 2)
+insert into public.testimonials (name, quote, quote_en, quote_sk, meta, meta_en, meta_sk, position) values
+('Анна Андріївна', 'Вступила без НМТ, гуртожиток за п''ять хвилин від корпусу. Хлопці супроводжували на кожному кроці — від договору до міграційної поліції.', 'I got in without NMT, and my dorm is five minutes from campus. The team supported me every step — from the contract to the migration office.', 'Dostala som sa bez NMT, internát mám päť minút od budovy. Tím ma sprevádzal na každom kroku — od zmluvy až po cudzineckú políciu.', 'Економічний університет, Братислава', 'University of Economics, Bratislava', 'Ekonomická univerzita, Bratislava', 1),
+('Олексій К.', 'Найбільше боявся документів і нострифікації — усе зробили за мене. Через два місяці вже мав наказ про зарахування.', 'I was most afraid of paperwork and nostrification — they handled it all for me. Two months later I already had my enrollment order.', 'Najviac som sa bál dokumentov a nostrifikácie — všetko za mňa vybavili. O dva mesiace som už mal rozhodnutie o prijatí.', 'Технічний університет, Кошиці', 'Technical University, Košice', 'Technická univerzita, Košice', 2)
 on conflict do nothing;
 
 insert into public.social_links (platform, url, position) values

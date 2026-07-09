@@ -13,6 +13,8 @@
   --font-display: var(--font-source-serif), var(--font-inter), ui-serif, Georgia, serif;
 
   --animate-fade-up: fade-up 0.6s ease-out both;
+  --animate-vs-float-a: vs-float-a 6s ease-in-out infinite;
+  --animate-vs-float-b: vs-float-b 7s ease-in-out infinite;
 
   @keyframes fade-up {
     from {
@@ -23,6 +25,15 @@
       opacity: 1;
       transform: translateY(0);
     }
+  }
+
+  @keyframes vs-float-a {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+  }
+  @keyframes vs-float-b {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(8px); }
   }
 }
 

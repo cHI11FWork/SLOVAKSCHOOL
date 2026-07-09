@@ -1,77 +1,83 @@
-"use client";
-
 import Image from "next/image";
-import { motion } from "framer-motion";
-import { LeadForm } from "@/components/sections/lead-form";
-import { Reveal, RevealGroup, revealItem } from "@/components/motion/reveal";
-import type { HeroContent, ThankYouContent } from "@/lib/types";
+import { Reveal } from "@/components/motion/reveal";
+import type { HeroContent } from "@/lib/types";
 
-export function Hero({ content, thankYou }: { content: HeroContent; thankYou: ThankYouContent }) {
+export function Hero({ content }: { content: HeroContent }) {
   return (
-    <section id="top" className="relative overflow-hidden pb-20 pt-40 lg:pt-48">
-      <div className="container-page">
-        <div className="grid items-center gap-12 lg:grid-cols-2">
-          <div>
-            <motion.h1
-              initial={{ opacity: 0, y: 22 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-              className="text-[32px] font-extrabold leading-[1.15] text-navy sm:text-[40px]"
-            >
-              {content.headline}
-            </motion.h1>
-            <RevealGroup as="ul" className="mt-8 space-y-3" stagger={0.08} delay={0.2}>
-              {content.bullets.map((bullet) => (
-                <motion.li key={bullet} variants={revealItem} className="text-lg text-navy/90">
-                  {bullet}
-                </motion.li>
-              ))}
-            </RevealGroup>
-          </div>
+    <section
+      id="top"
+      className="mx-auto grid max-w-[1200px] grid-cols-1 items-center gap-10 px-5 pt-8 pb-16 min-[900px]:grid-cols-[1.1fr_0.9fr] min-[900px]:gap-16 min-[900px]:px-8 min-[900px]:pt-16 min-[900px]:pb-24"
+    >
+      <div className="flex flex-col gap-7">
+        <Reveal duration={0.7}>
+          <div className="text-sm uppercase tracking-wide text-[#979799]">{content.eyebrow}</div>
+        </Reveal>
 
-          <motion.div
-            initial={{ opacity: 0, x: 32, scale: 0.96 }}
-            animate={{ opacity: 1, x: 0, scale: 1 }}
-            transition={{ duration: 0.8, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
-            className="relative"
+        <Reveal duration={0.7} delay={0.1}>
+          <h1
+            className="font-display text-[42px] font-normal leading-[1.15] tracking-[-1px] text-[#17191c] min-[640px]:text-[72px] min-[640px]:tracking-[-1.8px]"
           >
-            <div className="absolute -right-6 -top-6 -z-10 h-[70%] w-[70%] rotate-12 rounded-[28px] bg-pink/90 sm:h-[75%] sm:w-[75%]" />
-            <div className="relative aspect-[5/4] w-full overflow-hidden rounded-[24px]">
-              <Image
-                src={content.image}
-                alt="Українська студентка, яка навчається у Словаччині"
-                fill
-                priority
-                sizes="(min-width: 1024px) 560px, 100vw"
-                className="object-cover grayscale"
-              />
+            {content.title_main} <em className="italic">{content.title_emphasis}</em>{" "}
+            {content.title_suffix}
+          </h1>
+        </Reveal>
 
-              <div className="absolute inset-0 flex items-center justify-center">
-                <span className="absolute h-16 w-16 animate-ping rounded-full bg-white/40" />
-                <motion.span
-                  whileHover={{ scale: 1.08 }}
-                  className="relative flex h-16 w-16 items-center justify-center rounded-full bg-white/95 shadow-[0_8px_24px_rgba(23,25,28,0.35)] backdrop-blur-sm"
-                >
-                  <svg viewBox="0 0 24 24" className="ml-1 h-6 w-6 fill-pink">
-                    <path d="M8 5v14l11-7z" />
-                  </svg>
-                </motion.span>
-              </div>
-            </div>
-          </motion.div>
-        </div>
+        <Reveal duration={0.7} delay={0.2}>
+          <p className="max-w-[480px] text-lg leading-relaxed text-[#777b86]">{content.paragraph}</p>
+        </Reveal>
 
-        <Reveal delay={0.3} className="mt-16 lg:mt-24">
-          <LeadForm
-            title={content.form_title}
-            subtitle={content.form_subtitle}
-            buttonText={content.form_button}
-            source="hero_form"
-            thankYou={thankYou}
-            decorated
-          />
+        <Reveal duration={0.7} delay={0.3}>
+          <div className="flex flex-wrap items-center gap-3">
+            <a
+              href="#contact"
+              className="inline-flex items-center rounded-full bg-[#17191c] px-7 py-3.5 text-base text-white transition-opacity hover:opacity-90"
+            >
+              {content.cta_primary}
+            </a>
+            <a
+              href="#steps"
+              className="inline-flex items-center rounded-full border border-[#17191c] px-[27px] py-[13px] text-base text-[#17191c] transition-colors hover:bg-[#fafafb]"
+            >
+              {content.cta_secondary}
+            </a>
+          </div>
+        </Reveal>
+
+        <Reveal duration={0.7} delay={0.4}>
+          <div className="flex flex-wrap gap-6 text-[15px] text-[#777b86]">
+            {content.bullets.map((bullet, i) => (
+              <span key={bullet} className="flex items-center gap-6">
+                {i > 0 && <span aria-hidden="true">·</span>}
+                <span>{bullet}</span>
+              </span>
+            ))}
+          </div>
         </Reveal>
       </div>
+
+      <Reveal duration={0.8} delay={0.2} className="relative">
+        <div className="relative aspect-[4/5] w-full overflow-hidden rounded-3xl">
+          <Image src={content.image} alt="" fill sizes="(min-width: 900px) 480px, 100vw" className="object-cover" />
+        </div>
+
+        <div
+          className="animate-vs-float-a absolute left-3 top-3 flex flex-col gap-1 rounded-[20px] bg-white p-4 min-[640px]:-left-12 min-[640px]:top-6"
+          style={{ boxShadow: "0 0 0 1px rgba(4,23,43,0.05), 0 20px 25px -5px rgba(0,0,0,0.1), 0 8px 10px -6px rgba(0,0,0,0.1)" }}
+        >
+          <div className="text-xl font-medium">{content.stat1_value}</div>
+          <div className="text-sm text-[#777b86]">{content.stat1_label}</div>
+        </div>
+
+        <div
+          className="animate-vs-float-b absolute bottom-3 left-3 flex items-center gap-3 rounded-[20px] bg-white p-4 min-[640px]:bottom-8 min-[640px]:-left-8"
+          style={{ boxShadow: "0 0 0 1px rgba(4,23,43,0.05), 0 20px 25px -5px rgba(0,0,0,0.1), 0 8px 10px -6px rgba(0,0,0,0.1)" }}
+        >
+          <span className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-[#fbe1d1] text-sm font-medium text-[#5d2a1a]">
+            {content.stat2_badge}
+          </span>
+          <div className="max-w-[160px] text-sm leading-tight text-[#17191c]">{content.stat2_text}</div>
+        </div>
+      </Reveal>
     </section>
   );
 }

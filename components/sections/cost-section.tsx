@@ -2,38 +2,36 @@
 
 import { motion } from "framer-motion";
 import { Reveal, RevealGroup, revealItemScale } from "@/components/motion/reveal";
-import type { CostContent, CostItemRow } from "@/lib/types";
+import type { CostContent, CostItem } from "@/lib/types";
 
-export function CostSection({ content, items }: { content: CostContent; items: CostItemRow[] }) {
+export function CostSection({ content, items }: { content: CostContent; items: CostItem[] }) {
   return (
-    <section id="cost" className="py-20">
-      <div className="container-page">
-        <Reveal>
-          <h2 className="font-display text-[28px] font-extrabold text-navy sm:text-[36px]">
-            {content.title}
-          </h2>
-        </Reveal>
-        <Reveal delay={0.05}>
-          <p className="mt-6 max-w-2xl text-base leading-relaxed text-navy/80">{content.paragraph_1}</p>
-        </Reveal>
-        <Reveal delay={0.1}>
-          <p className="mt-4 max-w-2xl text-base leading-relaxed text-navy/80">{content.paragraph_2}</p>
-        </Reveal>
+    <section className="bg-[#fafafb] py-16 min-[900px]:py-24">
+      <div className="mx-auto max-w-[1200px] px-5 min-[900px]:px-8">
+        <div className="grid grid-cols-1 items-start gap-10 min-[900px]:grid-cols-2 min-[900px]:gap-16">
+          <Reveal className="flex flex-col gap-4">
+            <h2 className="font-display text-[34px] font-normal leading-[1.2] tracking-[-0.5px] text-[#17191c] min-[640px]:text-[52px] min-[640px]:tracking-[-0.8px]">
+              {content.title}
+            </h2>
+            <p className="text-[17px] leading-relaxed text-[#777b86]">{content.paragraph}</p>
+          </Reveal>
 
-        <RevealGroup className="mt-10 grid grid-cols-2 gap-4 lg:grid-cols-4" stagger={0.08}>
-          {items.map((item) => (
-            <motion.div
-              key={item.id}
-              variants={revealItemScale}
-              whileHover={{ y: -6, boxShadow: "0 16px 32px -12px rgba(23,25,28,0.18)" }}
-              transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
-              className="flex flex-col items-center justify-center rounded-[15px] bg-pink-light px-4 py-8 text-center"
-            >
-              <span className="font-display text-2xl font-bold text-navy">{item.amount}</span>
-              <span className="mt-2 text-sm text-navy/70">{item.label}</span>
-            </motion.div>
-          ))}
-        </RevealGroup>
+          <RevealGroup className="grid grid-cols-1 gap-4 min-[640px]:grid-cols-2" stagger={0.08}>
+            {items.map((item) => (
+              <motion.div
+                key={item.id}
+                variants={revealItemScale}
+                whileHover={{ y: -4 }}
+                transition={{ duration: 0.3 }}
+                className="flex flex-col gap-1.5 rounded-[20px] bg-white p-6"
+                style={{ boxShadow: "0 0 0 1px rgba(4,23,43,0.05), 0 8px 10px -6px rgba(0,0,0,0.08)" }}
+              >
+                <div className="text-2xl font-medium tracking-[-0.23px] text-[#17191c]">{item.price}</div>
+                <div className="text-[15px] leading-snug text-[#777b86]">{item.label}</div>
+              </motion.div>
+            ))}
+          </RevealGroup>
+        </div>
       </div>
     </section>
   );

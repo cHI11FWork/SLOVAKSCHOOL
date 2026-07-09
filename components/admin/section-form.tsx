@@ -6,11 +6,18 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Check } from "lucide-react";
 import { updateSection } from "@/app/admin/actions";
 import type { FieldConfig, SectionKey } from "@/lib/admin-tables";
+import type { I18nText } from "@/lib/i18n";
 import { Label } from "@/components/ui/label";
 import { Input, Textarea } from "@/components/ui/input";
 import { Switch } from "@/components/ui/switch";
 import { Button } from "@/components/ui/button";
 import { ImageUpload } from "@/components/admin/image-upload";
+
+const LANG_TABS: { key: keyof I18nText; label: string }[] = [
+  { key: "uk", label: "UA" },
+  { key: "en", label: "EN" },
+  { key: "sk", label: "SK" },
+];
 
 export function SectionForm({
   sectionKey,
@@ -88,6 +95,28 @@ export function SectionForm({
               }
               rows={4}
             />
+          )}
+          {(field.type === "text-i18n" || field.type === "textarea-i18n") && (
+            <div className="space-y-2">
+              {LANG_TABS.map((lt) => {
+                const value = (content[field.key] as I18nText | undefined) ?? { uk: "" };
+                const Comp = field.type === "textarea-i18n" ? Textarea : Input;
+                return (
+                  <div key={lt.key} className="flex items-start gap-2">
+                    <span className="mt-2.5 w-8 shrink-0 text-xs font-semibold text-navy/50">
+                      {lt.label}
+                    </span>
+                    <Comp
+                      value={value[lt.key] ?? ""}
+                      onChange={(e) =>
+                        setField(field.key, { ...value, [lt.key]: e.target.value })
+                      }
+                      {...(field.type === "textarea-i18n" ? { rows: 2 } : {})}
+                    />
+                  </div>
+                );
+              })}
+            </div>
           )}
         </div>
       ))}

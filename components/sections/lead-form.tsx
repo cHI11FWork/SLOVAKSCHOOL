@@ -3,43 +3,20 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { motion } from "framer-motion";
 import { leadSchema, type LeadInput } from "@/lib/validations";
 import type { LeadSource, ThankYouContent } from "@/lib/types";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Dialog, DialogContent, DialogTitle, DialogDescription } from "@/components/ui/dialog";
-import { SquiggleArrow } from "@/components/icons/decorative";
-import { cn } from "@/lib/utils";
 
 type Props = {
-  title: string;
-  subtitle: string;
-  buttonText: string;
   source: LeadSource;
+  buttonText: string;
   thankYou: ThankYouContent;
-  align?: "center" | "left";
-  decorated?: boolean;
-  card?: boolean;
-  className?: string;
 };
 
-export function LeadForm({
-  title,
-  subtitle,
-  buttonText,
-  source,
-  thankYou,
-  align = "center",
-  decorated = false,
-  card = true,
-  className,
-}: Props) {
+export function LeadForm({ source, buttonText, thankYou }: Props) {
   const [done, setDone] = useState(false);
   const {
     register,
     handleSubmit,
-    reset,
     formState: { errors, isSubmitting },
   } = useForm<LeadInput>({
     resolver: zodResolver(leadSchema),
@@ -52,103 +29,47 @@ export function LeadForm({
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(values),
     });
-    if (res.ok) {
-      reset({ source, name: "", phone: "" });
-      setDone(true);
-    }
+    if (res.ok) setDone(true);
+  }
+
+  if (done) {
+    return (
+      <div className="w-full max-w-[560px] rounded-2xl bg-[#fbe1d1] px-8 py-5 text-[17px] text-[#5d2a1a]">
+        {thankYou.message}
+      </div>
+    );
   }
 
   return (
-    <div className={cn("relative", className)}>
-      {decorated && (
-        <>
-          <SquiggleArrow className="absolute -left-16 top-6 hidden w-32 -scale-x-100 md:block" />
-          <SquiggleArrow className="absolute -right-16 bottom-0 hidden w-32 rotate-180 md:block" />
-        </>
-      )}
+    <form onSubmit={handleSubmit(onSubmit)} className="w-full max-w-[560px]">
+      <input type="text" tabIndex={-1} autoComplete="off" className="hidden" {...register("company")} />
 
-      <div
-        className={cn(
-          "relative z-10",
-          card && "rounded-[15px] bg-pink-light px-6 py-10 sm:px-12",
-          align === "center" ? "text-center" : "text-left"
-        )}
-      >
-        <h3 className="text-2xl font-bold text-navy sm:text-[32px]">{title}</h3>
-        <p
-          className={cn(
-            "mt-3 text-sm text-navy/70",
-            align === "center" ? "mx-auto max-w-md" : "max-w-md"
-          )}
+      <div className="flex flex-col gap-3 rounded-2xl border border-[#ececec] bg-white p-3 min-[640px]:flex-row min-[640px]:gap-3">
+        <input
+          placeholder="Ім'я"
+          className="min-w-0 flex-1 border-none bg-transparent px-3 py-2.5 text-base outline-none placeholder:text-[#a3a6af] max-[640px]:border-b max-[640px]:border-[#ececec] max-[640px]:pb-3"
+          {...register("name")}
+        />
+        <input
+          placeholder="+380 __ ___ __ __"
+          type="tel"
+          className="min-w-0 flex-[1.2] border-none border-l border-[#ececec] bg-transparent px-3 py-2.5 text-base outline-none placeholder:text-[#a3a6af] max-[640px]:border-l-0"
+          {...register("phone")}
+        />
+        <button
+          type="submit"
+          disabled={isSubmitting}
+          className="shrink-0 rounded-full bg-[#17191c] px-6 py-3 text-base text-white transition-opacity hover:opacity-90 disabled:opacity-60"
         >
-          {subtitle}
-        </p>
-
-        <form
-          onSubmit={handleSubmit(onSubmit)}
-          className={cn(
-            "mt-8 flex flex-col gap-4",
-            align === "center" && "mx-auto max-w-md"
-          )}
-        >
-          <input type="text" tabIndex={-1} autoComplete="off" className="hidden" {...register("company")} />
-
-          <div>
-            <Input placeholder="Ім'я" {...register("name")} />
-            {errors.name && <p className="mt-1 text-left text-xs text-red-500">{errors.name.message}</p>}
-          </div>
-          <div>
-            <Input placeholder="Номер телефону" type="tel" {...register("phone")} />
-            {errors.phone && <p className="mt-1 text-left text-xs text-red-500">{errors.phone.message}</p>}
-          </div>
-
-          <Button
-            type="submit"
-            disabled={isSubmitting}
-            className={cn("mt-2", align === "center" && "mx-auto")}
-          >
-            {isSubmitting ? "Надсилаємо…" : buttonText}
-          </Button>
-        </form>
+          {isSubmitting ? "…" : buttonText}
+        </button>
       </div>
 
-      <Dialog open={done} onOpenChange={setDone}>
-        <DialogContent>
-          <motion.div
-            initial={{ scale: 0.9, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            transition={{ type: "spring", duration: 0.4 }}
-            className="text-center"
-          >
-            <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-pink-light">
-              <motion.svg
-                viewBox="0 0 24 24"
-                className="h-8 w-8"
-                initial="hidden"
-                animate="show"
-              >
-                <motion.path
-                  d="M5 13l4 4L19 7"
-                  fill="none"
-                  stroke="var(--color-pink)"
-                  strokeWidth="2.5"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  variants={{
-                    hidden: { pathLength: 0, opacity: 0 },
-                    show: { pathLength: 1, opacity: 1, transition: { duration: 0.5, delay: 0.2, ease: "easeOut" } },
-                  }}
-                />
-              </motion.svg>
-            </div>
-            <DialogTitle className="mt-5 text-center">{thankYou.title}</DialogTitle>
-            <DialogDescription className="text-center">{thankYou.message}</DialogDescription>
-            <Button className="mt-8" onClick={() => setDone(false)}>
-              {thankYou.button}
-            </Button>
-          </motion.div>
-        </DialogContent>
-      </Dialog>
-    </div>
+      {(errors.name || errors.phone) && (
+        <p className="mt-2 text-left text-xs text-red-500">
+          {errors.name?.message || errors.phone?.message}
+        </p>
+      )}
+    </form>
   );
 }

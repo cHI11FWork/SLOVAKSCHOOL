@@ -1,53 +1,37 @@
 "use client";
 
-import Image from "next/image";
 import { motion } from "framer-motion";
-import { cn } from "@/lib/utils";
-import { Reveal } from "@/components/motion/reveal";
-import type { StepRow, StepsIntroContent } from "@/lib/types";
+import { Reveal, RevealGroup, revealItem } from "@/components/motion/reveal";
+import type { StepItem, StepsIntroContent } from "@/lib/types";
 
-export function Steps({ intro, steps }: { intro: StepsIntroContent; steps: StepRow[] }) {
+export function Steps({ intro, steps }: { intro: StepsIntroContent; steps: StepItem[] }) {
   return (
-    <section id="steps" className="py-20">
-      <div className="container-page">
-        <Reveal>
-          <h2 className="text-[28px] font-extrabold text-navy sm:text-[36px]">{intro.title}</h2>
-        </Reveal>
+    <section id="steps" className="mx-auto max-w-[1200px] px-5 py-16 min-[900px]:px-8 min-[900px]:py-24">
+      <Reveal className="flex max-w-[640px] flex-col gap-4">
+        <h2 className="font-display text-[34px] font-normal leading-[1.2] tracking-[-0.5px] text-[#17191c] min-[640px]:text-[52px] min-[640px]:tracking-[-0.8px]">
+          {intro.title}
+        </h2>
+        <p className="text-[17px] leading-relaxed text-[#777b86]">{intro.paragraph}</p>
+      </Reveal>
 
-        <div className="mt-12 space-y-14">
-          {steps.map((step, i) => (
-            <div
-              key={step.id}
-              className={cn(
-                "grid items-center gap-8 lg:grid-cols-2 lg:gap-16",
-                i % 2 === 1 && "lg:[&>*:first-child]:order-2"
-              )}
-            >
-              <Reveal direction={i % 2 === 0 ? "left" : "right"}>
-                <motion.div
-                  whileHover={{ scale: 1.02 }}
-                  transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-                  className="relative aspect-[5/2.8] w-full overflow-hidden rounded-[15px]"
-                >
-                  {step.image_url && (
-                    <Image
-                      src={step.image_url}
-                      alt={step.title}
-                      fill
-                      sizes="(min-width: 1024px) 560px, 100vw"
-                      className="object-cover"
-                    />
-                  )}
-                </motion.div>
-              </Reveal>
-              <Reveal direction={i % 2 === 0 ? "right" : "left"} delay={0.1}>
-                <h3 className="text-2xl font-semibold text-navy">{step.title}</h3>
-                <p className="mt-3 text-base leading-relaxed text-navy/80">{step.description}</p>
-              </Reveal>
-            </div>
-          ))}
-        </div>
-      </div>
+      <RevealGroup
+        className="mt-12 grid grid-cols-1 gap-5 min-[640px]:grid-cols-2 min-[900px]:grid-cols-3"
+        stagger={0.08}
+      >
+        {steps.map((step) => (
+          <motion.div
+            key={step.id}
+            variants={revealItem}
+            whileHover={{ y: -4 }}
+            transition={{ duration: 0.3 }}
+            className="flex flex-col gap-3 rounded-3xl bg-[#f2f2f3] p-7"
+          >
+            <div className="font-display text-[32px] text-[#979799]">{step.num}</div>
+            <div className="text-lg font-medium text-[#17191c]">{step.title}</div>
+            <div className="text-[15px] leading-relaxed text-[#777b86]">{step.text}</div>
+          </motion.div>
+        ))}
+      </RevealGroup>
     </section>
   );
 }

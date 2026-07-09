@@ -1,126 +1,46 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { ChevronLeft, ChevronRight } from "lucide-react";
-import { DotScatter } from "@/components/icons/decorative";
-import { Reveal } from "@/components/motion/reveal";
-import { cn } from "@/lib/utils";
-import type { TestimonialRow, TestimonialsIntroContent } from "@/lib/types";
-
-function chunk<T>(arr: T[], size: number): T[][] {
-  const out: T[][] = [];
-  for (let i = 0; i < arr.length; i += size) out.push(arr.slice(i, i + size));
-  return out;
-}
-
-const EASE = [0.16, 1, 0.3, 1] as const;
-
-const slideVariants = {
-  enter: (dir: number) => ({ opacity: 0, x: dir > 0 ? 60 : -60 }),
-  center: { opacity: 1, x: 0 },
-  exit: (dir: number) => ({ opacity: 0, x: dir > 0 ? -60 : 60 }),
-};
+import { motion } from "framer-motion";
+import { Reveal, RevealGroup, revealItem } from "@/components/motion/reveal";
+import type { TestimonialItem, TestimonialsIntroContent } from "@/lib/types";
 
 export function Testimonials({
   intro,
   testimonials,
 }: {
   intro: TestimonialsIntroContent;
-  testimonials: TestimonialRow[];
+  testimonials: TestimonialItem[];
 }) {
-  const slides = chunk(testimonials, 2);
-  const total = slides.length;
-  const [[index, direction], setState] = useState<[number, number]>([0, 1]);
-
-  function go(dir: number) {
-    setState(([i]) => [(i + dir + total) % total, dir]);
-  }
-
-  useEffect(() => {
-    if (total <= 1) return;
-    const id = setInterval(() => go(1), 6000);
-    return () => clearInterval(id);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [total, index]);
-
   return (
-    <section id="testimonials" className="relative overflow-hidden bg-pink-light py-20">
-      <DotScatter className="absolute -left-6 top-8 w-40" />
+    <section id="reviews" className="mx-auto max-w-[1200px] px-5 pb-16 min-[900px]:px-8 min-[900px]:pb-24">
+      <Reveal>
+        <h2 className="mb-10 font-display text-[34px] font-normal leading-[1.2] tracking-[-0.5px] text-[#17191c] min-[640px]:mb-12 min-[640px]:text-[52px] min-[640px]:tracking-[-0.8px]">
+          {intro.title}
+        </h2>
+      </Reveal>
 
-      <div className="container-page relative">
-        <Reveal>
-          <h2 className="text-[28px] font-extrabold text-navy sm:text-[36px]">{intro.title}</h2>
-        </Reveal>
-
-        <div className="relative mt-10">
-          <div className="relative grid gap-6 overflow-hidden lg:grid-cols-2" style={{ minHeight: 1 }}>
-            <AnimatePresence mode="wait" custom={direction} initial={false}>
-              <motion.div
-                key={index}
-                custom={direction}
-                variants={slideVariants}
-                initial="enter"
-                animate="center"
-                exit="exit"
-                transition={{ duration: 0.45, ease: EASE }}
-                className="grid gap-6 lg:col-span-2 lg:grid-cols-2"
-              >
-                {slides[index]?.map((t) => (
-                  <div key={t.id} className="rounded-[15px] bg-white p-8">
-                    <p className="text-base leading-relaxed text-navy/80">{t.quote}</p>
-                    <p className="mt-6 text-lg font-bold text-navy">{t.name}</p>
-                  </div>
-                ))}
-              </motion.div>
-            </AnimatePresence>
-          </div>
-
-          {total > 1 && (
-            <div className="mt-8 flex items-center justify-center gap-4">
-              <button
-                aria-label="Попередній"
-                onClick={() => go(-1)}
-                className="flex h-9 w-9 items-center justify-center rounded-full bg-white text-navy shadow-sm transition-transform hover:scale-105 active:scale-95"
-              >
-                <ChevronLeft className="h-4 w-4" />
-              </button>
-
-              <div className="flex items-center gap-2">
-                {slides.map((_, i) => (
-                  <button
-                    key={i}
-                    aria-label={`Слайд ${i + 1}`}
-                    onClick={() => setState([i, i > index ? 1 : -1])}
-                    className="relative h-2.5 w-2.5"
-                  >
-                    <span
-                      className={cn(
-                        "absolute inset-0 rounded-full transition-colors",
-                        i === index ? "bg-pink" : "bg-navy/20"
-                      )}
-                    />
-                    {i === index && (
-                      <motion.span
-                        layoutId="testimonial-dot"
-                        className="absolute -inset-1 rounded-full ring-2 ring-pink/40"
-                      />
-                    )}
-                  </button>
-                ))}
+      <RevealGroup className="grid grid-cols-1 gap-5 min-[640px]:grid-cols-2" stagger={0.1}>
+        {testimonials.map((t) => (
+          <motion.div
+            key={t.id}
+            variants={revealItem}
+            whileHover={{ y: -4 }}
+            transition={{ duration: 0.3 }}
+            className="flex flex-col gap-6 rounded-3xl bg-[#f2f2f3] p-6 min-[640px]:p-10"
+          >
+            <p className="font-display text-[22px] italic leading-snug text-[#17191c]">{t.quote}</p>
+            <div className="flex items-center gap-3">
+              <span className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-white text-sm font-medium text-[#17191c]">
+                {t.initials}
+              </span>
+              <div className="flex flex-col">
+                <span className="text-[15px] font-medium text-[#17191c]">{t.name}</span>
+                <span className="text-sm text-[#979799]">{t.meta}</span>
               </div>
-
-              <button
-                aria-label="Наступний"
-                onClick={() => go(1)}
-                className="flex h-9 w-9 items-center justify-center rounded-full bg-white text-navy shadow-sm transition-transform hover:scale-105 active:scale-95"
-              >
-                <ChevronRight className="h-4 w-4" />
-              </button>
             </div>
-          )}
-        </div>
-      </div>
+          </motion.div>
+        ))}
+      </RevealGroup>
     </section>
   );
 }

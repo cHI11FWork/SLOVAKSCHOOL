@@ -28,22 +28,52 @@ import { ImageUpload } from "@/components/admin/image-upload";
 
 type Item = { id: string; visible: boolean; position: number; [key: string]: unknown };
 
+const LANG_SUFFIXES: { suffix: string; label: string }[] = [
+  { suffix: "", label: "UA" },
+  { suffix: "_en", label: "EN" },
+  { suffix: "_sk", label: "SK" },
+];
+
 function Field({
   field,
-  value,
+  item,
   onChange,
 }: {
   field: FieldConfig;
-  value: unknown;
-  onChange: (v: string) => void;
+  item: Item;
+  onChange: (key: string, v: string) => void;
 }) {
+  if (field.type === "text-i18n" || field.type === "textarea-i18n") {
+    const Comp = field.type === "textarea-i18n" ? Textarea : Input;
+    return (
+      <div className="space-y-2">
+        {LANG_SUFFIXES.map(({ suffix, label }) => (
+          <div key={suffix} className="flex items-start gap-2">
+            <span className="mt-2.5 w-8 shrink-0 text-xs font-semibold text-navy/50">{label}</span>
+            <Comp
+              value={(item[`${field.key}${suffix}`] as string) ?? ""}
+              onChange={(e) => onChange(`${field.key}${suffix}`, e.target.value)}
+              {...(field.type === "textarea-i18n" ? { rows: 2 } : {})}
+            />
+          </div>
+        ))}
+      </div>
+    );
+  }
+  const value = item[field.key];
   if (field.type === "textarea") {
-    return <Textarea value={(value as string) ?? ""} onChange={(e) => onChange(e.target.value)} rows={2} />;
+    return (
+      <Textarea
+        value={(value as string) ?? ""}
+        onChange={(e) => onChange(field.key, e.target.value)}
+        rows={2}
+      />
+    );
   }
   if (field.type === "image") {
-    return <ImageUpload value={(value as string) ?? ""} onChange={onChange} />;
+    return <ImageUpload value={(value as string) ?? ""} onChange={(v) => onChange(field.key, v)} />;
   }
-  return <Input value={(value as string) ?? ""} onChange={(e) => onChange(e.target.value)} />;
+  return <Input value={(value as string) ?? ""} onChange={(e) => onChange(field.key, e.target.value)} />;
 }
 
 function SortableCard({
@@ -97,11 +127,7 @@ function SortableCard({
           {fields.map((field) => (
             <div key={field.key}>
               <label className="mb-1 block text-xs font-semibold text-navy/60">{field.label}</label>
-              <Field
-                field={field}
-                value={item[field.key]}
-                onChange={(v) => onChangeField(field.key, v)}
-              />
+              <Field field={field} item={item} onChange={onChangeField} />
             </div>
           ))}
         </div>
@@ -142,7 +168,12 @@ export function ListEditor({
   function save(id: string) {
     const item = items.find((it) => it.id === id);
     if (!item) return;
-    const data = Object.fromEntries(fields.map((f) => [f.key, item[f.key]]));
+    const keys = fields.flatMap((f) =>
+      f.type === "text-i18n" || f.type === "textarea-i18n"
+        ? [f.key, `${f.key}_en`, `${f.key}_sk`]
+        : [f.key]
+    );
+    const data = Object.fromEntries(keys.map((k) => [k, item[k]]));
     startTransition(async () => {
       try {
         await updateItem(table, id, data);
