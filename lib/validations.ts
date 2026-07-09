@@ -18,3 +18,22 @@ export const leadSchema = z.object({
 });
 
 export type LeadInput = z.infer<typeof leadSchema>;
+
+export const adminLeadSchema = z.object({
+  name: z
+    .string()
+    .trim()
+    .min(2, "Введіть ім'я")
+    .max(80, "Задовге ім'я"),
+  phone: z
+    .string()
+    .trim()
+    .min(7, "Введіть номер телефону")
+    .max(20, "Задовгий номер")
+    .regex(/^[0-9+()\-\s]+$/, "Некоректний номер телефону"),
+  source: z.enum(["hero_form", "consultation_form", "feedback_form"]),
+  status: z.enum(["new", "in_progress", "done"]),
+  notes: z.string().trim().max(2000, "Задовгі нотатки").optional(),
+});
+
+export type AdminLeadInput = z.infer<typeof adminLeadSchema>;

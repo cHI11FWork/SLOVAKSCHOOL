@@ -6,6 +6,7 @@ import { createClient } from "@/lib/supabase/server";
 import { createAdminClient } from "@/lib/supabase/admin";
 import type { ListTableName, SectionKey } from "@/lib/admin-tables";
 import type { LeadStatus } from "@/lib/types";
+import { adminLeadSchema, type AdminLeadInput } from "@/lib/validations";
 
 async function requireAuth() {
   const supabase = await createClient();
@@ -101,6 +102,44 @@ export async function deleteLead(id: string) {
   await requireAuth();
   const admin = createAdminClient();
   const { error } = await admin.from("leads").delete().eq("id", id);
+  if (error) throw new Error(error.message);
+  revalidatePath("/admin/leads");
+}
+
+export async function createLead(input: AdminLeadInput) {
+  await requireAuth();
+  const parsed = adminLeadSchema.parse(input);
+  const admin = createAdminClient();
+  const { data, error } = await admin
+    .from("leads")
+    .insert({
+      name: parsed.name,
+      phone: parsed.phone,
+      source: parsed.source,
+      status: parsed.status,
+      notes: parsed.notes || null,
+    })
+    .select()
+    .single();
+  if (error) throw new Error(error.message);
+  revalidatePath("/admin/leads");
+  return data;
+}
+
+export async function updateLead(id: string, input: AdminLeadInput) {
+  await requireAuth();
+  const parsed = adminLeadSchema.parse(input);
+  const admin = createAdminClient();
+  const { error } = await admin
+    .from("leads")
+    .update({
+      name: parsed.name,
+      phone: parsed.phone,
+      source: parsed.source,
+      status: parsed.status,
+      notes: parsed.notes || null,
+    })
+    .eq("id", id);
   if (error) throw new Error(error.message);
   revalidatePath("/admin/leads");
 }

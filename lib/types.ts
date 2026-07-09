@@ -116,6 +116,7 @@ export type LeadRow = {
   phone: string;
   source: LeadSource;
   status: LeadStatus;
+  notes: string | null;
   created_at: string;
 };
 

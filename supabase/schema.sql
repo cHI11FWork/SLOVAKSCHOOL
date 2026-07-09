@@ -13,8 +13,11 @@ create table if not exists public.leads (
   phone text not null,
   source text not null default 'hero_form' check (source in ('hero_form', 'consultation_form', 'feedback_form')),
   status text not null default 'new' check (status in ('new', 'in_progress', 'done')),
+  notes text,
   created_at timestamptz not null default now()
 );
+
+alter table public.leads add column if not exists notes text;
 
 create table if not exists public.site_sections (
   id uuid primary key default gen_random_uuid(),
