@@ -44,8 +44,8 @@ export function BenefitsBand({
             ))}
           </RevealGroup>
 
-          <Reveal direction="right" delay={0.15} className="hidden lg:block">
-            <ChevronPattern rows={4} cols={3} animated />
+          <Reveal direction="right" delay={0.15} className="hidden items-center lg:flex lg:justify-end">
+            <ChevronPattern animated />
           </Reveal>
         </div>
 

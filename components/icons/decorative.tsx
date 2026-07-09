@@ -35,13 +35,15 @@ export function SquiggleArrow({ className, ...props }: SVGProps<SVGSVGElement>) 
 /** Tightly interlocking chevron weave — decorative accent used in the benefits band. */
 export function ChevronPattern({
   className,
-  rows = 4,
-  cols = 3,
+  rows = 5,
+  cols = 5,
+  size = 68,
   animated = false,
 }: {
   className?: string;
   rows?: number;
   cols?: number;
+  size?: number;
   animated?: boolean;
 }) {
   return (
@@ -51,15 +53,16 @@ export function ChevronPattern({
           key={row}
           className="flex"
           style={{
-            marginTop: row === 0 ? 0 : "-1.05rem",
-            transform: row % 2 === 1 ? "translateX(-0.6rem)" : undefined,
+            marginTop: row === 0 ? 0 : -size * 0.42,
+            transform: row % 2 === 1 ? `translateX(${-size * 0.24}px)` : undefined,
           }}
         >
           {Array.from({ length: cols }).map((_, col) => (
             <motion.svg
               key={col}
               viewBox="0 0 40 40"
-              className={cn("h-10 w-10 shrink-0 text-pink-dark", col > 0 && "-ml-1.5")}
+              className="shrink-0 text-pink-dark"
+              style={{ height: size, width: size, marginLeft: col > 0 ? -size * 0.15 : 0 }}
               animate={animated ? { y: [0, -6, 0] } : undefined}
               transition={
                 animated
