@@ -47,7 +47,7 @@ export function TopReasons({
                   {i + 1}
                 </motion.span>
                 <motion.div
-                  whileHover={{ y: -2, boxShadow: "0 12px 24px -10px rgba(30,33,86,0.2)" }}
+                  whileHover={{ y: -2, boxShadow: "0 12px 24px -10px rgba(23,25,28,0.2)" }}
                   transition={{ duration: 0.25 }}
                   className="flex-1 rounded-lg border-t-4 border-pink-dark bg-white px-6 py-5 shadow-sm"
                 >

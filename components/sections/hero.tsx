@@ -50,7 +50,7 @@ export function Hero({ content, thankYou }: { content: HeroContent; thankYou: Th
                 <span className="absolute h-16 w-16 animate-ping rounded-full bg-white/40" />
                 <motion.span
                   whileHover={{ scale: 1.08 }}
-                  className="relative flex h-16 w-16 items-center justify-center rounded-full bg-white/95 shadow-[0_8px_24px_rgba(30,33,86,0.35)] backdrop-blur-sm"
+                  className="relative flex h-16 w-16 items-center justify-center rounded-full bg-white/95 shadow-[0_8px_24px_rgba(23,25,28,0.35)] backdrop-blur-sm"
                 >
                   <svg viewBox="0 0 24 24" className="ml-1 h-6 w-6 fill-pink">
                     <path d="M8 5v14l11-7z" />

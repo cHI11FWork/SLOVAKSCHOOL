@@ -18,7 +18,7 @@ export function StatCard({
   return (
     <motion.div
       variants={variants}
-      whileHover={{ y: -4, boxShadow: "0 12px 28px -14px rgba(30,33,86,0.25)" }}
+      whileHover={{ y: -4, boxShadow: "0 12px 28px -14px rgba(23,25,28,0.25)" }}
       transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
       className="rounded-2xl border border-gray-100 bg-white p-5"
     >

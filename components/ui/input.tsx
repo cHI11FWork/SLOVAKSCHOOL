@@ -8,7 +8,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(({ className, type,
     <input
       type={type}
       className={cn(
-        "flex h-[50px] w-full rounded-[7px] border border-border-gray bg-white px-4 text-sm text-navy placeholder:text-placeholder outline-none transition-all duration-200 focus:border-pink focus:shadow-[0_0_0_4px_rgba(242,27,148,0.12)] disabled:cursor-not-allowed disabled:opacity-50",
+        "flex h-[50px] w-full rounded-xl border border-border-gray bg-white px-4 text-sm text-navy placeholder:text-placeholder outline-none transition-all duration-200 focus:border-pink focus:shadow-[0_0_0_4px_rgba(93,42,26,0.12)] disabled:cursor-not-allowed disabled:opacity-50",
         className
       )}
       ref={ref}
@@ -23,7 +23,7 @@ const Textarea = React.forwardRef<HTMLTextAreaElement, React.TextareaHTMLAttribu
     return (
       <textarea
         className={cn(
-          "flex min-h-24 w-full rounded-[7px] border border-border-gray bg-white px-4 py-3 text-sm text-navy placeholder:text-placeholder outline-none transition-all duration-200 focus:border-pink focus:shadow-[0_0_0_4px_rgba(242,27,148,0.12)] disabled:cursor-not-allowed disabled:opacity-50",
+          "flex min-h-24 w-full rounded-xl border border-border-gray bg-white px-4 py-3 text-sm text-navy placeholder:text-placeholder outline-none transition-all duration-200 focus:border-pink focus:shadow-[0_0_0_4px_rgba(93,42,26,0.12)] disabled:cursor-not-allowed disabled:opacity-50",
           className
         )}
         ref={ref}

@@ -1,16 +1,16 @@
 @import "tailwindcss";
 
 @theme {
-  --color-navy: #1e2156;
-  --color-pink: #f21b94;
-  --color-pink-dark: #e6308a;
-  --color-pink-btn: #ff6acc;
-  --color-pink-light: #fff1f8;
-  --color-placeholder: #b8b8b8;
-  --color-border-gray: #a79ea3;
+  --color-navy: #17191c;
+  --color-pink: #5d2a1a;
+  --color-pink-dark: #4a2115;
+  --color-pink-btn: #5d2a1a;
+  --color-pink-light: #fbe1d1;
+  --color-placeholder: #979799;
+  --color-border-gray: #ececec;
 
-  --font-sans: var(--font-manrope), system-ui, sans-serif;
-  --font-display: var(--font-poppins), var(--font-manrope), system-ui, sans-serif;
+  --font-sans: var(--font-inter), system-ui, sans-serif;
+  --font-display: var(--font-source-serif), var(--font-inter), ui-serif, Georgia, serif;
 
   --animate-fade-up: fade-up 0.6s ease-out both;
 
@@ -80,27 +80,4 @@ body {
 @keyframes pop-in {
   from { opacity: 0; transform: scale(0.95) translateY(-4px); }
   to { opacity: 1; transform: scale(1) translateY(0); }
-}
-
-/* Diagonal shine sweep on hover — used on the primary button variant. */
-.btn-shine {
-  position: relative;
-  overflow: hidden;
-}
-.btn-shine::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  left: -75%;
-  width: 50%;
-  background: linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.55), transparent);
-  transform: skewX(-20deg);
-  pointer-events: none;
-}
-.btn-shine:hover::after {
-  animation: btn-shine-sweep 0.8s ease;
-}
-@keyframes btn-shine-sweep {
-  from { left: -75%; }
-  to { left: 125%; }
 }

@@ -25,7 +25,7 @@ export function CostSection({ content, items }: { content: CostContent; items: C
             <motion.div
               key={item.id}
               variants={revealItemScale}
-              whileHover={{ y: -6, boxShadow: "0 16px 32px -12px rgba(30,33,86,0.18)" }}
+              whileHover={{ y: -6, boxShadow: "0 16px 32px -12px rgba(23,25,28,0.18)" }}
               transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
               className="flex flex-col items-center justify-center rounded-[15px] bg-pink-light px-4 py-8 text-center"
             >

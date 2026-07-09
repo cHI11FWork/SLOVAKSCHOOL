@@ -37,7 +37,7 @@ export function Header({
     <header
       className={cn(
         "fixed inset-x-0 top-0 z-30 transition-[background-color,box-shadow,backdrop-filter] duration-300",
-        scrolled ? "bg-white/80 shadow-[0_4px_24px_-8px_rgba(30,33,86,0.15)] backdrop-blur-md" : "bg-transparent"
+        scrolled ? "bg-white/80 shadow-[0_4px_24px_-8px_rgba(23,25,28,0.15)] backdrop-blur-md" : "bg-transparent"
       )}
     >
       <div className="container-page flex h-24 items-center justify-between lg:h-28">
@@ -64,7 +64,7 @@ export function Header({
               <motion.button
                 whileHover={{ scale: 1.04 }}
                 whileTap={{ scale: 0.96 }}
-                className="relative flex h-10 items-center justify-center overflow-hidden rounded-full bg-pink px-4 text-sm font-semibold text-white shadow-[0_8px_20px_-6px_rgba(242,27,148,0.55)] sm:px-6"
+                className="relative flex h-10 items-center justify-center overflow-hidden rounded-full bg-pink px-4 text-sm font-semibold text-white shadow-[0_8px_20px_-6px_rgba(93,42,26,0.55)] sm:px-6"
               >
                 <motion.span
                   animate={{ scale: [1, 1.4, 1], opacity: [0.5, 0, 0.5] }}
