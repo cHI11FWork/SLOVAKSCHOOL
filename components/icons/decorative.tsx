@@ -84,6 +84,25 @@ export function ChevronPattern({
   );
 }
 
+/** Horizontal wavy squiggle accent, used above headings (e.g. the benefits band title). */
+export function ZigzagLine({ className, ...props }: SVGProps<SVGSVGElement>) {
+  return (
+    <svg
+      viewBox="0 0 90 24"
+      fill="none"
+      className={cn("text-pink", className)}
+      {...props}
+    >
+      <path
+        d="M2 18c6-14 12-14 18 0s12 14 18 0 12-14 18 0 12 14 18 0 8-10 14-12"
+        stroke="currentColor"
+        strokeWidth="4"
+        strokeLinecap="round"
+      />
+    </svg>
+  );
+}
+
 export function DotScatter({ className }: { className?: string }) {
   return (
     <svg viewBox="0 0 200 60" className={cn("text-pink", className)} fill="none">

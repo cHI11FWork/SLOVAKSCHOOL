@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import { Check } from "lucide-react";
 import { LeadForm } from "@/components/sections/lead-form";
-import { ChevronPattern } from "@/components/icons/decorative";
+import { ChevronPattern, ZigzagLine } from "@/components/icons/decorative";
 import { Reveal, RevealGroup, revealItem } from "@/components/motion/reveal";
 import type { BenefitRow, BenefitsBandContent, ThankYouContent } from "@/lib/types";
 
@@ -19,8 +19,11 @@ export function BenefitsBand({
   return (
     <section className="bg-pink-light py-20">
       <div className="container-page">
-        <Reveal>
-          <h2 className="text-[28px] font-extrabold text-navy sm:text-[36px]">{content.title}</h2>
+        <Reveal direction="left">
+          <ZigzagLine className="h-5 w-20" />
+        </Reveal>
+        <Reveal delay={0.05}>
+          <h2 className="mt-2 text-[28px] font-extrabold text-navy sm:text-[36px]">{content.title}</h2>
         </Reveal>
 
         <div className="mt-10 grid gap-12 lg:grid-cols-2">

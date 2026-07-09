@@ -43,7 +43,7 @@ export function Hero({ content, thankYou }: { content: HeroContent; thankYou: Th
                 fill
                 priority
                 sizes="(min-width: 1024px) 560px, 100vw"
-                className="object-cover"
+                className="object-cover grayscale"
               />
 
               <div className="absolute inset-0 flex items-center justify-center">

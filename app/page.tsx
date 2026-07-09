@@ -9,6 +9,7 @@ import { TopReasons } from "@/components/sections/top-reasons";
 import { Testimonials } from "@/components/sections/testimonials";
 import { LeadForm } from "@/components/sections/lead-form";
 import { Footer } from "@/components/sections/footer";
+import { FloatingContact } from "@/components/sections/floating-contact";
 import { Reveal } from "@/components/motion/reveal";
 
 export const revalidate = 60;
@@ -56,6 +57,7 @@ export default async function Home() {
       </main>
 
       <Footer content={data.footer} socialLinks={data.socialLinks} />
+      <FloatingContact socialLinks={data.socialLinks} />
     </div>
   );
 }

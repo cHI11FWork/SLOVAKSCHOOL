@@ -12,10 +12,10 @@ export default async function DashboardPage() {
   const stats = await getLeadStats();
 
   const cards = [
-    { label: "Всього заявок", value: stats.total, icon: Inbox, tone: "text-navy" },
-    { label: "Нові", value: stats.new, icon: Users, tone: "text-pink" },
-    { label: "В обробці", value: stats.inProgress, icon: Clock, tone: "text-amber-600" },
-    { label: "Оброблено", value: stats.done, icon: CheckCircle2, tone: "text-emerald-600" },
+    { label: "Всього заявок", value: stats.total, icon: <Inbox className="h-5 w-5 text-navy" /> },
+    { label: "Нові", value: stats.new, icon: <Users className="h-5 w-5 text-pink" /> },
+    { label: "В обробці", value: stats.inProgress, icon: <Clock className="h-5 w-5 text-amber-600" /> },
+    { label: "Оброблено", value: stats.done, icon: <CheckCircle2 className="h-5 w-5 text-emerald-600" /> },
   ];
 
   return (
