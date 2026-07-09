@@ -1,12 +1,9 @@
 import Link from "next/link";
 import { Users, Clock, CheckCircle2, Inbox } from "lucide-react";
 import { getLeadStats } from "@/lib/admin-data";
-import { Badge } from "@/components/ui/badge";
 import { RevealGroup, revealItem, Reveal } from "@/components/motion/reveal";
 import { StatCard } from "@/components/admin/stat-card";
-import { AnimatedListRow } from "@/components/admin/animated-list-row";
-
-const STATUS_LABEL = { new: "Новий", in_progress: "В обробці", done: "Оброблено" } as const;
+import { RecentLeadsList } from "@/components/admin/recent-leads-list";
 
 export default async function DashboardPage() {
   const stats = await getLeadStats();
@@ -39,19 +36,8 @@ export default async function DashboardPage() {
           </Link>
         </div>
 
-        <div className="mt-4 divide-y divide-gray-100">
-          {stats.recent.length === 0 && (
-            <p className="py-6 text-sm text-navy/50">Заявок ще немає.</p>
-          )}
-          {stats.recent.map((lead, i) => (
-            <AnimatedListRow key={lead.id} delay={i * 0.05}>
-              <div>
-                <p className="font-medium text-navy">{lead.name}</p>
-                <p className="text-sm text-navy/60">{lead.phone}</p>
-              </div>
-              <Badge variant={lead.status}>{STATUS_LABEL[lead.status]}</Badge>
-            </AnimatedListRow>
-          ))}
+        <div className="mt-4">
+          <RecentLeadsList leads={stats.recent} />
         </div>
       </Reveal>
     </div>

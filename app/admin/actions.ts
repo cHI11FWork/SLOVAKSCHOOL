@@ -96,6 +96,7 @@ export async function updateLeadStatus(id: string, status: LeadStatus) {
   const { error } = await admin.from("leads").update({ status }).eq("id", id);
   if (error) throw new Error(error.message);
   revalidatePath("/admin/leads");
+  revalidatePath("/admin");
 }
 
 export async function deleteLead(id: string) {
@@ -104,6 +105,7 @@ export async function deleteLead(id: string) {
   const { error } = await admin.from("leads").delete().eq("id", id);
   if (error) throw new Error(error.message);
   revalidatePath("/admin/leads");
+  revalidatePath("/admin");
 }
 
 export async function createLead(input: AdminLeadInput) {
@@ -123,6 +125,7 @@ export async function createLead(input: AdminLeadInput) {
     .single();
   if (error) throw new Error(error.message);
   revalidatePath("/admin/leads");
+  revalidatePath("/admin");
   return data;
 }
 
@@ -142,6 +145,7 @@ export async function updateLead(id: string, input: AdminLeadInput) {
     .eq("id", id);
   if (error) throw new Error(error.message);
   revalidatePath("/admin/leads");
+  revalidatePath("/admin");
 }
 
 export async function uploadImage(formData: FormData): Promise<{ url: string }> {
