@@ -92,9 +92,12 @@ create table if not exists public.testimonials (
   meta text,
   meta_en text,
   meta_sk text,
+  photo text,
   position int not null default 0,
   visible boolean not null default true
 );
+
+alter table public.testimonials add column if not exists photo text;
 
 create table if not exists public.social_links (
   id uuid primary key default gen_random_uuid(),
@@ -280,9 +283,9 @@ insert into public.top_reasons (title, title_en, title_sk, text, text_en, text_s
 ('Понад 500 студентів:', 'Over 500 students:', 'Viac ako 500 študentov:', 'здійснили мрію про навчання в Словаччині разом із VipStudy.', 'made their dream of studying in Slovakia come true with VipStudy.', 'si splnilo sen o štúdiu na Slovensku spolu s VipStudy.', 5)
 on conflict do nothing;
 
-insert into public.testimonials (name, name_en, name_sk, quote, quote_en, quote_sk, meta, meta_en, meta_sk, position) values
-('Анна Андріївна', 'Anna Andriivna', 'Anna Andrijivna', 'Вступила без НМТ, гуртожиток за п''ять хвилин від корпусу. Хлопці супроводжували на кожному кроці — від договору до міграційної поліції.', 'I got in without NMT, and my dorm is five minutes from campus. The team supported me every step — from the contract to the migration office.', 'Dostala som sa bez NMT, internát mám päť minút od budovy. Tím ma sprevádzal na každom kroku — od zmluvy až po cudzineckú políciu.', 'Економічний університет, Братислава', 'University of Economics, Bratislava', 'Ekonomická univerzita, Bratislava', 1),
-('Олексій К.', 'Oleksiy K.', 'Oleksij K.', 'Найбільше боявся документів і нострифікації — усе зробили за мене. Через два місяці вже мав наказ про зарахування.', 'I was most afraid of paperwork and nostrification — they handled it all for me. Two months later I already had my enrollment order.', 'Najviac som sa bál dokumentov a nostrifikácie — všetko za mňa vybavili. O dva mesiace som už mal rozhodnutie o prijatí.', 'Технічний університет, Кошиці', 'Technical University, Košice', 'Technická univerzita, Košice', 2)
+insert into public.testimonials (name, name_en, name_sk, quote, quote_en, quote_sk, meta, meta_en, meta_sk, photo, position) values
+('Анна Андріївна', 'Anna Andriivna', 'Anna Andrijivna', 'Вступила без НМТ, гуртожиток за п''ять хвилин від корпусу. Хлопці супроводжували на кожному кроці — від договору до міграційної поліції.', 'I got in without NMT, and my dorm is five minutes from campus. The team supported me every step — from the contract to the migration office.', 'Dostala som sa bez NMT, internát mám päť minút od budovy. Tím ma sprevádzal na každom kroku — od zmluvy až po cudzineckú políciu.', 'Економічний університет, Братислава', 'University of Economics, Bratislava', 'Ekonomická univerzita, Bratislava', '/images/testimonial-anna.webp', 1),
+('Олексій К.', 'Oleksiy K.', 'Oleksij K.', 'Найбільше боявся документів і нострифікації — усе зробили за мене. Через два місяці вже мав наказ про зарахування.', 'I was most afraid of paperwork and nostrification — they handled it all for me. Two months later I already had my enrollment order.', 'Najviac som sa bál dokumentov a nostrifikácie — všetko za mňa vybavili. O dva mesiace som už mal rozhodnutie o prijatí.', 'Технічний університет, Кошице', 'Technical University, Košice', 'Technická univerzita, Košice', '/images/testimonial-oleksiy.webp', 2)
 on conflict do nothing;
 
 insert into public.social_links (platform, url, position) values

@@ -58,11 +58,13 @@ export const LIST_TABLES: Record<
   testimonials: {
     label: "Відгуки",
     fields: [
+      { key: "photo", label: "Фото", type: "image" },
       { key: "name", label: "Ім'я", type: "text-i18n" },
       { key: "quote", label: "Відгук", type: "textarea-i18n" },
       { key: "meta", label: "Університет / контекст", type: "text-i18n" },
     ],
     emptyItem: {
+      photo: "",
       name: "",
       name_en: "",
       name_sk: "",

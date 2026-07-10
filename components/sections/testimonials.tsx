@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { Reveal, RevealGroup, revealItem, cardHover } from "@/components/motion/reveal";
 import type { TestimonialItem, TestimonialsIntroContent } from "@/lib/types";
@@ -30,9 +31,15 @@ export function Testimonials({
           >
             <p className="font-display text-[22px] italic leading-snug text-[#1e2156]">{t.quote}</p>
             <div className="flex items-center gap-3">
-              <span className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-white text-sm font-medium text-[#1e2156]">
-                {t.initials}
-              </span>
+              {t.photo ? (
+                <span className="relative inline-flex h-10 w-10 shrink-0 overflow-hidden rounded-full">
+                  <Image src={t.photo} alt={t.name} fill sizes="40px" className="object-cover" />
+                </span>
+              ) : (
+                <span className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-white text-sm font-medium text-[#1e2156]">
+                  {t.initials}
+                </span>
+              )}
               <div className="flex flex-col">
                 <span className="text-[15px] font-medium text-[#1e2156]">{t.name}</span>
                 <span className="text-sm text-[#979799]">{t.meta}</span>
