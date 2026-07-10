@@ -132,18 +132,18 @@ const FALLBACK_SECTIONS = {
     title: t("Відгуки студентів", "Student reviews", "Recenzie študentov"),
   },
   feedback_form: {
-    title_main: t("Залиште контакти —", "Leave your contact —", "Zanechaj kontakt —"),
-    title_emphasis: t("передзвонимо", "we'll call you back", "zavoláme ti späť"),
+    title_main: t("Залиште заявку —", "Leave a request —", "Zanechaj žiadosť —"),
+    title_emphasis: t("ми зв'яжемося з вами", "we'll get in touch with you", "ozveme sa vám"),
     paragraph: t(
-      "Фахівець безкоштовно відповість на всі питання про навчання у Словаччині.",
-      "A specialist will answer all your questions about studying in Slovakia for free.",
-      "Špecialista bezplatne odpovie na všetky otázky o štúdiu na Slovensku."
+      "Отримайте безкоштовну консультацію та дізнайтеся, як вступити до університету Словаччини саме у вашому випадку.",
+      "Get a free consultation and find out how to enroll at a university in Slovakia in your specific case.",
+      "Získajte bezplatnú konzultáciu a zistite, ako sa zapísať na univerzitu na Slovensku práve vo vašom prípade."
     ),
     submit_label: t("Надіслати", "Send", "Odoslať"),
     footnote: t(
-      "Працюємо офіційно · договір у двох примірниках · відповідаємо протягом дня",
-      "We work officially · contract in two copies · we respond within a day",
-      "Pracujeme oficiálne · zmluva v dvoch vyhotoveniach · odpovedáme do jedného dňa"
+      "безкоштовна консультація · офіційний договір · зворотний зв'язок протягом робочого дня",
+      "free consultation · official contract · feedback within a business day",
+      "bezplatná konzultácia · oficiálna zmluva · spätná väzba počas pracovného dňa"
     ),
   },
   thank_you: {
