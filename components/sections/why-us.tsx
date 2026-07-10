@@ -21,7 +21,7 @@ export function WhyUs({ content, benefits }: { content: WhyUsContent; benefits: 
         <div className="flex flex-col gap-8">
           <Reveal direction="right">
             <h2 className="font-display text-[34px] font-normal leading-[1.2] tracking-[-0.5px] text-[#1e2156] min-[640px]:text-[52px] min-[640px]:tracking-[-0.8px]">
-              {content.title_main} <em className="italic">{content.title_emphasis}</em>
+              {content.title_main} <span className="not-italic">{content.title_emphasis}</span>
             </h2>
           </Reveal>
           <Reveal direction="right" delay={0.1}>

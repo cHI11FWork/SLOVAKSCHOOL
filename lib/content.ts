@@ -89,14 +89,14 @@ const FALLBACK_SECTIONS = {
     ),
   },
   why_us: {
-    title_main: t("Чому варто обрати", "Why choose", "Prečo si vybrať"),
-    title_emphasis: t("Словаччину", "Slovakia", "Slovensko"),
+    title_main: t("Безкоштовна вища освіта в", "Free higher education in", "Bezplatné vysokoškolské vzdelanie v"),
+    title_emphasis: t("Європі", "Europe", "Európe"),
     paragraph: t(
       "З професійним супроводом вступ не складніший, ніж в Україні. А переваг — суттєво більше.",
       "With professional guidance, admission is no harder than in Ukraine. And the benefits are significantly greater.",
       "S odborným sprevádzaním nie je prijatie náročnejšie ako na Ukrajine. A výhod je oveľa viac."
     ),
-    image: "/images/why-us.webp",
+    image: "/images/why-us-v2.webp",
   },
   steps_intro: {
     title: t("Шість кроків до зарахування", "Six steps to enrollment", "Šesť krokov k zápisu"),
@@ -158,11 +158,11 @@ const FALLBACK_SECTIONS = {
 } as const;
 
 const FALLBACK_BENEFITS: BenefitRow[] = [
-  { id: "f1", title: "Безкоштовне навчання", title_en: "Free education", title_sk: "Bezplatné vzdelanie", text: "Державні університети не беруть плату зі студентів.", text_en: "State universities charge no tuition fees.", text_sk: "Štátne univerzity si od študentov neúčtujú školné.", position: 1, visible: true },
-  { id: "f2", title: "Без результатів НМТ", title_en: "No NMT required", title_sk: "Bez výsledkov NMT", text: "Вступ за атестатом — бали НМТ не враховуються.", text_en: "Admission by certificate — NMT scores don't count.", text_sk: "Prijatie na základe vysvedčenia — výsledky NMT sa nepočítajú.", position: 2, visible: true },
-  { id: "f3", title: "Мінімальний мовний бар'єр", title_en: "Minimal language barrier", title_sk: "Minimálna jazyková bariéra", text: "Словацька близька до української — адаптація за семестр.", text_en: "Slovak is close to Ukrainian — you adapt within a semester.", text_sk: "Slovenčina je blízka ukrajinčine — adaptácia za jeden semester.", position: 3, visible: true },
-  { id: "f4", title: "ВНЖ на весь період", title_en: "Residence permit for the whole period", title_sk: "Povolenie na pobyt na celé štúdium", text: "Легальне проживання в ЄС на час навчання.", text_en: "Legal residence in the EU for the duration of your studies.", text_sk: "Legálny pobyt v EÚ počas celého štúdia.", position: 4, visible: true },
-  { id: "f5", title: "Безпечна країна", title_en: "Safe country", title_sk: "Bezpečná krajina", text: "Стабільна економіка та комфортне студентське життя.", text_en: "Stable economy and comfortable student life.", text_sk: "Stabilná ekonomika a pohodlný študentský život.", position: 5, visible: true },
+  { id: "f1", title: "Безкоштовне навчання", title_en: "Free education", title_sk: "Bezplatné vzdelanie", text: "Навчайтеся у державних університетах без оплати за навчання.", text_en: "Study at public universities free of tuition fees.", text_sk: "Študuj na štátnych univerzitách bez poplatkov za štúdium.", position: 1, visible: true },
+  { id: "f2", title: "Вступ без НМТ", title_en: "Admission without NMT", title_sk: "Prijatie bez NMT", text: "Для більшості спеціальностей достатньо атестата.", text_en: "A school certificate is enough for most majors.", text_sk: "Pre väčšinu odborov stačí vysvedčenie.", position: 2, visible: true },
+  { id: "f3", title: "Легка адаптація", title_en: "Easy adaptation", title_sk: "Ľahká adaptácia", text: "Словацька мова близька до української, тому звикнути набагато простіше.", text_en: "Slovak is close to Ukrainian, so settling in is much easier.", text_sk: "Slovenčina je blízka ukrajinčine, takže zvyknúť si je oveľa jednoduchšie.", position: 3, visible: true },
+  { id: "f4", title: "ВНЖ на весь період навчання", title_en: "Residence permit for the whole studies", title_sk: "Povolenie na pobyt na celé štúdium", text: "Офіційне проживання в Словаччині протягом усього навчання.", text_en: "Official residence in Slovakia for the entire duration of your studies.", text_sk: "Oficiálny pobyt na Slovensku počas celého štúdia.", position: 4, visible: true },
+  { id: "f5", title: "Безпечне середовище", title_en: "Safe environment", title_sk: "Bezpečné prostredie", text: "Комфортне студентське життя та високий рівень безпеки.", text_en: "Comfortable student life and a high level of safety.", text_sk: "Pohodlný študentský život a vysoká úroveň bezpečnosti.", position: 5, visible: true },
 ];
 
 const FALLBACK_STEPS: StepRow[] = [

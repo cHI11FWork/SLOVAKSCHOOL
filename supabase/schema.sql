@@ -210,10 +210,10 @@ insert into public.site_sections (key, content) values
   "stat2_text": {"uk": "гарантія вступу при вчасній подачі документів", "en": "guarantee of admission with documents submitted on time", "sk": "záruka prijatia pri včasnom podaní dokumentov"}
 }'::jsonb),
 ('why_us', '{
-  "title_main": {"uk": "Чому варто обрати", "en": "Why choose", "sk": "Prečo si vybrať"},
-  "title_emphasis": {"uk": "Словаччину", "en": "Slovakia", "sk": "Slovensko"},
+  "title_main": {"uk": "Безкоштовна вища освіта в", "en": "Free higher education in", "sk": "Bezplatné vysokoškolské vzdelanie v"},
+  "title_emphasis": {"uk": "Європі", "en": "Europe", "sk": "Európe"},
   "paragraph": {"uk": "З професійним супроводом вступ не складніший, ніж в Україні. А переваг — суттєво більше.", "en": "With professional guidance, admission is no harder than in Ukraine. And the benefits are significantly greater.", "sk": "S odborným sprevádzaním nie je prijatie náročnejšie ako na Ukrajine. A výhod je oveľa viac."},
-  "image": "/images/why-us.webp"
+  "image": "/images/why-us-v2.webp"
 }'::jsonb),
 ('steps_intro', '{
   "title": {"uk": "Шість кроків до зарахування", "en": "Six steps to enrollment", "sk": "Šesť krokov k zápisu"},
@@ -240,11 +240,11 @@ insert into public.site_sections (key, content) values
 on conflict (key) do nothing;
 
 insert into public.benefits (title, title_en, title_sk, text, text_en, text_sk, position) values
-('Безкоштовне навчання', 'Free education', 'Bezplatné vzdelanie', 'Державні університети не беруть плату зі студентів.', 'State universities charge no tuition fees.', 'Štátne univerzity si od študentov neúčtujú školné.', 1),
-('Без результатів НМТ', 'No NMT required', 'Bez výsledkov NMT', 'Вступ за атестатом — бали НМТ не враховуються.', 'Admission by certificate — NMT scores don''t count.', 'Prijatie na základe vysvedčenia — výsledky NMT sa nepočítajú.', 2),
-('Мінімальний мовний бар''єр', 'Minimal language barrier', 'Minimálna jazyková bariéra', 'Словацька близька до української — адаптація за семестр.', 'Slovak is close to Ukrainian — you adapt within a semester.', 'Slovenčina je blízka ukrajinčine — adaptácia za jeden semester.', 3),
-('ВНЖ на весь період', 'Residence permit for the whole period', 'Povolenie na pobyt na celé štúdium', 'Легальне проживання в ЄС на час навчання.', 'Legal residence in the EU for the duration of your studies.', 'Legálny pobyt v EÚ počas celého štúdia.', 4),
-('Безпечна країна', 'Safe country', 'Bezpečná krajina', 'Стабільна економіка та комфортне студентське життя.', 'Stable economy and comfortable student life.', 'Stabilná ekonomika a pohodlný študentský život.', 5)
+('Безкоштовне навчання', 'Free education', 'Bezplatné vzdelanie', 'Навчайтеся у державних університетах без оплати за навчання.', 'Study at public universities free of tuition fees.', 'Študuj na štátnych univerzitách bez poplatkov za štúdium.', 1),
+('Вступ без НМТ', 'Admission without NMT', 'Prijatie bez NMT', 'Для більшості спеціальностей достатньо атестата.', 'A school certificate is enough for most majors.', 'Pre väčšinu odborov stačí vysvedčenie.', 2),
+('Легка адаптація', 'Easy adaptation', 'Ľahká adaptácia', 'Словацька мова близька до української, тому звикнути набагато простіше.', 'Slovak is close to Ukrainian, so settling in is much easier.', 'Slovenčina je blízka ukrajinčine, takže zvyknúť si je oveľa jednoduchšie.', 3),
+('ВНЖ на весь період навчання', 'Residence permit for the whole studies', 'Povolenie na pobyt na celé štúdium', 'Офіційне проживання в Словаччині протягом усього навчання.', 'Official residence in Slovakia for the entire duration of your studies.', 'Oficiálny pobyt na Slovensku počas celého štúdia.', 4),
+('Безпечне середовище', 'Safe environment', 'Bezpečné prostredie', 'Комфортне студентське життя та високий рівень безпеки.', 'Comfortable student life and a high level of safety.', 'Pohodlný študentský život a vysoká úroveň bezpečnosti.', 5)
 on conflict do nothing;
 
 insert into public.steps (title, title_en, title_sk, description, description_en, description_sk, position) values
