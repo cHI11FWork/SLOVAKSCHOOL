@@ -8,7 +8,7 @@ export function Hero({ content }: { content: HeroContent }) {
       id="top"
       className="mx-auto grid max-w-[1200px] grid-cols-1 items-center gap-10 px-5 pt-8 pb-16 min-[900px]:grid-cols-[1.1fr_0.9fr] min-[900px]:gap-16 min-[900px]:px-8 min-[900px]:pt-16 min-[900px]:pb-24"
     >
-      <div className="flex flex-col gap-7">
+      <div className="flex flex-col gap-5">
         <Reveal duration={0.7}>
           <div className="text-sm uppercase tracking-wide text-[#979799]">{content.eyebrow}</div>
         </Reveal>
@@ -17,7 +17,7 @@ export function Hero({ content }: { content: HeroContent }) {
           <h1
             className="font-display text-[42px] font-normal leading-[1.15] tracking-[-1px] text-[#1e2156] min-[640px]:text-[72px] min-[640px]:tracking-[-1.8px]"
           >
-            {content.title_main} <em className="italic">{content.title_emphasis}</em>{" "}
+            {content.title_main} <span className="not-italic">{content.title_emphasis}</span>{" "}
             {content.title_suffix}
           </h1>
         </Reveal>
