@@ -127,6 +127,7 @@ export const SECTION_FIELDS: Record<SectionKey, FieldConfig[]> = {
   top_reasons_intro: [
     { key: "title_main", label: "Заголовок (початок)", type: "text-i18n" },
     { key: "title_emphasis", label: "Заголовок (курсивом)", type: "text-i18n" },
+    { key: "image", label: "Фото", type: "image" },
   ],
   testimonials_intro: [{ key: "title", label: "Заголовок", type: "text-i18n" }],
   feedback_form: [

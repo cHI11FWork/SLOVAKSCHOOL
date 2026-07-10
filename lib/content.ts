@@ -126,6 +126,7 @@ const FALLBACK_SECTIONS = {
   top_reasons_intro: {
     title_main: t("Чому обирають", "Why they choose", "Prečo si vyberajú"),
     title_emphasis: t("VipStudy", "VipStudy", "VipStudy"),
+    image: "/images/top-reasons.webp",
   },
   testimonials_intro: {
     title: t("Відгуки студентів", "Student reviews", "Recenzie študentov"),
@@ -318,6 +319,7 @@ export async function getLandingData(lang: Lang): Promise<LandingData> {
     topReasonsIntro: {
       title_main: pickText(topReasonsIntro.title_main, lang),
       title_emphasis: pickText(topReasonsIntro.title_emphasis, lang),
+      image: topReasonsIntro.image as string,
     },
     topReasons: topReasonItems,
     testimonialsIntro: { title: pickText(testimonialsIntro.title, lang) },

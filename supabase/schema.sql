@@ -226,7 +226,8 @@ insert into public.site_sections (key, content) values
 }'::jsonb),
 ('top_reasons_intro', '{
   "title_main": {"uk": "Чому обирають", "en": "Why they choose", "sk": "Prečo si vyberajú"},
-  "title_emphasis": {"uk": "VipStudy", "en": "VipStudy", "sk": "VipStudy"}
+  "title_emphasis": {"uk": "VipStudy", "en": "VipStudy", "sk": "VipStudy"},
+  "image": "/images/top-reasons.webp"
 }'::jsonb),
 ('testimonials_intro', '{"title": {"uk": "Відгуки студентів", "en": "Student reviews", "sk": "Recenzie študentov"}}'::jsonb),
 ('feedback_form', '{
