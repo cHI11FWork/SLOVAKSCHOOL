@@ -65,7 +65,7 @@ export default async function Home() {
           <section id="contact" className="bg-[#fafafb] py-16 min-[900px]:py-24">
             <Reveal className="mx-auto flex max-w-[720px] flex-col items-center gap-8 px-5 text-center min-[900px]:px-8">
               <h2 className="font-display text-[34px] font-normal leading-[1.2] tracking-[-0.5px] text-[#1e2156] min-[640px]:text-[52px] min-[640px]:tracking-[-0.8px]">
-                {data.contact.title_main} <em className="italic">{data.contact.title_emphasis}</em>
+                {data.contact.title_main} <span className="not-italic">{data.contact.title_emphasis}</span>
               </h2>
               <p className="max-w-[480px] text-[17px] leading-relaxed text-[#777b86]">
                 {data.contact.paragraph}

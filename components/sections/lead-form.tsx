@@ -23,19 +23,19 @@ const TEXT: Record<Lang, { name: string; phone: string; gradePlaceholder: string
   uk: {
     name: "Ім'я",
     phone: "+380 __ ___ __ __",
-    gradePlaceholder: "Клас / курс навчання",
+    gradePlaceholder: "Який клас закінчила дитина",
     grades: { "8": "8 клас", "9": "9 клас", "10": "10 клас", "11": "11 клас", college: "Коледж" },
   },
   en: {
     name: "Name",
     phone: "+380 __ ___ __ __",
-    gradePlaceholder: "Grade / year of study",
+    gradePlaceholder: "Which grade has the child completed",
     grades: { "8": "Grade 8", "9": "Grade 9", "10": "Grade 10", "11": "Grade 11", college: "College" },
   },
   sk: {
     name: "Meno",
     phone: "+380 __ ___ __ __",
-    gradePlaceholder: "Ročník / stupeň štúdia",
+    gradePlaceholder: "Aký ročník dieťa ukončilo",
     grades: { "8": "8. ročník", "9": "9. ročník", "10": "10. ročník", "11": "11. ročník", college: "Vysoká škola" },
   },
 };
