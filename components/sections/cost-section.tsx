@@ -10,7 +10,7 @@ export function CostSection({ content, items }: { content: CostContent; items: C
       <div className="mx-auto max-w-[1200px] px-5 min-[900px]:px-8">
         <div className="grid grid-cols-1 items-start gap-10 min-[900px]:grid-cols-2 min-[900px]:gap-16">
           <Reveal className="flex flex-col gap-4">
-            <h2 className="font-display text-[34px] font-normal leading-[1.2] tracking-[-0.5px] text-[#17191c] min-[640px]:text-[52px] min-[640px]:tracking-[-0.8px]">
+            <h2 className="font-display text-[34px] font-normal leading-[1.2] tracking-[-0.5px] text-[#1e2156] min-[640px]:text-[52px] min-[640px]:tracking-[-0.8px]">
               {content.title}
             </h2>
             <p className="text-[17px] leading-relaxed text-[#777b86]">{content.paragraph}</p>
@@ -26,7 +26,7 @@ export function CostSection({ content, items }: { content: CostContent; items: C
                 className="flex flex-col gap-1.5 rounded-[20px] bg-white p-6"
                 style={{ boxShadow: "0 0 0 1px rgba(4,23,43,0.05), 0 8px 10px -6px rgba(0,0,0,0.08)" }}
               >
-                <div className="text-2xl font-medium tracking-[-0.23px] text-[#17191c]">{item.price}</div>
+                <div className="text-2xl font-medium tracking-[-0.23px] text-[#1e2156]">{item.price}</div>
                 <div className="text-[15px] leading-snug text-[#777b86]">{item.label}</div>
               </motion.div>
             ))}

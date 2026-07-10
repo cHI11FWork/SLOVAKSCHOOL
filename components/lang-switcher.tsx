@@ -18,7 +18,7 @@ export function LangSwitcher({ current }: { current: Lang }) {
 
   return (
     <div
-      className="hidden items-center gap-0.5 rounded-full border border-[#ececec] p-[3px] min-[640px]:flex"
+      className="hidden items-center gap-0.5 rounded-full border border-[#e6e6e6] p-[3px] min-[640px]:flex"
       aria-label="Мова сайту"
     >
       {LANGS.map((lang) => (
@@ -29,7 +29,7 @@ export function LangSwitcher({ current }: { current: Lang }) {
           disabled={pending}
           className="rounded-full px-3 py-1.5 text-sm transition-colors"
           style={{
-            background: current === lang ? "#17191c" : "transparent",
+            background: current === lang ? "#1e2156" : "transparent",
             color: current === lang ? "#ffffff" : "#777b86",
           }}
         >

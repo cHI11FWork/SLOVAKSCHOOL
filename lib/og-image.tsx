@@ -11,7 +11,7 @@ export function ogImageElement() {
         alignItems: "flex-start",
         justifyContent: "center",
         padding: "80px",
-        background: "#17191c",
+        background: "#1e2156",
         position: "relative",
       }}
     >
@@ -23,7 +23,7 @@ export function ogImageElement() {
           width: 480,
           height: 480,
           borderRadius: 9999,
-          background: "#5d2a1a",
+          background: "#f41a94",
           opacity: 0.9,
           transform: "rotate(12deg)",
         }}
@@ -33,7 +33,7 @@ export function ogImageElement() {
           display: "flex",
           fontSize: 36,
           fontWeight: 700,
-          color: "#fbe1d1",
+          color: "#fde6f4",
           letterSpacing: 4,
         }}
       >

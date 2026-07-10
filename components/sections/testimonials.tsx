@@ -14,7 +14,7 @@ export function Testimonials({
   return (
     <section id="reviews" className="mx-auto max-w-[1200px] px-5 pb-16 min-[900px]:px-8 min-[900px]:pb-24">
       <Reveal>
-        <h2 className="mb-10 font-display text-[34px] font-normal leading-[1.2] tracking-[-0.5px] text-[#17191c] min-[640px]:mb-12 min-[640px]:text-[52px] min-[640px]:tracking-[-0.8px]">
+        <h2 className="mb-10 font-display text-[34px] font-normal leading-[1.2] tracking-[-0.5px] text-[#1e2156] min-[640px]:mb-12 min-[640px]:text-[52px] min-[640px]:tracking-[-0.8px]">
           {intro.title}
         </h2>
       </Reveal>
@@ -28,13 +28,13 @@ export function Testimonials({
             transition={{ duration: 0.3 }}
             className="flex flex-col gap-6 rounded-3xl bg-[#f2f2f3] p-6 min-[640px]:p-10"
           >
-            <p className="font-display text-[22px] italic leading-snug text-[#17191c]">{t.quote}</p>
+            <p className="font-display text-[22px] italic leading-snug text-[#1e2156]">{t.quote}</p>
             <div className="flex items-center gap-3">
-              <span className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-white text-sm font-medium text-[#17191c]">
+              <span className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-white text-sm font-medium text-[#1e2156]">
                 {t.initials}
               </span>
               <div className="flex flex-col">
-                <span className="text-[15px] font-medium text-[#17191c]">{t.name}</span>
+                <span className="text-[15px] font-medium text-[#1e2156]">{t.name}</span>
                 <span className="text-sm text-[#979799]">{t.meta}</span>
               </div>
             </div>

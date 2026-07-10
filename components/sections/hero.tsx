@@ -15,7 +15,7 @@ export function Hero({ content }: { content: HeroContent }) {
 
         <Reveal duration={0.7} delay={0.1}>
           <h1
-            className="font-display text-[42px] font-normal leading-[1.15] tracking-[-1px] text-[#17191c] min-[640px]:text-[72px] min-[640px]:tracking-[-1.8px]"
+            className="font-display text-[42px] font-normal leading-[1.15] tracking-[-1px] text-[#1e2156] min-[640px]:text-[72px] min-[640px]:tracking-[-1.8px]"
           >
             {content.title_main} <em className="italic">{content.title_emphasis}</em>{" "}
             {content.title_suffix}
@@ -30,13 +30,13 @@ export function Hero({ content }: { content: HeroContent }) {
           <div className="flex flex-wrap items-center gap-3">
             <a
               href="#contact"
-              className="inline-flex items-center rounded-full bg-[#17191c] px-7 py-3.5 text-base text-white transition-opacity hover:opacity-90"
+              className="inline-flex items-center rounded-full bg-[#1e2156] px-7 py-3.5 text-base text-white transition-opacity hover:opacity-90"
             >
               {content.cta_primary}
             </a>
             <a
               href="#steps"
-              className="inline-flex items-center rounded-full border border-[#17191c] px-[27px] py-[13px] text-base text-[#17191c] transition-colors hover:bg-[#fafafb]"
+              className="inline-flex items-center rounded-full border border-[#1e2156] px-[27px] py-[13px] text-base text-[#1e2156] transition-colors hover:bg-[#fafafb]"
             >
               {content.cta_secondary}
             </a>
@@ -72,10 +72,10 @@ export function Hero({ content }: { content: HeroContent }) {
           className="animate-vs-float-b absolute bottom-3 left-3 flex items-center gap-3 rounded-[20px] bg-white p-4 min-[640px]:bottom-8 min-[640px]:-left-8"
           style={{ boxShadow: "0 0 0 1px rgba(4,23,43,0.05), 0 20px 25px -5px rgba(0,0,0,0.1), 0 8px 10px -6px rgba(0,0,0,0.1)" }}
         >
-          <span className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-[#fbe1d1] text-sm font-medium text-[#5d2a1a]">
+          <span className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-[#fde6f4] text-sm font-medium text-[#f41a94]">
             {content.stat2_badge}
           </span>
-          <div className="max-w-[160px] text-sm leading-tight text-[#17191c]">{content.stat2_text}</div>
+          <div className="max-w-[160px] text-sm leading-tight text-[#1e2156]">{content.stat2_text}</div>
         </div>
       </Reveal>
     </section>

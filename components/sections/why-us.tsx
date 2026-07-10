@@ -21,7 +21,7 @@ export function WhyUs({ content, benefits }: { content: WhyUsContent; benefits: 
 
         <div className="flex flex-col gap-8">
           <Reveal direction="right">
-            <h2 className="font-display text-[34px] font-normal leading-[1.2] tracking-[-0.5px] text-[#17191c] min-[640px]:text-[52px] min-[640px]:tracking-[-0.8px]">
+            <h2 className="font-display text-[34px] font-normal leading-[1.2] tracking-[-0.5px] text-[#1e2156] min-[640px]:text-[52px] min-[640px]:tracking-[-0.8px]">
               {content.title_main} <em className="italic">{content.title_emphasis}</em>
             </h2>
           </Reveal>
@@ -38,7 +38,7 @@ export function WhyUs({ content, benefits }: { content: WhyUsContent; benefits: 
                 transition={{ duration: 0.3 }}
                 className="flex flex-col gap-1.5 rounded-2xl bg-[#f2f2f3] p-5"
               >
-                <div className="text-base font-medium text-[#17191c]">{b.title}</div>
+                <div className="text-base font-medium text-[#1e2156]">{b.title}</div>
                 <div className="text-[15px] leading-snug text-[#777b86]">{b.text}</div>
               </motion.div>
             ))}

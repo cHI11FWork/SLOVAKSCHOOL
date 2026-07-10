@@ -1,16 +1,16 @@
 @import "tailwindcss";
 
 @theme {
-  --color-navy: #17191c;
-  --color-pink: #5d2a1a;
-  --color-pink-dark: #4a2115;
-  --color-pink-btn: #5d2a1a;
-  --color-pink-light: #fbe1d1;
+  --color-navy: #1e2156;
+  --color-pink: #f41a94;
+  --color-pink-dark: #c2127a;
+  --color-pink-btn: #f41a94;
+  --color-pink-light: #fde6f4;
   --color-placeholder: #979799;
-  --color-border-gray: #ececec;
+  --color-border-gray: #e6e6e6;
 
-  --font-sans: var(--font-inter), system-ui, sans-serif;
-  --font-display: var(--font-source-serif), var(--font-inter), ui-serif, Georgia, serif;
+  --font-sans: var(--font-golos), system-ui, sans-serif;
+  --font-display: var(--font-golos), system-ui, sans-serif;
 
   --animate-fade-up: fade-up 0.6s ease-out both;
   --animate-vs-float-a: vs-float-a 6s ease-in-out infinite;

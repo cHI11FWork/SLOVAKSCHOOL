@@ -63,7 +63,7 @@ export function LeadForm({ source, buttonText, thankYou, lang }: Props) {
 
   if (done) {
     return (
-      <div className="w-full max-w-[560px] rounded-2xl bg-[#fbe1d1] px-8 py-5 text-[17px] text-[#5d2a1a]">
+      <div className="w-full max-w-[560px] rounded-2xl bg-[#fde6f4] px-8 py-5 text-[17px] text-[#f41a94]">
         {thankYou.message}
       </div>
     );
@@ -80,7 +80,7 @@ export function LeadForm({ source, buttonText, thankYou, lang }: Props) {
           render={({ field }) => (
             <SelectPrimitive.Root value={field.value} onValueChange={field.onChange}>
               <SelectPrimitive.Trigger
-                className="flex w-full items-center justify-between rounded-full border border-[#ececec] bg-white px-5 py-3.5 text-base text-[#17191c] outline-none data-[placeholder]:text-[#a3a6af]"
+                className="flex w-full items-center justify-between rounded-full border border-[#e6e6e6] bg-white px-5 py-3.5 text-base text-[#1e2156] outline-none data-[placeholder]:text-[#a3a6af]"
                 aria-label={t.gradePlaceholder}
               >
                 <SelectPrimitive.Value placeholder={t.gradePlaceholder} />
@@ -92,7 +92,7 @@ export function LeadForm({ source, buttonText, thankYou, lang }: Props) {
                 <SelectPrimitive.Content
                   position="popper"
                   sideOffset={8}
-                  className="z-50 overflow-hidden rounded-2xl border border-[#ececec] bg-white shadow-xl"
+                  className="z-50 overflow-hidden rounded-2xl border border-[#e6e6e6] bg-white shadow-xl"
                   style={{ width: "var(--radix-select-trigger-width)" }}
                 >
                   <SelectPrimitive.Viewport className="p-1.5">
@@ -100,7 +100,7 @@ export function LeadForm({ source, buttonText, thankYou, lang }: Props) {
                       <SelectPrimitive.Item
                         key={g}
                         value={g}
-                        className="cursor-pointer select-none rounded-xl px-4 py-2.5 text-base text-[#17191c] outline-none data-[highlighted]:bg-[#fafafb]"
+                        className="cursor-pointer select-none rounded-xl px-4 py-2.5 text-base text-[#1e2156] outline-none data-[highlighted]:bg-[#fafafb]"
                       >
                         <SelectPrimitive.ItemText>{t.grades[g]}</SelectPrimitive.ItemText>
                       </SelectPrimitive.Item>
@@ -112,22 +112,22 @@ export function LeadForm({ source, buttonText, thankYou, lang }: Props) {
           )}
         />
 
-        <div className="flex flex-col gap-3 rounded-2xl border border-[#ececec] bg-white p-3 min-[640px]:flex-row min-[640px]:gap-3">
+        <div className="flex flex-col gap-3 rounded-2xl border border-[#e6e6e6] bg-white p-3 min-[640px]:flex-row min-[640px]:gap-3">
           <input
             placeholder={t.name}
-            className="min-w-0 flex-1 border-none bg-transparent px-3 py-2.5 text-base outline-none placeholder:text-[#a3a6af] max-[640px]:border-b max-[640px]:border-[#ececec] max-[640px]:pb-3"
+            className="min-w-0 flex-1 border-none bg-transparent px-3 py-2.5 text-base outline-none placeholder:text-[#a3a6af] max-[640px]:border-b max-[640px]:border-[#e6e6e6] max-[640px]:pb-3"
             {...register("name")}
           />
           <input
             placeholder={t.phone}
             type="tel"
-            className="min-w-0 flex-[1.2] border-none border-l border-[#ececec] bg-transparent px-3 py-2.5 text-base outline-none placeholder:text-[#a3a6af] max-[640px]:border-l-0"
+            className="min-w-0 flex-[1.2] border-none border-l border-[#e6e6e6] bg-transparent px-3 py-2.5 text-base outline-none placeholder:text-[#a3a6af] max-[640px]:border-l-0"
             {...register("phone")}
           />
           <button
             type="submit"
             disabled={isSubmitting}
-            className="shrink-0 rounded-full bg-[#17191c] px-6 py-3 text-base text-white transition-opacity hover:opacity-90 disabled:opacity-60"
+            className="shrink-0 rounded-full bg-[#1e2156] px-6 py-3 text-base text-white transition-opacity hover:opacity-90 disabled:opacity-60"
           >
             {isSubmitting ? "…" : buttonText}
           </button>
