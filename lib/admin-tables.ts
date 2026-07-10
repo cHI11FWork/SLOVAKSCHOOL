@@ -122,6 +122,7 @@ export const SECTION_FIELDS: Record<SectionKey, FieldConfig[]> = {
   cost: [
     { key: "title", label: "Заголовок", type: "text-i18n" },
     { key: "paragraph", label: "Текст", type: "textarea-i18n" },
+    { key: "note", label: "Плашка знизу", type: "textarea-i18n" },
   ],
   top_reasons_intro: [
     { key: "title_main", label: "Заголовок (початок)", type: "text-i18n" },

@@ -220,8 +220,9 @@ insert into public.site_sections (key, content) values
   "paragraph": {"uk": "Працюємо офіційно, за договором. Ви завжди знаєте, що відбувається і що далі.", "en": "We work officially, under contract. You always know what''s happening and what''s next.", "sk": "Pracujeme oficiálne, na základe zmluvy. Vždy vieš, čo sa deje a čo bude ďalej."}
 }'::jsonb),
 ('cost', '{
-  "title": {"uk": "Скільки коштує життя студента", "en": "How much does student life cost", "sk": "Koľko stojí život študenta"},
-  "paragraph": {"uk": "Навчання в державних вишах — безкоштовне. Медицина, економіка, ІТ, військові та поліцейські академії. Платите лише за побут:", "en": "Tuition at state universities is free. Medicine, economics, IT, military and police academies. You only pay for living costs:", "sk": "Štúdium na štátnych vysokých školách je bezplatné. Medicína, ekonómia, IT, vojenské a policajné akadémie. Platíš len za bývanie a život:"}
+  "title": {"uk": "Скільки коштує студентське життя у Словаччині?", "en": "How much does student life cost in Slovakia?", "sk": "Koľko stojí študentský život na Slovensku?"},
+  "paragraph": {"uk": "Навчання у державних університетах словацькою мовою — безкоштовне. Основні щомісячні витрати студента становлять лише:", "en": "Tuition at state universities in the Slovak language is free. A student''s main monthly expenses are just:", "sk": "Štúdium na štátnych univerzitách v slovenskom jazyku je bezplatné. Hlavné mesačné výdavky študenta sú len:"},
+  "note": {"uk": "💶 У середньому студенту достатньо 200–250 € на місяць для комфортного життя в Словаччині (без урахування особистих покупок та подорожей).", "en": "💶 On average, 200–250 € a month is enough for a student to live comfortably in Slovakia (not including personal purchases and travel).", "sk": "💶 Študentovi v priemere stačí 200–250 € mesačne na pohodlný život na Slovensku (bez osobných nákupov a ciest)."}
 }'::jsonb),
 ('top_reasons_intro', '{
   "title_main": {"uk": "Чому обирають", "en": "Why they choose", "sk": "Prečo si vyberajú"},
@@ -257,10 +258,10 @@ insert into public.steps (title, title_en, title_sk, description, description_en
 on conflict do nothing;
 
 insert into public.cost_items (amount, label, label_en, label_sk, position) values
-('60–70 €', 'житло в гуртожитку на місяць', 'dormitory housing per month', 'bývanie na internáte mesačne', 1),
-('100–130 €', 'харчування (обід у їдальні — 1,5–2 €)', 'food (a full meal at the canteen — €1.5–2)', 'strava (obed v jedálni — 1,5–2 €)', 2),
-('10 €', 'проїзний квиток', 'transport pass', 'cestovný lístok', 3),
-('8 €', 'мобільний зв''язок', 'mobile plan', 'mobilné služby', 4)
+('70–140 €', 'Проживання в гуртожитку', 'Dormitory accommodation', 'Bývanie na internáte', 1),
+('150–250 €', 'Харчування (обід у студентській їдальні — 2,5–5 €)', 'Food (a meal at the student canteen — €2.5–5)', 'Strava (obed v študentskej jedálni — 2,5–5 €)', 2),
+('20 €', 'Студентський проїзний', 'Student transport pass', 'Študentský cestovný lístok', 3),
+('15 €', 'Мобільний зв''язок', 'Mobile plan', 'Mobilné služby', 4)
 on conflict do nothing;
 
 insert into public.top_reasons (text, text_en, text_sk, position) values

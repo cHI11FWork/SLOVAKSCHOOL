@@ -30,7 +30,7 @@ export type WhyUsContent = {
 
 export type StepsIntroContent = { title: string; paragraph: string };
 
-export type CostContent = { title: string; paragraph: string };
+export type CostContent = { title: string; paragraph: string; note: string };
 
 export type TopReasonsIntroContent = { title_main: string; title_emphasis: string };
 export type TestimonialsIntroContent = { title: string };

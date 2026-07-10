@@ -108,14 +108,19 @@ const FALLBACK_SECTIONS = {
   },
   cost: {
     title: t(
-      "Скільки коштує життя студента",
-      "How much does student life cost",
-      "Koľko stojí život študenta"
+      "Скільки коштує студентське життя у Словаччині?",
+      "How much does student life cost in Slovakia?",
+      "Koľko stojí študentský život na Slovensku?"
     ),
     paragraph: t(
-      "Навчання в державних вишах — безкоштовне. Медицина, економіка, ІТ, військові та поліцейські академії. Платите лише за побут:",
-      "Tuition at state universities is free. Medicine, economics, IT, military and police academies. You only pay for living costs:",
-      "Štúdium na štátnych vysokých školách je bezplatné. Medicína, ekonómia, IT, vojenské a policajné akadémie. Platíš len za bývanie a život:"
+      "Навчання у державних університетах словацькою мовою — безкоштовне. Основні щомісячні витрати студента становлять лише:",
+      "Tuition at state universities in the Slovak language is free. A student's main monthly expenses are just:",
+      "Štúdium na štátnych univerzitách v slovenskom jazyku je bezplatné. Hlavné mesačné výdavky študenta sú len:"
+    ),
+    note: t(
+      "💶 У середньому студенту достатньо 200–250 € на місяць для комфортного життя в Словаччині (без урахування особистих покупок та подорожей).",
+      "💶 On average, 200–250 € a month is enough for a student to live comfortably in Slovakia (not including personal purchases and travel).",
+      "💶 Študentovi v priemere stačí 200–250 € mesačne na pohodlný život na Slovensku (bez osobných nákupov a ciest)."
     ),
   },
   top_reasons_intro: {
@@ -175,10 +180,10 @@ const FALLBACK_STEPS: StepRow[] = [
 ];
 
 const FALLBACK_COST_ITEMS: CostItemRow[] = [
-  { id: "c1", amount: "60–70 €", label: "житло в гуртожитку на місяць", label_en: "dormitory housing per month", label_sk: "bývanie na internáte mesačne", position: 1, visible: true },
-  { id: "c2", amount: "100–130 €", label: "харчування (обід у їдальні — 1,5–2 €)", label_en: "food (a full meal at the canteen — €1.5–2)", label_sk: "strava (obed v jedálni — 1,5–2 €)", position: 2, visible: true },
-  { id: "c3", amount: "10 €", label: "проїзний квиток", label_en: "transport pass", label_sk: "cestovný lístok", position: 3, visible: true },
-  { id: "c4", amount: "8 €", label: "мобільний зв'язок", label_en: "mobile plan", label_sk: "mobilné služby", position: 4, visible: true },
+  { id: "c1", amount: "70–140 €", label: "Проживання в гуртожитку", label_en: "Dormitory accommodation", label_sk: "Bývanie na internáte", position: 1, visible: true },
+  { id: "c2", amount: "150–250 €", label: "Харчування (обід у студентській їдальні — 2,5–5 €)", label_en: "Food (a meal at the student canteen — €2.5–5)", label_sk: "Strava (obed v študentskej jedálni — 2,5–5 €)", position: 2, visible: true },
+  { id: "c3", amount: "20 €", label: "Студентський проїзний", label_en: "Student transport pass", label_sk: "Študentský cestovný lístok", position: 3, visible: true },
+  { id: "c4", amount: "15 €", label: "Мобільний зв'язок", label_en: "Mobile plan", label_sk: "Mobilné služby", position: 4, visible: true },
 ];
 
 const FALLBACK_TOP_REASONS: TopReasonRow[] = [
@@ -308,7 +313,7 @@ export async function getLandingData(lang: Lang): Promise<LandingData> {
       paragraph: pickText(stepsIntro.paragraph, lang),
     },
     steps: stepItems,
-    cost: { title: pickText(cost.title, lang), paragraph: pickText(cost.paragraph, lang) },
+    cost: { title: pickText(cost.title, lang), paragraph: pickText(cost.paragraph, lang), note: pickText(cost.note, lang) },
     costItems: costItemItems,
     topReasonsIntro: {
       title_main: pickText(topReasonsIntro.title_main, lang),
