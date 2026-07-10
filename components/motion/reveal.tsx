@@ -34,8 +34,8 @@ export function Reveal({
   return (
     <motion.div
       className={className}
-      initial={{ opacity: 0, ...offset }}
-      whileInView={{ opacity: 1, x: 0, y: 0 }}
+      initial={{ opacity: 0, filter: "blur(10px)", ...offset }}
+      whileInView={{ opacity: 1, filter: "blur(0px)", x: 0, y: 0 }}
       viewport={{ once, amount }}
       transition={{ duration, delay, ease: EASE }}
     >
@@ -76,11 +76,17 @@ export function RevealGroup({
 }
 
 export const revealItem: Variants = {
-  hidden: { opacity: 0, y: 18 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.55, ease: EASE } },
+  hidden: { opacity: 0, y: 18, filter: "blur(6px)" },
+  show: { opacity: 1, y: 0, filter: "blur(0px)", transition: { duration: 0.55, ease: EASE } },
 };
 
 export const revealItemScale: Variants = {
-  hidden: { opacity: 0, scale: 0.85 },
-  show: { opacity: 1, scale: 1, transition: { duration: 0.5, ease: EASE } },
+  hidden: { opacity: 0, scale: 0.85, filter: "blur(6px)" },
+  show: { opacity: 1, scale: 1, filter: "blur(0px)", transition: { duration: 0.5, ease: EASE } },
+};
+
+export const cardHover = {
+  y: -6,
+  boxShadow: "0 24px 40px -20px rgba(30,33,86,0.28)",
+  transition: { duration: 0.3, ease: EASE },
 };

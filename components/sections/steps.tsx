@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Reveal, RevealGroup, revealItem } from "@/components/motion/reveal";
+import { Reveal, RevealGroup, revealItem, cardHover } from "@/components/motion/reveal";
 import type { StepItem, StepsIntroContent } from "@/lib/types";
 
 export function Steps({ intro, steps }: { intro: StepsIntroContent; steps: StepItem[] }) {
@@ -22,11 +22,11 @@ export function Steps({ intro, steps }: { intro: StepsIntroContent; steps: StepI
           <motion.div
             key={step.id}
             variants={revealItem}
-            whileHover={{ y: -4 }}
+            whileHover={cardHover}
             transition={{ duration: 0.3 }}
-            className="flex flex-col gap-3 rounded-3xl bg-[#f2f2f3] p-7"
+            className="group flex flex-col gap-3 rounded-3xl bg-[#f2f2f3] p-7 transition-colors hover:bg-white"
           >
-            <div className="font-display text-[32px] text-[#979799]">{step.num}</div>
+            <div className="font-display text-[32px] text-[#979799] transition-colors group-hover:text-[#f41a94]">{step.num}</div>
             <div className="text-lg font-medium text-[#1e2156]">{step.title}</div>
             <div className="text-[15px] leading-relaxed text-[#777b86]">{step.text}</div>
           </motion.div>

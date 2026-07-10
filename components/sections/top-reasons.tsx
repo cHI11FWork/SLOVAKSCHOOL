@@ -20,9 +20,11 @@ export function TopReasons({
           {reasons.map((reason) => (
             <div
               key={reason.id}
-              className="flex items-baseline gap-5 border-b border-[rgba(30,33,86,0.15)] py-4"
+              className="group flex items-baseline gap-5 rounded-2xl border-b border-[rgba(30,33,86,0.15)] px-3 py-4 -mx-3 transition-colors hover:bg-white/60"
             >
-              <span className="font-display min-w-[28px] text-xl text-[#f41a94]">{reason.num}</span>
+              <span className="font-display min-w-[28px] text-xl text-[#f41a94] transition-transform duration-300 group-hover:scale-125">
+                {reason.num}
+              </span>
               <span className="text-[17px] leading-relaxed text-[#1e2156]">{reason.text}</span>
             </div>
           ))}

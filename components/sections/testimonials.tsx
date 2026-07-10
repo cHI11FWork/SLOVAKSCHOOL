@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Reveal, RevealGroup, revealItem } from "@/components/motion/reveal";
+import { Reveal, RevealGroup, revealItem, cardHover } from "@/components/motion/reveal";
 import type { TestimonialItem, TestimonialsIntroContent } from "@/lib/types";
 
 export function Testimonials({
@@ -24,9 +24,9 @@ export function Testimonials({
           <motion.div
             key={t.id}
             variants={revealItem}
-            whileHover={{ y: -4 }}
+            whileHover={cardHover}
             transition={{ duration: 0.3 }}
-            className="flex flex-col gap-6 rounded-3xl bg-[#f2f2f3] p-6 min-[640px]:p-10"
+            className="flex flex-col gap-6 rounded-3xl bg-[#f2f2f3] p-6 transition-colors hover:bg-white min-[640px]:p-10"
           >
             <p className="font-display text-[22px] italic leading-snug text-[#1e2156]">{t.quote}</p>
             <div className="flex items-center gap-3">

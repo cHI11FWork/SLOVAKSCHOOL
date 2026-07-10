@@ -1,5 +1,5 @@
-import Image from "next/image";
 import { Reveal } from "@/components/motion/reveal";
+import { ParallaxImage } from "@/components/motion/parallax-image";
 import type { HeroContent } from "@/lib/types";
 
 export function Hero({ content }: { content: HeroContent }) {
@@ -30,13 +30,13 @@ export function Hero({ content }: { content: HeroContent }) {
           <div className="flex flex-wrap items-center gap-3">
             <a
               href="#contact"
-              className="inline-flex items-center rounded-full bg-[#1e2156] px-7 py-3.5 text-base text-white transition-opacity hover:opacity-90"
+              className="inline-flex items-center rounded-full bg-[#1e2156] px-7 py-3.5 text-base text-white shadow-[0_10px_24px_-10px_rgba(30,33,86,0.6)] transition-all hover:-translate-y-0.5 hover:opacity-90 hover:shadow-[0_16px_32px_-10px_rgba(30,33,86,0.55)] active:translate-y-0 active:scale-[0.98]"
             >
               {content.cta_primary}
             </a>
             <a
               href="#steps"
-              className="inline-flex items-center rounded-full border border-[#1e2156] px-[27px] py-[13px] text-base text-[#1e2156] transition-colors hover:bg-[#fafafb]"
+              className="inline-flex items-center rounded-full border border-[#1e2156] px-[27px] py-[13px] text-base text-[#1e2156] transition-all hover:-translate-y-0.5 hover:bg-[#fafafb] active:translate-y-0 active:scale-[0.98]"
             >
               {content.cta_secondary}
             </a>
@@ -57,7 +57,13 @@ export function Hero({ content }: { content: HeroContent }) {
 
       <Reveal duration={0.8} delay={0.2} className="relative">
         <div className="relative aspect-[4/5] w-full overflow-hidden rounded-3xl">
-          <Image src={content.image} alt="" fill sizes="(min-width: 900px) 480px, 100vw" className="object-cover" />
+          <ParallaxImage
+            src={content.image}
+            alt=""
+            sizes="(min-width: 900px) 480px, 100vw"
+            priority
+            strength={28}
+          />
         </div>
 
         <div

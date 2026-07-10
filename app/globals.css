@@ -37,6 +37,10 @@
   }
 }
 
+html {
+  overflow-x: hidden;
+}
+
 body {
   background: #ffffff;
   color: var(--color-navy);

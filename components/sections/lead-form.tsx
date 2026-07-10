@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { motion } from "framer-motion";
 import { useForm, Controller } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as SelectPrimitive from "@radix-ui/react-select";
@@ -63,9 +64,14 @@ export function LeadForm({ source, buttonText, thankYou, lang }: Props) {
 
   if (done) {
     return (
-      <div className="w-full max-w-[560px] rounded-2xl bg-[#fde6f4] px-8 py-5 text-[17px] text-[#f41a94]">
+      <motion.div
+        initial={{ opacity: 0, scale: 0.92, y: 8 }}
+        animate={{ opacity: 1, scale: 1, y: 0 }}
+        transition={{ type: "spring", duration: 0.5, bounce: 0.4 }}
+        className="w-full max-w-[560px] rounded-2xl bg-[#fde6f4] px-8 py-5 text-[17px] text-[#f41a94]"
+      >
         {thankYou.message}
-      </div>
+      </motion.div>
     );
   }
 
@@ -127,7 +133,7 @@ export function LeadForm({ source, buttonText, thankYou, lang }: Props) {
           <button
             type="submit"
             disabled={isSubmitting}
-            className="shrink-0 rounded-full bg-[#1e2156] px-6 py-3 text-base text-white transition-opacity hover:opacity-90 disabled:opacity-60"
+            className="shrink-0 rounded-full bg-[#1e2156] px-6 py-3 text-base text-white shadow-[0_8px_20px_-10px_rgba(30,33,86,0.6)] transition-all hover:-translate-y-0.5 hover:opacity-90 hover:shadow-[0_14px_28px_-10px_rgba(30,33,86,0.5)] active:translate-y-0 active:scale-[0.98] disabled:pointer-events-none disabled:opacity-60"
           >
             {isSubmitting ? "…" : buttonText}
           </button>

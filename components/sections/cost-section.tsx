@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Reveal, RevealGroup, revealItemScale } from "@/components/motion/reveal";
+import { Reveal, RevealGroup, revealItemScale, cardHover } from "@/components/motion/reveal";
 import type { CostContent, CostItem } from "@/lib/types";
 
 export function CostSection({ content, items }: { content: CostContent; items: CostItem[] }) {
@@ -21,7 +21,7 @@ export function CostSection({ content, items }: { content: CostContent; items: C
               <motion.div
                 key={item.id}
                 variants={revealItemScale}
-                whileHover={{ y: -4 }}
+                whileHover={cardHover}
                 transition={{ duration: 0.3 }}
                 className="flex flex-col gap-1.5 rounded-[20px] bg-white p-6"
                 style={{ boxShadow: "0 0 0 1px rgba(4,23,43,0.05), 0 8px 10px -6px rgba(0,0,0,0.08)" }}
