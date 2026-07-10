@@ -67,12 +67,19 @@ create table if not exists public.cost_items (
 
 create table if not exists public.top_reasons (
   id uuid primary key default gen_random_uuid(),
+  title text not null default '',
+  title_en text,
+  title_sk text,
   text text not null,
   text_en text,
   text_sk text,
   position int not null default 0,
   visible boolean not null default true
 );
+
+alter table public.top_reasons add column if not exists title text not null default '';
+alter table public.top_reasons add column if not exists title_en text;
+alter table public.top_reasons add column if not exists title_sk text;
 
 create table if not exists public.testimonials (
   id uuid primary key default gen_random_uuid(),
@@ -265,12 +272,12 @@ insert into public.cost_items (amount, label, label_en, label_sk, position) valu
 ('15 €', 'Мобільний зв''язок', 'Mobile plan', 'Mobilné služby', 4)
 on conflict do nothing;
 
-insert into public.top_reasons (text, text_en, text_sk, position) values
-('Наші люди самі навчаються в Словаччині й особисто пройшли всі етапи вступу.', 'Our own people study in Slovakia and went through every stage of admission themselves.', 'Naši ľudia sami študujú na Slovensku a osobne prešli všetkými etapami prijatia.', 1),
-('Послуги під ключ або окремо на кожному етапі — можна заощадити.', 'Full-service or step-by-step help — so you can save money.', 'Služby na kľúč alebo po jednotlivých etapách — môžeš ušetriť.', 2),
-('100% гарантія вступу за умови вчасного подання документів.', '100% admission guarantee if documents are submitted on time.', '100% záruka prijatia pri včasnom podaní všetkých dokumentov.', 3),
-('Гнучка цінова політика.', 'Flexible pricing.', 'Flexibilná cenová politika.', 4),
-('Понад 150 успішних абітурієнтів лише цього року.', 'Over 150 successful applicants this year alone.', 'Viac ako 150 úspešných uchádzačov len tento rok.', 5)
+insert into public.top_reasons (title, title_en, title_sk, text, text_en, text_sk, position) values
+('Особистий досвід:', 'Personal experience:', 'Osobná skúsenosť:', 'Наша команда сама навчалася або навчається у Словаччині та пройшла весь шлях вступу.', 'Our team members themselves studied or are studying in Slovakia and went through the entire admission process.', 'Náš tím sám študoval alebo študuje na Slovensku a prešiel celým procesom prijímania.', 1),
+('Супровід, який підходить саме вам:', 'Support that fits you:', 'Podpora, ktorá sedí presne vám:', 'Обирайте повний пакет або лише ті послуги, які дійсно потрібні.', 'Choose the full package or only the services you actually need.', 'Vyberte si kompletný balík alebo len tie služby, ktoré naozaj potrebujete.', 2),
+('100% вступ:', '100% admission:', '100% prijatie:', 'За умови своєчасної подачі документів, виконання вимог університету та дотримання термінів вступної кампанії.', 'Provided documents are submitted on time, university requirements are met, and admission campaign deadlines are followed.', 'Za predpokladu včasného podania dokumentov, splnenia požiadaviek univerzity a dodržania termínov prijímacej kampane.', 3),
+('Підтримка від першої консультації до початку навчання.', 'Support from the first consultation to the start of your studies.', 'Podpora od prvej konzultácie až po začiatok štúdia.', 'Допомагаємо з документами, гуртожитком, ВНЖ та адаптацією у Словаччині.', 'We help with documents, the dormitory, residence permit, and adapting to life in Slovakia.', 'Pomáhame s dokumentmi, internátom, povolením na pobyt a adaptáciou na Slovensku.', 4),
+('Понад 500 студентів:', 'Over 500 students:', 'Viac ako 500 študentov:', 'здійснили мрію про навчання в Словаччині разом із VipStudy.', 'made their dream of studying in Slovakia come true with VipStudy.', 'si splnilo sen o štúdiu na Slovensku spolu s VipStudy.', 5)
 on conflict do nothing;
 
 insert into public.testimonials (name, name_en, name_sk, quote, quote_en, quote_sk, meta, meta_en, meta_sk, position) values

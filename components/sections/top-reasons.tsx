@@ -36,7 +36,9 @@ export function TopReasons({
               <span className="font-display min-w-[28px] text-xl text-[#f41a94] transition-transform duration-300 group-hover:scale-125">
                 {reason.num}
               </span>
-              <span className="text-[17px] leading-relaxed text-[#1e2156]">{reason.text}</span>
+              <span className="text-[17px] leading-relaxed text-[#1e2156]">
+                <span className="font-medium">{reason.title}</span> {reason.text}
+              </span>
             </div>
           ))}
         </div>

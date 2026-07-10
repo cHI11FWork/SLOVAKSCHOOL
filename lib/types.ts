@@ -104,6 +104,9 @@ export type CostItemRow = {
 
 export type TopReasonRow = {
   id: string;
+  title: string;
+  title_en: string | null;
+  title_sk: string | null;
   text: string;
   text_en: string | null;
   text_sk: string | null;
@@ -138,7 +141,7 @@ export type SocialLinkRow = {
 export type BenefitItem = { id: string; title: string; text: string };
 export type StepItem = { id: string; num: string; title: string; text: string };
 export type CostItem = { id: string; price: string; label: string };
-export type TopReasonItem = { id: string; num: string; text: string };
+export type TopReasonItem = { id: string; num: string; title: string; text: string };
 export type TestimonialItem = { id: string; quote: string; initials: string; name: string; meta: string };
 
 export type LeadSource = "hero_form" | "consultation_form" | "feedback_form";

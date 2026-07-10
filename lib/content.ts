@@ -188,11 +188,11 @@ const FALLBACK_COST_ITEMS: CostItemRow[] = [
 ];
 
 const FALLBACK_TOP_REASONS: TopReasonRow[] = [
-  { id: "r1", text: "Наші люди самі навчаються в Словаччині й особисто пройшли всі етапи вступу.", text_en: "Our own people study in Slovakia and went through every stage of admission themselves.", text_sk: "Naši ľudia sami študujú na Slovensku a osobne prešli všetkými etapami prijatia.", position: 1, visible: true },
-  { id: "r2", text: "Послуги під ключ або окремо на кожному етапі — можна заощадити.", text_en: "Full-service or step-by-step help — so you can save money.", text_sk: "Služby na kľúč alebo po jednotlivých etapách — môžeš ušetriť.", position: 2, visible: true },
-  { id: "r3", text: "100% гарантія вступу за умови вчасного подання документів.", text_en: "100% admission guarantee if documents are submitted on time.", text_sk: "100% záruka prijatia pri včasnom podaní všetkých dokumentov.", position: 3, visible: true },
-  { id: "r4", text: "Гнучка цінова політика.", text_en: "Flexible pricing.", text_sk: "Flexibilná cenová politika.", position: 4, visible: true },
-  { id: "r5", text: "Понад 150 успішних абітурієнтів лише цього року.", text_en: "Over 150 successful applicants this year alone.", text_sk: "Viac ako 150 úspešných uchádzačov len tento rok.", position: 5, visible: true },
+  { id: "r1", title: "Особистий досвід:", title_en: "Personal experience:", title_sk: "Osobná skúsenosť:", text: "Наша команда сама навчалася або навчається у Словаччині та пройшла весь шлях вступу.", text_en: "Our team members themselves studied or are studying in Slovakia and went through the entire admission process.", text_sk: "Náš tím sám študoval alebo študuje na Slovensku a prešiel celým procesom prijímania.", position: 1, visible: true },
+  { id: "r2", title: "Супровід, який підходить саме вам:", title_en: "Support that fits you:", title_sk: "Podpora, ktorá sedí presne vám:", text: "Обирайте повний пакет або лише ті послуги, які дійсно потрібні.", text_en: "Choose the full package or only the services you actually need.", text_sk: "Vyberte si kompletný balík alebo len tie služby, ktoré naozaj potrebujete.", position: 2, visible: true },
+  { id: "r3", title: "100% вступ:", title_en: "100% admission:", title_sk: "100% prijatie:", text: "За умови своєчасної подачі документів, виконання вимог університету та дотримання термінів вступної кампанії.", text_en: "Provided documents are submitted on time, university requirements are met, and admission campaign deadlines are followed.", text_sk: "Za predpokladu včasného podania dokumentov, splnenia požiadaviek univerzity a dodržania termínov prijímacej kampane.", position: 3, visible: true },
+  { id: "r4", title: "Підтримка від першої консультації до початку навчання.", title_en: "Support from the first consultation to the start of your studies.", title_sk: "Podpora od prvej konzultácie až po začiatok štúdia.", text: "Допомагаємо з документами, гуртожитком, ВНЖ та адаптацією у Словаччині.", text_en: "We help with documents, the dormitory, residence permit, and adapting to life in Slovakia.", text_sk: "Pomáhame s dokumentmi, internátom, povolením na pobyt a adaptáciou na Slovensku.", position: 4, visible: true },
+  { id: "r5", title: "Понад 500 студентів:", title_en: "Over 500 students:", title_sk: "Viac ako 500 študentov:", text: "здійснили мрію про навчання в Словаччині разом із VipStudy.", text_en: "made their dream of studying in Slovakia come true with VipStudy.", text_sk: "si splnilo sen o štúdiu na Slovensku spolu s VipStudy.", position: 5, visible: true },
 ];
 
 const FALLBACK_TESTIMONIALS: TestimonialRow[] = [
@@ -274,6 +274,7 @@ export async function getLandingData(lang: Lang): Promise<LandingData> {
   const topReasonItems: TopReasonItem[] = topReasonsRaw.map((r) => ({
     id: r.id,
     num: toRoman(r.position),
+    title: pickLang(r, "title", lang),
     text: pickLang(r, "text", lang),
   }));
 

@@ -49,8 +49,11 @@ export const LIST_TABLES: Record<
   },
   top_reasons: {
     label: "Чому обирають VipStudy",
-    fields: [{ key: "text", label: "Текст", type: "textarea-i18n" }],
-    emptyItem: { text: "", text_en: "", text_sk: "" },
+    fields: [
+      { key: "title", label: "Заголовок", type: "text-i18n" },
+      { key: "text", label: "Текст", type: "textarea-i18n" },
+    ],
+    emptyItem: { title: "", title_en: "", title_sk: "", text: "", text_en: "", text_sk: "" },
   },
   testimonials: {
     label: "Відгуки",
