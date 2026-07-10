@@ -3,10 +3,11 @@
 import { useRouter } from "next/navigation";
 import { useTransition } from "react";
 import { LANGS, LANG_COOKIE, type Lang } from "@/lib/i18n";
+import { cn } from "@/lib/utils";
 
 const LABELS: Record<Lang, string> = { uk: "UA", en: "EN", sk: "SK" };
 
-export function LangSwitcher({ current }: { current: Lang }) {
+export function LangSwitcher({ current, className }: { current: Lang; className?: string }) {
   const router = useRouter();
   const [pending, startTransition] = useTransition();
 
@@ -19,7 +20,7 @@ export function LangSwitcher({ current }: { current: Lang }) {
 
   return (
     <div
-      className="flex items-center gap-0.5 rounded-full border border-[#e6e6e6] p-[3px]"
+      className={cn("flex items-center gap-0.5 rounded-full border border-[#e6e6e6] p-[3px]", className)}
       aria-label="Мова сайту"
     >
       {LANGS.map((lang) => (

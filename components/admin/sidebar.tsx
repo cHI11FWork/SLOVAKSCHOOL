@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState, useSyncExternalStore } from "react";
+import { useState, useSyncExternalStore } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { AnimatePresence, motion } from "framer-motion";
@@ -23,6 +23,7 @@ import { LogoMark } from "@/components/icons/logo-mark";
 import { NotificationBell } from "@/components/admin/notification-bell";
 import { signOutAction } from "@/app/admin/actions";
 import { cn } from "@/lib/utils";
+import { useScrollLock } from "@/lib/use-scroll-lock";
 
 const NAV = [
   { href: "/admin", label: "Дашборд", icon: LayoutDashboard },
@@ -114,12 +115,7 @@ export function Sidebar({
     setOpen(false);
   }
 
-  useEffect(() => {
-    document.body.style.overflow = open ? "hidden" : "";
-    return () => {
-      document.body.style.overflow = "";
-    };
-  }, [open]);
+  useScrollLock(open);
 
   return (
     <>
