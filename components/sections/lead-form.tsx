@@ -133,7 +133,7 @@ export function LeadForm({ source, buttonText, thankYou, lang }: Props) {
           <button
             type="submit"
             disabled={isSubmitting}
-            className="shrink-0 rounded-full bg-[#1e2156] px-6 py-3 text-base text-white shadow-[0_8px_20px_-10px_rgba(30,33,86,0.6)] transition-all hover:-translate-y-0.5 hover:opacity-90 hover:shadow-[0_14px_28px_-10px_rgba(30,33,86,0.5)] active:translate-y-0 active:scale-[0.98] disabled:pointer-events-none disabled:opacity-60"
+            className="shrink-0 rounded-full bg-[#f41a94] px-6 py-3 text-base text-white shadow-[0_10px_24px_-10px_rgba(244,26,148,0.55)] transition-all hover:-translate-y-0.5 hover:opacity-90 hover:shadow-[0_16px_32px_-10px_rgba(244,26,148,0.5)] active:translate-y-0 active:scale-[0.98] disabled:pointer-events-none disabled:opacity-60"
           >
             {isSubmitting ? "…" : buttonText}
           </button>
