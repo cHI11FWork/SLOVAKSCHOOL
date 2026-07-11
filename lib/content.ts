@@ -59,7 +59,7 @@ const FALLBACK_SECTIONS = {
   header: { nav: NAV_RAW, cta: t("Залишити заявку", "Get in touch", "Nechať žiadosť") },
   hero: {
     eyebrow: t(
-      "Вища освіта в Європі · для українців",
+      "Безкоштовна вища освіта в Європі для українців",
       "Higher education in Europe · for Ukrainians",
       "Vysokoškolské vzdelanie v Európe · pre Ukrajincov"
     ),
