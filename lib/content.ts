@@ -79,8 +79,8 @@ const FALLBACK_SECTIONS = {
       t("Гуртожиток поруч", "Dormitory nearby", "Internát nablízku"),
     ],
     image: "/images/hero.webp",
-    stat1_value: "150+",
-    stat1_label: t("абітурієнтів цього року", "applicants this year", "uchádzačov tento rok"),
+    stat1_value: "300+",
+    stat1_label: t("студентів цього року", "applicants this year", "uchádzačov tento rok"),
     stat2_badge: "100%",
     stat2_text: t(
       "гарантія вступу при вчасній подачі документів",
