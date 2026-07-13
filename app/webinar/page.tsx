@@ -22,36 +22,36 @@ export default async function WebinarPage() {
   const dateText = formatWebinarDate(dateIso);
 
   return (
-    <div className="flex min-h-full flex-col bg-white text-[#474C6B]">
+    <div className="flex min-h-full max-w-full flex-col overflow-x-hidden bg-white pb-[76px] text-[#474C6B] min-[821px]:pb-0">
       {/* Header */}
       <header className="bg-white">
-        <div className="mx-auto flex max-w-[1280px] flex-col items-center justify-between gap-[18px] px-8 py-5 min-[821px]:flex-row min-[821px]:gap-10">
+        <div className="mx-auto flex max-w-[1280px] flex-col items-center justify-between gap-4 px-5 py-4 min-[480px]:px-6 min-[821px]:flex-row min-[821px]:gap-10 min-[821px]:px-8 min-[821px]:py-5">
           <a href="#top" className="flex shrink-0 items-center">
-            <Image src="/webinar/logo.png" alt="VIPSTUDY" width={96} height={96} className="h-[72px] w-auto" />
+            <Image src="/webinar/logo.png" alt="VIPSTUDY" width={96} height={96} className="h-14 w-auto min-[480px]:h-16 min-[821px]:h-[72px]" />
           </a>
-          <div className="grid grid-cols-2 justify-items-center gap-x-6 gap-y-2 text-[15px] font-semibold whitespace-nowrap min-[821px]:grid-cols-[auto_auto] min-[821px]:justify-items-start min-[821px]:gap-x-10 min-[821px]:gap-y-2">
+          <div className="grid grid-cols-2 justify-items-center gap-x-4 gap-y-2 text-[13px] font-semibold whitespace-nowrap min-[480px]:gap-x-6 min-[480px]:text-[15px] min-[821px]:grid-cols-[auto_auto] min-[821px]:justify-items-start min-[821px]:gap-x-10 min-[821px]:gap-y-2">
             {HEADER_PHONES.map((p) => (
               <a key={p} href={`tel:${p}`} className="text-[#E6308A]">
                 {formatPhone(p)}
               </a>
             ))}
           </div>
-          <nav className="flex w-full flex-col items-center gap-3.5 min-[821px]:w-auto min-[821px]:flex-row min-[821px]:gap-7">
+          <nav className="flex w-full flex-col items-center gap-3 min-[821px]:w-auto min-[821px]:flex-row min-[821px]:gap-7">
             <a
               href="#how"
-              className="text-[15px] font-semibold whitespace-nowrap tracking-[.04em] text-[#23285A] uppercase hover:text-[#E6308A]"
+              className="text-[14px] font-semibold whitespace-nowrap tracking-[.04em] text-[#23285A] uppercase hover:text-[#E6308A] min-[821px]:text-[15px]"
             >
               Як вступити?
             </a>
             <a
               href="#program"
-              className="text-[15px] font-semibold whitespace-nowrap tracking-[.04em] text-[#23285A] uppercase hover:text-[#E6308A]"
+              className="text-[14px] font-semibold whitespace-nowrap tracking-[.04em] text-[#23285A] uppercase hover:text-[#E6308A] min-[821px]:text-[15px]"
             >
               Програма вебінару
             </a>
             <a
               href="#register"
-              className="w-full rounded-[10px] bg-[#F0158C] px-7 py-3.5 text-center text-[13px] font-bold tracking-[.1em] text-white uppercase shadow-[0_10px_24px_rgba(240,21,140,0.3)] hover:bg-[#C11367] min-[821px]:w-auto"
+              className="hidden w-full rounded-[10px] bg-[#F0158C] px-7 py-3.5 text-center text-[13px] font-bold tracking-[.1em] text-white uppercase shadow-[0_10px_24px_rgba(240,21,140,0.3)] transition-transform hover:bg-[#C11367] active:scale-[0.98] min-[821px]:block min-[821px]:w-auto"
             >
               Зареєструватись
             </a>
@@ -60,16 +60,16 @@ export default async function WebinarPage() {
       </header>
 
       {/* Countdown ticker */}
-      <div className="overflow-hidden bg-gradient-to-r from-[#F0158C] to-[#C11367] py-[13px] whitespace-nowrap text-white">
+      <div className="overflow-hidden bg-gradient-to-r from-[#F0158C] to-[#C11367] py-3 whitespace-nowrap text-white min-[821px]:py-[13px]">
         <div className="inline-flex animate-wb-marquee items-center">
           {[0, 1].map((i) => (
             <span
               key={i}
               aria-hidden={i === 1}
-              className="inline-flex items-center gap-11 pr-11 text-[15px] font-extrabold tracking-[.08em] uppercase"
+              className="inline-flex items-center gap-8 pr-8 text-[13px] font-extrabold tracking-[.06em] uppercase min-[821px]:gap-11 min-[821px]:pr-11 min-[821px]:text-[15px] min-[821px]:tracking-[.08em]"
             >
               <span className="inline-flex items-center gap-3">
-                <span className="inline-block h-2.5 w-2.5 animate-wb-pulse rounded-full bg-white" />
+                <span className="inline-block h-2.5 w-2.5 shrink-0 animate-wb-pulse rounded-full bg-white" />
                 До вебінару залишилось <WebinarCountdown targetIso={dateIso} />
               </span>
               <span className="opacity-70">★</span>
@@ -86,25 +86,25 @@ export default async function WebinarPage() {
         {/* Hero */}
         <section
           id="top"
-          className="mx-auto grid max-w-[1280px] scroll-mt-6 grid-cols-1 items-center gap-8 px-8 py-16 min-[821px]:grid-cols-[1fr_1.15fr] min-[821px]:gap-[72px] min-[821px]:py-24"
+          className="mx-auto grid max-w-[1280px] scroll-mt-6 grid-cols-1 items-center gap-8 px-5 py-10 min-[480px]:px-6 min-[821px]:grid-cols-[1fr_1.15fr] min-[821px]:gap-[72px] min-[821px]:px-8 min-[821px]:py-24"
         >
           <div>
-            <h1 className={`${MONTSERRAT} mb-7 text-[30px] leading-[1.25] font-extrabold text-[#23285A] uppercase min-[821px]:text-[46px]`}>
+            <h1 className={`${MONTSERRAT} mb-5 text-[24px] leading-[1.3] font-extrabold text-[#23285A] uppercase min-[480px]:text-[28px] min-[821px]:mb-7 min-[821px]:text-[46px] min-[821px]:leading-[1.25]`}>
               Безкоштовний вебінар від VIPSTUDY
             </h1>
-            <p className="mb-8 text-lg font-bold text-[#E6308A] min-[821px]:text-[22px]">
+            <p className="mb-6 text-base font-bold text-[#E6308A] min-[480px]:text-lg min-[821px]:mb-8 min-[821px]:text-[22px]">
               Прямий ефір відбудеться {dateText}
             </p>
-            <ul className="grid list-none gap-4 p-0 text-base font-medium text-[#23285A] min-[821px]:text-lg">
+            <ul className="grid list-none gap-3.5 p-0 text-[15px] font-medium text-[#23285A] min-[480px]:text-base min-[821px]:gap-4 min-[821px]:text-lg">
               {[
                 "Як гарантовано вступити на бюджет до ВНЗ Словаччини",
                 "Без ЗНО та вступних іспитів",
                 "Без мовного підтвердження",
                 "Усі кроки та деталі вступу",
               ].map((item) => (
-                <li key={item} className="flex items-baseline gap-3.5">
+                <li key={item} className="flex items-baseline gap-3">
                   <span className="h-[9px] w-[9px] shrink-0 -translate-y-0.5 rounded-full bg-[#E6308A]" />
-                  {item}
+                  <span>{item}</span>
                 </li>
               ))}
             </ul>
@@ -114,7 +114,8 @@ export default async function WebinarPage() {
             alt="Студенти VIPSTUDY біля університету Костянтина Філософа в Нітрі"
             width={700}
             height={545}
-            className="h-[260px] w-full animate-wb-float rounded-2xl object-cover shadow-[0_24px_60px_rgba(35,40,90,0.12)] min-[821px]:h-[440px]"
+            priority
+            className="h-[200px] w-full animate-wb-float rounded-2xl object-cover shadow-[0_16px_40px_rgba(35,40,90,0.14)] min-[480px]:h-[280px] min-[821px]:h-[440px] min-[821px]:shadow-[0_24px_60px_rgba(35,40,90,0.12)]"
           />
         </section>
 
@@ -129,10 +130,10 @@ export default async function WebinarPage() {
             width={690}
             height={650}
             aria-hidden
-            className="pointer-events-none absolute top-3 right-0 w-[300px] opacity-45 min-[821px]:top-10 min-[821px]:w-[640px] min-[821px]:opacity-90"
+            className="pointer-events-none absolute top-2 right-0 w-[150px] opacity-30 min-[480px]:w-[220px] min-[821px]:top-10 min-[821px]:w-[640px] min-[821px]:opacity-90"
           />
-          <div className="relative mx-auto max-w-[1280px] px-8 py-16 min-[821px]:py-[88px]">
-            <svg width="490" height="46" viewBox="0 0 490 46" fill="none" className="mb-8 block w-[78%] min-[821px]:mb-14 min-[821px]:w-[490px]">
+          <div className="relative mx-auto max-w-[1280px] px-5 py-12 min-[480px]:px-6 min-[821px]:px-8 min-[821px]:py-[88px]">
+            <svg width="490" height="46" viewBox="0 0 490 46" fill="none" className="mb-6 block w-[70%] min-[821px]:mb-14 min-[821px]:w-[490px]">
               <path
                 d="M8 30 Q23 8 38 22 T68 22 T98 22 T128 22 T158 22 T188 22 T218 22 T248 22 T278 22 T308 22 T338 22 T368 22 T398 22 T428 22 T458 22"
                 stroke="#D6146F"
@@ -141,27 +142,27 @@ export default async function WebinarPage() {
                 fill="none"
               />
             </svg>
-            <h2 className={`${MONTSERRAT} mb-4 text-[26px] font-extrabold text-[#23285A] uppercase min-[821px]:text-[40px]`}>
+            <h2 className={`${MONTSERRAT} mb-3 text-[22px] leading-[1.3] font-extrabold text-[#23285A] uppercase min-[480px]:text-[26px] min-[821px]:mb-4 min-[821px]:text-[40px] min-[821px]:leading-normal`}>
               Як вступити на бюджет
             </h2>
-            <p className="mb-9 text-lg font-medium tracking-[.02em] text-[#474C6B] uppercase min-[821px]:text-2xl">
+            <p className="mb-7 text-base leading-[1.4] font-medium tracking-[.02em] text-[#474C6B] uppercase min-[480px]:text-lg min-[821px]:mb-9 min-[821px]:text-2xl">
               У словацькі державні університети
             </p>
-            <div className="mb-6 flex items-center gap-3.5">
-              <Image src="/webinar/icon-no-exam.png" alt="" width={36} height={36} className="h-[30px] w-[30px]" />
-              <span className="text-[19px] font-bold text-[#E6308A]">Без ЗНО та вступних іспитів</span>
+            <div className="mb-5 flex items-center gap-3 min-[821px]:mb-6 min-[821px]:gap-3.5">
+              <Image src="/webinar/icon-no-exam.png" alt="" width={36} height={36} className="h-6 w-6 shrink-0 min-[821px]:h-[30px] min-[821px]:w-[30px]" />
+              <span className="text-base font-bold text-[#E6308A] min-[821px]:text-[19px]">Без ЗНО та вступних іспитів</span>
             </div>
-            <p className="mb-7 max-w-[560px] text-lg leading-[1.7] font-medium text-[#23285A]">
+            <p className="mb-6 max-w-[560px] text-[15px] leading-[1.6] font-medium text-[#23285A] min-[821px]:mb-7 min-[821px]:text-lg min-[821px]:leading-[1.7]">
               Всі деталі вступу на <span className="font-bold text-[#E6308A]">БЕЗКОШТОВНОМУ ВЕБІНАРІ</span> для
               абітурієнтів та батьків вже <span className="font-bold text-[#E6308A]">{dateText}</span>
             </p>
-            <div className="mb-11 flex items-center gap-3.5">
-              <Image src="/webinar/icon-gift.png" alt="" width={38} height={38} className="h-8 w-8" />
-              <span className="text-lg font-bold text-[#23285A]">Розіграш призів у прямому ефірі</span>
+            <div className="mb-9 flex items-center gap-3 min-[821px]:mb-11 min-[821px]:gap-3.5">
+              <Image src="/webinar/icon-gift.png" alt="" width={38} height={38} className="h-7 w-7 shrink-0 min-[821px]:h-8 min-[821px]:w-8" />
+              <span className="text-base font-bold text-[#23285A] min-[821px]:text-lg">Розіграш призів у прямому ефірі</span>
             </div>
             <a
               href="#register"
-              className="inline-block rounded-[10px] bg-[#F0158C] px-[52px] py-[18px] text-sm font-bold tracking-[.12em] text-white uppercase shadow-[0_14px_30px_rgba(240,21,140,0.35)] hover:bg-[#C11367]"
+              className="inline-block w-full rounded-[10px] bg-[#F0158C] px-[52px] py-4 text-center text-sm font-bold tracking-[.12em] text-white uppercase shadow-[0_14px_30px_rgba(240,21,140,0.35)] transition-transform hover:bg-[#C11367] active:scale-[0.98] min-[480px]:w-auto min-[821px]:py-[18px]"
             >
               Зареєструватись
             </a>
@@ -169,13 +170,13 @@ export default async function WebinarPage() {
         </section>
 
         {/* Program */}
-        <section id="program" className="mx-auto max-w-[1280px] px-8 pt-16 pb-16 min-[821px]:pt-28">
-          <div className="mx-auto max-w-[900px] rounded-3xl border-2 border-[#E6308A] px-6 pt-9 pb-10 min-[821px]:px-16 min-[821px]:pt-14 min-[821px]:pb-16">
-            <Image src="/webinar/icon-program.png" alt="" width={120} height={115} className="mb-6 block h-auto w-[70px] min-[821px]:w-[88px]" />
-            <h2 className={`${MONTSERRAT} mb-10 text-[28px] font-extrabold text-[#23285A] uppercase min-[821px]:text-[36px]`}>
+        <section id="program" className="mx-auto max-w-[1280px] px-5 pt-12 pb-12 min-[480px]:px-6 min-[821px]:px-8 min-[821px]:pt-28 min-[821px]:pb-16">
+          <div className="mx-auto max-w-[900px] rounded-2xl border-2 border-[#E6308A] px-5 pt-8 pb-9 min-[480px]:px-8 min-[821px]:rounded-3xl min-[821px]:px-16 min-[821px]:pt-14 min-[821px]:pb-16">
+            <Image src="/webinar/icon-program.png" alt="" width={120} height={115} className="mb-5 block h-auto w-14 min-[821px]:mb-6 min-[821px]:w-[88px]" />
+            <h2 className={`${MONTSERRAT} mb-7 text-[22px] leading-[1.3] font-extrabold text-[#23285A] uppercase min-[480px]:text-[26px] min-[821px]:mb-10 min-[821px]:text-[36px] min-[821px]:leading-normal`}>
               Програма вебінару:
             </h2>
-            <ol className="grid list-none gap-[26px] p-0">
+            <ol className="grid list-none gap-5 p-0 min-[821px]:gap-[26px]">
               {[
                 "Чому варто обрати саме Словаччину",
                 "Як правильно підібрати спеціальність",
@@ -186,11 +187,11 @@ export default async function WebinarPage() {
                 "Відповіді на запитання в прямому ефірі",
                 "Приємні бонуси учасникам вебінару",
               ].map((item, i) => (
-                <li key={item} className="flex items-baseline gap-[22px]">
-                  <span className={`${MONTSERRAT} min-w-[22px] text-2xl font-extrabold text-[#E6308A] min-[821px]:text-[26px]`}>
+                <li key={item} className="flex items-baseline gap-4 min-[821px]:gap-[22px]">
+                  <span className={`${MONTSERRAT} min-w-[20px] shrink-0 text-xl font-extrabold text-[#E6308A] min-[821px]:min-w-[22px] min-[821px]:text-[26px]`}>
                     {i + 1}
                   </span>
-                  <span className="text-base font-semibold text-[#23285A] min-[821px]:text-[19px]">{item}</span>
+                  <span className="text-[15px] leading-[1.4] font-semibold text-[#23285A] min-[821px]:text-[19px] min-[821px]:leading-normal">{item}</span>
                 </li>
               ))}
             </ol>
@@ -198,7 +199,7 @@ export default async function WebinarPage() {
         </section>
 
         {/* Registration */}
-        <section id="register" className="relative mx-auto max-w-[1280px] px-8 pt-10 pb-16 min-[821px]:pt-16 min-[821px]:pb-[120px]">
+        <section id="register" className="relative mx-auto max-w-[1280px] px-5 pt-8 pb-12 min-[480px]:px-6 min-[821px]:px-8 min-[821px]:pt-16 min-[821px]:pb-[120px]">
           <svg
             width="340"
             height="110"
@@ -227,8 +228,8 @@ export default async function WebinarPage() {
             />
             <path d="M430 75 L444 124 L396 132" stroke="#E6308A" strokeWidth="9" strokeLinecap="round" strokeLinejoin="round" fill="none" />
           </svg>
-          <div className="mx-auto max-w-[1180px] rounded-3xl bg-[#FDECF4] px-6 pt-11 pb-12 text-center min-[821px]:px-20 min-[821px]:pt-[72px] min-[821px]:pb-20">
-            <h2 className={`${MONTSERRAT} mb-10 text-2xl leading-[1.4] font-extrabold text-[#23285A] uppercase min-[821px]:text-[32px]`}>
+          <div className="mx-auto max-w-[1180px] rounded-2xl bg-[#FDECF4] px-5 pt-9 pb-10 text-center min-[480px]:px-8 min-[821px]:rounded-3xl min-[821px]:px-20 min-[821px]:pt-[72px] min-[821px]:pb-20">
+            <h2 className={`${MONTSERRAT} mb-7 text-xl leading-[1.35] font-extrabold text-[#23285A] uppercase min-[480px]:text-2xl min-[821px]:mb-10 min-[821px]:text-[32px] min-[821px]:leading-[1.4]`}>
               Пройди безкоштовну реєстрацію
               <br />
               та отримай подарунок
@@ -240,19 +241,19 @@ export default async function WebinarPage() {
 
       {/* Footer */}
       <footer className="bg-black">
-        <div className="mx-auto flex max-w-[1280px] flex-col items-start justify-between gap-[34px] px-8 py-12 min-[821px]:flex-row min-[821px]:gap-12">
+        <div className="mx-auto flex max-w-[1280px] flex-col items-start justify-between gap-8 px-5 py-10 min-[480px]:px-6 min-[821px]:flex-row min-[821px]:gap-12 min-[821px]:px-8 min-[821px]:py-12">
           <div>
-            <a href="#top" className="mb-8 inline-flex items-center">
-              <Image src="/webinar/logo-footer.png" alt="VIPSTUDY" width={96} height={100} className="h-[72px] w-auto" />
+            <a href="#top" className="mb-7 inline-flex items-center min-[821px]:mb-8">
+              <Image src="/webinar/logo-footer.png" alt="VIPSTUDY" width={96} height={100} className="h-14 w-auto min-[821px]:h-[72px]" />
             </a>
-            <div className="grid gap-[18px] text-base font-medium">
+            <div className="grid gap-3.5 text-[15px] font-medium min-[821px]:gap-[18px] min-[821px]:text-base">
               {FOOTER_PHONES.map((p) => (
                 <a key={p} href={`tel:${p}`} className="text-white hover:text-[#E6308A]">
                   {formatPhone(p)}
                 </a>
               ))}
             </div>
-            <div className="mt-9 flex gap-7">
+            <div className="mt-8 flex gap-6 min-[821px]:mt-9 min-[821px]:gap-7">
               <a href="#" aria-label="Facebook" className="flex text-white hover:text-[#E6308A]">
                 <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
                   <path d="M13.5 21v-8h2.7l.4-3.1h-3.1V7.9c0-.9.25-1.5 1.55-1.5h1.65V3.6c-.3-.04-1.3-.12-2.45-.12-2.4 0-4.05 1.5-4.05 4.2v2.3H7.5V13h2.7v8h3.3z" />
@@ -285,6 +286,19 @@ export default async function WebinarPage() {
           </div>
         </div>
       </footer>
+
+      {/* Pinned mobile CTA */}
+      <div
+        className="fixed inset-x-0 bottom-0 z-40 border-t border-[#F1D6E6] bg-white/95 px-5 pt-3 shadow-[0_-8px_24px_rgba(35,40,90,0.14)] backdrop-blur-sm min-[821px]:hidden"
+        style={{ paddingBottom: "max(12px, env(safe-area-inset-bottom))" }}
+      >
+        <a
+          href="#register"
+          className="block w-full rounded-[10px] bg-[#F0158C] py-3.5 text-center text-[13px] font-bold tracking-[.1em] text-white uppercase shadow-[0_10px_24px_rgba(240,21,140,0.3)] transition-transform active:scale-[0.98] active:bg-[#C11367]"
+        >
+          Зареєструватись
+        </a>
+      </div>
     </div>
   );
 }
