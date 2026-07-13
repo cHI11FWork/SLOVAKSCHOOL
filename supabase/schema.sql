@@ -12,7 +12,7 @@ create table if not exists public.leads (
   name text not null,
   phone text not null,
   grade text check (grade in ('8', '9', '10', '11', 'college')),
-  source text not null default 'hero_form' check (source in ('hero_form', 'consultation_form', 'feedback_form')),
+  source text not null default 'hero_form' check (source in ('hero_form', 'consultation_form', 'feedback_form', 'webinar_form')),
   status text not null default 'new' check (status in ('new', 'in_progress', 'done')),
   notes text,
   created_at timestamptz not null default now()
@@ -248,7 +248,8 @@ insert into public.site_sections (key, content) values
   "footnote": {"uk": "Працюємо офіційно · договір у двох примірниках · відповідаємо протягом дня", "en": "We work officially · contract in two copies · we respond within a day", "sk": "Pracujeme oficiálne · zmluva v dvoch vyhotoveniach · odpovedáme do jedného dňa"}
 }'::jsonb),
 ('thank_you', '{"message": {"uk": "Дякуємо! Зв''яжемося з вами найближчим часом.", "en": "Thank you! We''ll contact you shortly.", "sk": "Ďakujeme! Čoskoro sa vám ozveme."}}'::jsonb),
-('footer', '{"copyright": {"uk": "© 2026 VipStudy · Навчання у Словаччині", "en": "© 2026 VipStudy · Study in Slovakia", "sk": "© 2026 VipStudy · Štúdium na Slovensku"}}'::jsonb)
+('footer', '{"copyright": {"uk": "© 2026 VipStudy · Навчання у Словаччині", "en": "© 2026 VipStudy · Study in Slovakia", "sk": "© 2026 VipStudy · Štúdium na Slovensku"}}'::jsonb),
+('webinar', '{"date": "2026-07-28T15:00:00.000Z"}'::jsonb)
 on conflict (key) do nothing;
 
 insert into public.benefits (title, title_en, title_sk, text, text_en, text_sk, position) values

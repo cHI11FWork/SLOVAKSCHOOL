@@ -11,7 +11,7 @@ import type { Lang } from "@/lib/i18n";
 import type { LeadSource, ThankYouContent } from "@/lib/types";
 
 type Props = {
-  source: LeadSource;
+  source: Exclude<LeadSource, "webinar_form">;
   buttonText: string;
   thankYou: ThankYouContent;
   lang: Lang;

@@ -1,8 +1,26 @@
 import { createServerClient } from "@supabase/ssr";
 import { NextResponse, type NextRequest } from "next/server";
 
+const WEBINAR_SUBDOMAIN = "vebinar";
+
 // Renamed from `middleware` in Next.js 16 — see node_modules/next/dist/docs/01-app/03-api-reference/03-file-conventions/proxy.md
 export async function proxy(request: NextRequest) {
+  const { pathname } = request.nextUrl;
+
+  // vebinar.<domain> serves app/webinar/* at the root — once that domain is
+  // added in Vercel + DNS, no further deploy is needed to stand it up.
+  const host = request.headers.get("host") ?? "";
+  const subdomain = host.split(".")[0];
+  if (subdomain === WEBINAR_SUBDOMAIN && !pathname.startsWith("/webinar")) {
+    const url = request.nextUrl.clone();
+    url.pathname = `/webinar${pathname === "/" ? "" : pathname}`;
+    return NextResponse.rewrite(url);
+  }
+
+  if (!pathname.startsWith("/admin")) {
+    return NextResponse.next();
+  }
+
   let response = NextResponse.next({ request });
 
   const supabase = createServerClient(
@@ -28,10 +46,9 @@ export async function proxy(request: NextRequest) {
     data: { user },
   } = await supabase.auth.getUser();
 
-  const { pathname } = request.nextUrl;
   const isLoginPage = pathname === "/admin/login";
 
-  if (!user && pathname.startsWith("/admin") && !isLoginPage) {
+  if (!user && !isLoginPage) {
     const url = request.nextUrl.clone();
     url.pathname = "/admin/login";
     return NextResponse.redirect(url);
@@ -47,5 +64,5 @@ export async function proxy(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/admin/:path*"],
+  matcher: ["/((?!_next/static|_next/image|favicon.ico|api).*)"],
 };

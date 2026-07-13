@@ -2,6 +2,7 @@ const SOURCE_LABEL: Record<string, string> = {
   hero_form: "Головна форма",
   consultation_form: "Консультація",
   feedback_form: "Форма зв'язку",
+  webinar_form: "Реєстрація на вебінар",
 };
 
 const GRADE_LABEL: Record<string, string> = {
@@ -20,7 +21,7 @@ export async function sendLeadTelegramNotification(lead: {
   leadNumber: number;
   name: string;
   phone: string;
-  grade: string;
+  grade?: string | null;
   source: string;
 }) {
   const token = process.env.TELEGRAM_BOT_TOKEN;
@@ -42,7 +43,7 @@ export async function sendLeadTelegramNotification(lead: {
     `🕐 ${dateTime}`,
     `👤 ${escapeHtml(lead.name)}`,
     `📞 ${escapeHtml(lead.phone)}`,
-    `🎓 ${GRADE_LABEL[lead.grade] ?? lead.grade}`,
+    ...(lead.grade ? [`🎓 ${GRADE_LABEL[lead.grade] ?? lead.grade}`] : []),
     `📍 ${SOURCE_LABEL[lead.source] ?? lead.source}`,
   ].join("\n");
 

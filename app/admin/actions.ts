@@ -19,6 +19,7 @@ async function requireAuth() {
 
 function refreshAll() {
   revalidatePath("/");
+  revalidatePath("/webinar");
   revalidatePath("/admin", "layout");
 }
 

@@ -18,6 +18,7 @@ import {
   LogOut,
   Menu,
   X,
+  CalendarClock,
 } from "lucide-react";
 import { LogoMark } from "@/components/icons/logo-mark";
 import { NotificationBell } from "@/components/admin/notification-bell";
@@ -37,6 +38,7 @@ const NAV = [
   { href: "/admin/content-list/testimonials", label: "Відгуки", icon: MessageSquareQuote },
   { href: "/admin/content/feedback_form", label: "Форма зв'язку", icon: Send },
   { href: "/admin/content-list/social_links", label: "Соцмережі", icon: Share2 },
+  { href: "/admin/content/webinar", label: "Вебінар (дата)", icon: CalendarClock },
 ];
 
 const DESKTOP_QUERY = "(min-width: 1024px)";

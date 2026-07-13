@@ -1,7 +1,7 @@
 export type FieldConfig = {
   key: string;
   label: string;
-  type: "text" | "textarea" | "image" | "string-list" | "text-i18n" | "textarea-i18n";
+  type: "text" | "textarea" | "image" | "string-list" | "text-i18n" | "textarea-i18n" | "datetime";
 };
 
 export type ListTableName =
@@ -96,7 +96,8 @@ export type SectionKey =
   | "testimonials_intro"
   | "feedback_form"
   | "thank_you"
-  | "footer";
+  | "footer"
+  | "webinar";
 
 export const SECTION_FIELDS: Record<SectionKey, FieldConfig[]> = {
   header: [{ key: "cta", label: "Текст кнопки", type: "text-i18n" }],
@@ -144,6 +145,7 @@ export const SECTION_FIELDS: Record<SectionKey, FieldConfig[]> = {
   ],
   thank_you: [{ key: "message", label: "Повідомлення після відправки", type: "textarea-i18n" }],
   footer: [{ key: "copyright", label: "Копірайт", type: "text-i18n" }],
+  webinar: [{ key: "date", label: "Дата і час прямого ефіру (Київ)", type: "datetime" }],
 };
 
 export const SECTION_LABELS: Record<SectionKey, string> = {
@@ -157,4 +159,5 @@ export const SECTION_LABELS: Record<SectionKey, string> = {
   feedback_form: "Форма заявки",
   thank_you: "Повідомлення після відправки форми",
   footer: "Футер",
+  webinar: "Вебінар — дата старту",
 };

@@ -145,7 +145,7 @@ export type CostItem = { id: string; price: string; label: string };
 export type TopReasonItem = { id: string; num: string; title: string; text: string };
 export type TestimonialItem = { id: string; quote: string; initials: string; name: string; meta: string; photo: string | null };
 
-export type LeadSource = "hero_form" | "consultation_form" | "feedback_form";
+export type LeadSource = "hero_form" | "consultation_form" | "feedback_form" | "webinar_form";
 export type LeadStatus = "new" | "in_progress" | "done";
 export type LeadGrade = "8" | "9" | "10" | "11" | "college";
 

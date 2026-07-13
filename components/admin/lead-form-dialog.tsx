@@ -16,6 +16,7 @@ const SOURCE_LABEL: Record<AdminLeadInput["source"], string> = {
   hero_form: "Головна форма",
   consultation_form: "Консультація",
   feedback_form: "Форма зв'язку",
+  webinar_form: "Вебінар",
 };
 
 const STATUS_LABEL: Record<AdminLeadInput["status"], string> = {

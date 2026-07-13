@@ -7,6 +7,7 @@ import { Check } from "lucide-react";
 import { updateSection } from "@/app/admin/actions";
 import type { FieldConfig, SectionKey } from "@/lib/admin-tables";
 import type { I18nText } from "@/lib/i18n";
+import { isoToKyivInputValue, kyivInputValueToIso } from "@/lib/webinar";
 import { Label } from "@/components/ui/label";
 import { Input, Textarea } from "@/components/ui/input";
 import { Switch } from "@/components/ui/switch";
@@ -76,6 +77,15 @@ export function SectionForm({
             <Input
               value={(content[field.key] as string) ?? ""}
               onChange={(e) => setField(field.key, e.target.value)}
+            />
+          )}
+          {field.type === "datetime" && (
+            <Input
+              type="datetime-local"
+              value={content[field.key] ? isoToKyivInputValue(content[field.key] as string) : ""}
+              onChange={(e) =>
+                setField(field.key, e.target.value ? kyivInputValueToIso(e.target.value) : "")
+              }
             />
           )}
           {field.type === "image" && (
