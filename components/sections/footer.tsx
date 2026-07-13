@@ -24,7 +24,7 @@ export function Footer({ content }: { content: FooterContent }) {
         <p className="text-sm text-[#979799]">
           Розробили сайт{" "}
           <a
-            href="https://steck.top"
+            href="https://steck.top/"
             target="_blank"
             rel="noopener noreferrer"
             className="font-semibold text-[#1e2156] transition-colors hover:text-[#0f1130]"
