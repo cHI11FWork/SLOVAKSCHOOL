@@ -19,6 +19,20 @@ export function Footer({ content }: { content: FooterContent }) {
 
         <div className="text-sm text-[#979799]">{content.copyright}</div>
       </div>
+
+      <div className="mx-auto max-w-[1200px] border-t border-[#e5e5ea] px-5 py-5 text-center min-[900px]:px-8">
+        <p className="text-sm text-[#979799]">
+          Розробили сайт{" "}
+          <a
+            href="https://steck.top"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="font-semibold text-[#1e2156] transition-colors hover:text-[#0f1130]"
+          >
+            СТЕК.
+          </a>
+        </p>
+      </div>
     </footer>
   );
 }
