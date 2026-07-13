@@ -23,40 +23,92 @@ export default async function WebinarPage() {
 
   return (
     <div className="flex min-h-full max-w-full flex-col overflow-x-hidden bg-white pb-[76px] text-[#474C6B] min-[821px]:pb-0">
-      {/* Header */}
-      <header className="bg-white">
-        <div className="mx-auto flex max-w-[1280px] flex-col items-center justify-between gap-4 px-5 py-4 min-[480px]:px-6 min-[821px]:flex-row min-[821px]:gap-10 min-[821px]:px-8 min-[821px]:py-5">
+      {/* Header — desktop (unchanged, 1:1 with approved design) */}
+      <header className="hidden bg-white min-[821px]:block">
+        <div className="mx-auto flex max-w-[1280px] items-center justify-between gap-10 px-8 py-5">
           <a href="#top" className="flex shrink-0 items-center">
-            <Image src="/webinar/logo.png" alt="VIPSTUDY" width={96} height={96} className="h-14 w-auto min-[480px]:h-16 min-[821px]:h-[72px]" />
+            <Image src="/webinar/logo.png" alt="VIPSTUDY" width={96} height={96} className="h-[72px] w-auto" />
           </a>
-          <div className="grid grid-cols-2 justify-items-center gap-x-4 gap-y-2 text-[13px] font-semibold whitespace-nowrap min-[480px]:gap-x-6 min-[480px]:text-[15px] min-[821px]:grid-cols-[auto_auto] min-[821px]:justify-items-start min-[821px]:gap-x-10 min-[821px]:gap-y-2">
+          <div className="grid grid-cols-[auto_auto] justify-items-start gap-x-10 gap-y-2 text-[15px] font-semibold whitespace-nowrap">
             {HEADER_PHONES.map((p) => (
-              <a key={p} href={`tel:${p}`} className="text-[#E6308A]">
+              <a key={p} href={`tel:${p}`} className="text-[#E6308A] hover:text-[#C11367]">
                 {formatPhone(p)}
               </a>
             ))}
           </div>
-          <nav className="flex w-full flex-col items-center gap-3 min-[821px]:w-auto min-[821px]:flex-row min-[821px]:gap-7">
-            <a
-              href="#how"
-              className="text-[14px] font-semibold whitespace-nowrap tracking-[.04em] text-[#23285A] uppercase hover:text-[#E6308A] min-[821px]:text-[15px]"
-            >
+          <nav className="flex items-center gap-7">
+            <a href="#how" className="text-[15px] font-semibold whitespace-nowrap tracking-[.04em] text-[#23285A] uppercase hover:text-[#E6308A]">
               Як вступити?
             </a>
-            <a
-              href="#program"
-              className="text-[14px] font-semibold whitespace-nowrap tracking-[.04em] text-[#23285A] uppercase hover:text-[#E6308A] min-[821px]:text-[15px]"
-            >
+            <a href="#program" className="text-[15px] font-semibold whitespace-nowrap tracking-[.04em] text-[#23285A] uppercase hover:text-[#E6308A]">
               Програма вебінару
             </a>
             <a
               href="#register"
-              className="hidden w-full rounded-[10px] bg-[#F0158C] px-7 py-3.5 text-center text-[13px] font-bold tracking-[.1em] text-white uppercase shadow-[0_10px_24px_rgba(240,21,140,0.3)] transition-transform hover:bg-[#C11367] active:scale-[0.98] min-[821px]:block min-[821px]:w-auto"
+              className="rounded-[10px] bg-[#F0158C] px-7 py-3.5 text-center text-[13px] font-bold tracking-[.1em] text-white uppercase shadow-[0_10px_24px_rgba(240,21,140,0.3)] transition-transform hover:bg-[#C11367] active:scale-[0.98]"
             >
               Зареєструватись
             </a>
           </nav>
         </div>
+      </header>
+
+      {/* Header — mobile (redesigned for clarity/polish) */}
+      <header className="bg-white shadow-[0_1px_0_rgba(35,40,90,0.06)] min-[821px]:hidden">
+        <div className="flex items-center justify-between px-5 py-3 min-[480px]:px-6">
+          <a href="#top" className="flex shrink-0 items-center">
+            <Image src="/webinar/logo.png" alt="VIPSTUDY" width={96} height={96} className="h-11 w-auto min-[480px]:h-12" />
+          </a>
+          <div className="flex items-center gap-2">
+            <a
+              href={`tel:${HEADER_PHONES[0]}`}
+              aria-label="Подзвонити"
+              className="flex h-11 w-11 items-center justify-center rounded-full bg-[#FDECF4] text-[#E6308A] transition-colors active:bg-[#F8CFE4]"
+            >
+              <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.362 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.338 1.85.573 2.81.7A2 2 0 0 1 22 16.92Z" />
+              </svg>
+            </a>
+            <a
+              href="#register"
+              aria-label="Зареєструватись"
+              className="flex h-11 items-center rounded-full bg-[#F0158C] px-5 text-[12px] font-bold tracking-[.08em] text-white uppercase shadow-[0_8px_18px_rgba(240,21,140,0.32)] transition-transform active:scale-[0.96]"
+            >
+              Реєстрація
+            </a>
+          </div>
+        </div>
+
+        <div className="grid grid-cols-1 gap-1.5 border-t border-[#F5E4EC] bg-[#FFF9FC] px-5 py-3 min-[360px]:grid-cols-2 min-[480px]:px-6">
+          {HEADER_PHONES.map((p) => (
+            <a
+              key={p}
+              href={`tel:${p}`}
+              className="flex min-w-0 items-center gap-1.5 rounded-full px-2.5 py-1.5 text-[13px] font-semibold whitespace-nowrap text-[#E6308A] transition-colors active:bg-[#FDECF4]"
+            >
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" className="shrink-0 opacity-70">
+                <path d="M6.6 10.8c1.4 2.8 3.8 5.2 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.5.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.2.2 2.4.6 3.5.1.4 0 .8-.2 1L6.6 10.8Z" />
+              </svg>
+              {formatPhone(p)}
+            </a>
+          ))}
+        </div>
+
+        <nav className="flex items-center gap-2 px-5 py-2.5 min-[480px]:px-6">
+          <a
+            href="#how"
+            className="flex-1 rounded-full py-2 text-center text-[12.5px] font-bold tracking-[.03em] text-[#23285A] uppercase transition-colors active:bg-[#F5F2FA] min-[480px]:text-[13px]"
+          >
+            Як вступити?
+          </a>
+          <span className="h-4 w-px shrink-0 bg-[#E6E4EF]" aria-hidden />
+          <a
+            href="#program"
+            className="flex-1 rounded-full py-2 text-center text-[12.5px] font-bold tracking-[.03em] text-[#23285A] uppercase transition-colors active:bg-[#F5F2FA] min-[480px]:text-[13px]"
+          >
+            Програма вебінару
+          </a>
+        </nav>
       </header>
 
       {/* Countdown ticker */}
