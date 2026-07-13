@@ -199,7 +199,35 @@ export default async function WebinarPage() {
 
         {/* Registration */}
         <section id="register" className="relative mx-auto max-w-[1280px] px-8 pt-10 pb-16 min-[821px]:pt-16 min-[821px]:pb-[120px]">
-          <div className="relative mx-auto max-w-[1180px] rounded-3xl bg-[#FDECF4] px-6 pt-11 pb-12 text-center min-[821px]:px-20 min-[821px]:pt-[72px] min-[821px]:pb-20">
+          <svg
+            width="340"
+            height="110"
+            viewBox="0 0 400 120"
+            fill="none"
+            aria-hidden
+            className="pointer-events-none absolute top-[280px] left-0 max-[820px]:hidden"
+          >
+            <path d="M10 90 Q120 20 230 60 Q290 82 350 55" stroke="#E6308A" strokeWidth="9" strokeLinecap="round" fill="none" />
+            <path d="M320 35 L356 54 L326 80" stroke="#E6308A" strokeWidth="9" strokeLinecap="round" strokeLinejoin="round" fill="none" />
+          </svg>
+          <svg
+            width="480"
+            height="170"
+            viewBox="0 0 480 170"
+            fill="none"
+            aria-hidden
+            className="pointer-events-none absolute right-[-20px] bottom-5 max-[820px]:hidden"
+          >
+            <path
+              d="M10 40 Q150 20 240 55 Q300 78 280 115 Q255 155 210 125 Q175 95 235 70 Q330 35 440 120"
+              stroke="#E6308A"
+              strokeWidth="9"
+              strokeLinecap="round"
+              fill="none"
+            />
+            <path d="M430 75 L444 124 L396 132" stroke="#E6308A" strokeWidth="9" strokeLinecap="round" strokeLinejoin="round" fill="none" />
+          </svg>
+          <div className="mx-auto max-w-[1180px] rounded-3xl bg-[#FDECF4] px-6 pt-11 pb-12 text-center min-[821px]:px-20 min-[821px]:pt-[72px] min-[821px]:pb-20">
             <h2 className={`${MONTSERRAT} mb-10 text-2xl leading-[1.4] font-extrabold text-[#23285A] uppercase min-[821px]:text-[32px]`}>
               Пройди безкоштовну реєстрацію
               <br />
@@ -223,6 +251,30 @@ export default async function WebinarPage() {
                   {formatPhone(p)}
                 </a>
               ))}
+            </div>
+            <div className="mt-9 flex gap-7">
+              <a href="#" aria-label="Facebook" className="flex text-white hover:text-[#E6308A]">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M13.5 21v-8h2.7l.4-3.1h-3.1V7.9c0-.9.25-1.5 1.55-1.5h1.65V3.6c-.3-.04-1.3-.12-2.45-.12-2.4 0-4.05 1.5-4.05 4.2v2.3H7.5V13h2.7v8h3.3z" />
+                </svg>
+              </a>
+              <a href="#" aria-label="LinkedIn" className="flex text-white hover:text-[#E6308A]">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M4.98 3.5A2.5 2.5 0 1 1 5 8.48 2.5 2.5 0 0 1 4.98 3.5zM3 9.75h4v11H3v-11zm6.5 0h3.8v1.5h.06c.53-1 1.83-2.06 3.77-2.06 4.03 0 4.77 2.65 4.77 6.1v6.46h-4v-5.73c0-1.37-.02-3.13-1.9-3.13-1.9 0-2.2 1.49-2.2 3.03v5.83h-4v-11z" />
+                </svg>
+              </a>
+              <a href="#" aria-label="Instagram" className="flex text-white hover:text-[#E6308A]">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <rect x="3" y="3" width="18" height="18" rx="5" />
+                  <circle cx="12" cy="12" r="4" />
+                  <circle cx="17.3" cy="6.7" r="1.2" fill="currentColor" stroke="none" />
+                </svg>
+              </a>
+              <a href="#" aria-label="TikTok" className="flex text-white hover:text-[#E6308A]">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M16.6 3c.36 2 1.6 3.4 3.9 3.55v3.05c-1.4.14-2.63-.32-3.9-1.18v5.9c0 4.05-3.02 6.06-6.05 5.6-2.6-.4-4.55-2.66-4.55-5.26 0-3.1 2.6-5.5 5.9-5.28v3.13c-.3-.05-.6-.06-.9 0-1.2.24-2 1.15-2 2.35 0 1.36 1.15 2.4 2.5 2.35 1.3-.05 2.1-1.02 2.1-2.5V3h3z" />
+                </svg>
+              </a>
             </div>
           </div>
           <div className="self-start text-[15px] text-white min-[821px]:self-end">
