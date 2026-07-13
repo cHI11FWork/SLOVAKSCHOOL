@@ -29,7 +29,7 @@ export default async function WebinarPage() {
           <a href="#top" className="flex shrink-0 items-center">
             <Image src="/webinar/logo.png" alt="VIPSTUDY" width={96} height={96} className="h-[72px] w-auto" />
           </a>
-          <div className="grid grid-cols-2 gap-x-6 gap-y-2 text-[15px] font-semibold whitespace-nowrap min-[821px]:grid-cols-[auto_auto] min-[821px]:grid-flow-col min-[821px]:gap-x-8">
+          <div className="grid grid-cols-2 justify-items-center gap-x-6 gap-y-2 text-[15px] font-semibold whitespace-nowrap min-[821px]:grid-cols-[auto_auto] min-[821px]:justify-items-start min-[821px]:gap-x-10 min-[821px]:gap-y-2">
             {HEADER_PHONES.map((p) => (
               <a key={p} href={`tel:${p}`} className="text-[#E6308A]">
                 {formatPhone(p)}
