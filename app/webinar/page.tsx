@@ -29,23 +29,23 @@ export default async function WebinarPage() {
           <a href="#top" className="flex shrink-0 items-center">
             <Image src="/webinar/logo.png" alt="VIPSTUDY" width={96} height={96} className="h-[72px] w-auto" />
           </a>
-          <div className="grid grid-cols-2 gap-x-6 gap-y-2 text-[15px] font-semibold min-[821px]:grid-cols-none min-[821px]:grid-flow-col min-[821px]:gap-x-10">
+          <div className="grid grid-cols-2 gap-x-6 gap-y-2 text-[15px] font-semibold whitespace-nowrap min-[821px]:grid-cols-[auto_auto] min-[821px]:grid-flow-col min-[821px]:gap-x-8">
             {HEADER_PHONES.map((p) => (
               <a key={p} href={`tel:${p}`} className="text-[#E6308A]">
                 {formatPhone(p)}
               </a>
             ))}
           </div>
-          <nav className="flex w-full flex-col items-center gap-3.5 min-[821px]:w-auto min-[821px]:flex-row min-[821px]:gap-9">
+          <nav className="flex w-full flex-col items-center gap-3.5 min-[821px]:w-auto min-[821px]:flex-row min-[821px]:gap-7">
             <a
               href="#how"
-              className="text-[15px] font-semibold tracking-[.04em] text-[#23285A] uppercase hover:text-[#E6308A]"
+              className="text-[15px] font-semibold whitespace-nowrap tracking-[.04em] text-[#23285A] uppercase hover:text-[#E6308A]"
             >
               Як вступити?
             </a>
             <a
               href="#program"
-              className="text-[15px] font-semibold tracking-[.04em] text-[#23285A] uppercase hover:text-[#E6308A]"
+              className="text-[15px] font-semibold whitespace-nowrap tracking-[.04em] text-[#23285A] uppercase hover:text-[#E6308A]"
             >
               Програма вебінару
             </a>

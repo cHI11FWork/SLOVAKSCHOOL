@@ -10,9 +10,7 @@ function formatRemaining(ms: number): string {
   const minutes = Math.floor((totalSeconds % 3600) / 60);
   const seconds = totalSeconds % 60;
   const pad = (n: number) => String(n).padStart(2, "0");
-  return days > 0
-    ? `${days} дн ${pad(hours)}:${pad(minutes)}:${pad(seconds)}`
-    : `${pad(hours)}:${pad(minutes)}:${pad(seconds)}`;
+  return `${days} дн ${pad(hours)} год ${pad(minutes)} хв ${pad(seconds)} сек`;
 }
 
 export function WebinarCountdown({ targetIso }: { targetIso: string }) {
