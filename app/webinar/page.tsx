@@ -239,11 +239,14 @@ export default async function WebinarPage() {
             <path d="M430 75 L444 124 L396 132" stroke="#E6308A" strokeWidth="9" strokeLinecap="round" strokeLinejoin="round" fill="none" />
           </svg>
           <div className="mx-auto max-w-[1180px] rounded-2xl bg-[#FDECF4] px-5 pt-9 pb-10 text-center min-[480px]:px-8 min-[821px]:rounded-3xl min-[821px]:px-20 min-[821px]:pt-[72px] min-[821px]:pb-20">
-            <h2 className={`${MONTSERRAT} mb-7 text-xl leading-[1.35] font-extrabold text-[#23285A] uppercase min-[480px]:text-2xl min-[821px]:mb-10 min-[821px]:text-[32px] min-[821px]:leading-[1.4]`}>
-              Пройди безкоштовну реєстрацію
+            <h2 className={`${MONTSERRAT} mb-4 text-xl leading-[1.35] font-extrabold text-[#23285A] uppercase min-[480px]:text-2xl min-[821px]:mb-5 min-[821px]:text-[32px] min-[821px]:leading-[1.4]`}>
+              Зареєструйтеся на вебінар
               <br />
-              та отримай подарунок
+              та отримайте спеціальні бонуси для учасників
             </h2>
+            <p className="mx-auto mb-7 max-w-[560px] text-[15px] leading-[1.5] font-medium text-[#474C6B] min-[480px]:text-base min-[821px]:mb-10 min-[821px]:text-lg">
+              Заповніть форму — ми надішлемо посилання на вебінар та розповімо про всі акції цього місяця.
+            </p>
             <WebinarRegisterForm />
           </div>
         </section>
