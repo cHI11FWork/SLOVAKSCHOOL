@@ -48,7 +48,7 @@ export default async function WebinarPage() {
               href="#register"
               className="rounded-[10px] bg-[#F0158C] px-7 py-3.5 text-center text-[13px] font-bold tracking-[.1em] text-white uppercase shadow-[0_10px_24px_rgba(240,21,140,0.3)] transition-transform hover:bg-[#C11367] active:scale-[0.98]"
             >
-              Зареєструватись
+              Приєднатися
             </a>
           </nav>
         </div>
@@ -174,7 +174,7 @@ export default async function WebinarPage() {
               href="#register"
               className="inline-block w-full rounded-[10px] bg-[#F0158C] px-[52px] py-4 text-center text-sm font-bold tracking-[.12em] text-white uppercase shadow-[0_14px_30px_rgba(240,21,140,0.35)] transition-transform hover:bg-[#C11367] active:scale-[0.98] min-[480px]:w-auto min-[821px]:py-[18px]"
             >
-              Зареєструватись
+              Приєднатися
             </a>
           </div>
         </section>
@@ -309,7 +309,7 @@ export default async function WebinarPage() {
           href="#register"
           className="block w-full rounded-[10px] bg-[#F0158C] py-3.5 text-center text-[13px] font-bold tracking-[.1em] text-white uppercase shadow-[0_10px_24px_rgba(240,21,140,0.3)] transition-transform active:scale-[0.98] active:bg-[#C11367]"
         >
-          Зареєструватись
+          Приєднатися
         </a>
       </div>
     </div>

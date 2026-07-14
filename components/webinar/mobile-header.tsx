@@ -25,11 +25,11 @@ export function WebinarMobileHeader({ phones }: { phones: { raw: string; label: 
           </a>
           <a
             href="#register"
-            aria-label="Зареєструватись"
+            aria-label="Приєднатися"
             onClick={close}
             className="flex h-11 shrink-0 items-center rounded-full bg-[#F0158C] px-5 text-[12px] font-bold tracking-[.08em] text-white uppercase shadow-[0_8px_18px_rgba(240,21,140,0.32)] transition-transform active:scale-[0.96]"
           >
-            Реєстрація
+            Приєднатися
           </a>
           <button
             type="button"

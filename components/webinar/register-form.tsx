@@ -49,7 +49,7 @@ export function WebinarRegisterForm() {
           disabled={isSubmitting}
           className="mt-2 rounded-[10px] bg-[#F0158C] py-[17px] text-sm font-bold tracking-[.12em] text-white uppercase shadow-[0_12px_26px_rgba(240,21,140,0.35)] transition-colors hover:bg-[#C11367] disabled:pointer-events-none disabled:opacity-60"
         >
-          {isSubmitting ? "…" : "Зареєструватися"}
+          {isSubmitting ? "…" : "Приєднатися"}
         </button>
         {(errors.name || errors.phone) && (
           <p className="text-left text-xs text-red-500">
