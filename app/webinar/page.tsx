@@ -108,10 +108,10 @@ export default async function WebinarPage() {
             </ul>
           </div>
           <Image
-            src="/webinar/hero.png"
+            src="/webinar/hero.jpg"
             alt="Студенти VIPSTUDY біля університету Костянтина Філософа в Нітрі"
             width={700}
-            height={545}
+            height={525}
             priority
             className="h-[200px] w-full animate-wb-float rounded-2xl object-cover shadow-[0_16px_40px_rgba(35,40,90,0.14)] min-[480px]:h-[280px] min-[821px]:h-[440px] min-[821px]:shadow-[0_24px_60px_rgba(35,40,90,0.12)]"
           />
