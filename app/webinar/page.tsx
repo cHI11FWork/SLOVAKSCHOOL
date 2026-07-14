@@ -87,21 +87,30 @@ export default async function WebinarPage() {
           className="mx-auto grid max-w-[1280px] scroll-mt-6 grid-cols-1 items-center gap-8 px-5 py-10 min-[480px]:px-6 min-[821px]:grid-cols-[1fr_1.15fr] min-[821px]:gap-[72px] min-[821px]:px-8 min-[821px]:py-24"
         >
           <div>
-            <h1 className={`${MONTSERRAT} mb-5 text-[24px] leading-[1.3] font-extrabold text-[#23285A] uppercase min-[480px]:text-[28px] min-[821px]:mb-7 min-[821px]:text-[46px] min-[821px]:leading-[1.25]`}>
-              Безкоштовний вебінар від VIPSTUDY
+            <h1 className={`${MONTSERRAT} mb-3 text-[24px] leading-[1.3] font-extrabold text-[#23285A] uppercase min-[480px]:text-[28px] min-[821px]:mb-4 min-[821px]:text-[46px] min-[821px]:leading-[1.25]`}>
+              Безкоштовний вебінар
             </h1>
+            <p className={`${MONTSERRAT} mb-4 text-lg leading-[1.35] font-bold text-[#23285A] min-[480px]:text-xl min-[821px]:mb-6 min-[821px]:text-[26px]`}>
+              Як вступити до університету Словаччини у 2027 році?
+            </p>
             <p className="mb-6 text-base font-bold text-[#E6308A] min-[480px]:text-lg min-[821px]:mb-8 min-[821px]:text-[22px]">
-              Прямий ефір відбудеться {dateText}
+              {dateText} (за Києвом)
+            </p>
+            <p className="mb-4 text-[15px] leading-[1.5] font-semibold text-[#23285A] min-[480px]:text-base min-[821px]:mb-5 min-[821px]:text-lg">
+              За одну годину ви дізнаєтеся все, що потрібно для успішного вступу до словацького університету:
             </p>
             <ul className="grid list-none gap-3.5 p-0 text-[15px] font-medium text-[#23285A] min-[480px]:text-base min-[821px]:gap-4 min-[821px]:text-lg">
               {[
-                "Як гарантовано вступити на бюджет до ВНЗ Словаччини",
-                "Без ЗНО та вступних іспитів",
-                "Без мовного підтвердження",
-                "Усі кроки та деталі вступу",
+                "Як вступити на безкоштовне навчання",
+                "Чи можна вступити без НМТ та вступних іспитів",
+                "Які документи потрібно підготувати та коли їх подавати",
+                "Як отримати студентський ВНП, знайти гуртожиток і переїхати до Словаччини",
+                "Відповіді на запитання учасників у прямому ефірі",
               ].map((item) => (
                 <li key={item} className="flex items-baseline gap-3">
-                  <span className="h-[9px] w-[9px] shrink-0 -translate-y-0.5 rounded-full bg-[#E6308A]" />
+                  <span className="shrink-0 -translate-y-0.5 text-[#E6308A]" aria-hidden>
+                    ✔️
+                  </span>
                   <span>{item}</span>
                 </li>
               ))}
