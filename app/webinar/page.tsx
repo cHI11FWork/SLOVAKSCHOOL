@@ -153,19 +153,22 @@ export default async function WebinarPage() {
               Як вступити на бюджет
             </h2>
             <p className="mb-7 text-base leading-[1.4] font-medium tracking-[.02em] text-[#474C6B] uppercase min-[480px]:text-lg min-[821px]:mb-9 min-[821px]:text-2xl">
-              У словацькі державні університети
+              До державних університетів Словаччини?
             </p>
             <div className="mb-5 flex items-center gap-3 min-[821px]:mb-6 min-[821px]:gap-3.5">
               <Image src="/webinar/icon-no-exam.png" alt="" width={36} height={36} className="h-6 w-6 shrink-0 min-[821px]:h-[30px] min-[821px]:w-[30px]" />
-              <span className="text-base font-bold text-[#E6308A] min-[821px]:text-[19px]">Без ЗНО та вступних іспитів</span>
+              <span className="text-base font-bold text-[#E6308A] min-[821px]:text-[19px]">Без НМТ та вступних іспитів</span>
             </div>
             <p className="mb-6 max-w-[560px] text-[15px] leading-[1.6] font-medium text-[#23285A] min-[821px]:mb-7 min-[821px]:text-lg min-[821px]:leading-[1.7]">
-              Всі деталі вступу на <span className="font-bold text-[#E6308A]">БЕЗКОШТОВНОМУ ВЕБІНАРІ</span> для
-              абітурієнтів та батьків вже <span className="font-bold text-[#E6308A]">{dateText}</span>
+              На <span className="font-bold text-[#E6308A]">безкоштовному вебінарі</span> ви дізнаєтеся все про
+              вступ у <span className="font-bold text-[#E6308A]">2027 році</span> — від вибору університету до
+              успішного зарахування.
             </p>
             <div className="mb-9 flex items-center gap-3 min-[821px]:mb-11 min-[821px]:gap-3.5">
               <Image src="/webinar/icon-gift.png" alt="" width={38} height={38} className="h-7 w-7 shrink-0 min-[821px]:h-8 min-[821px]:w-8" />
-              <span className="text-base font-bold text-[#23285A] min-[821px]:text-lg">Розіграш призів у прямому ефірі</span>
+              <span className="text-base font-bold text-[#23285A] min-[821px]:text-lg">
+                Лише для учасників вебінару — спеціальні акції та бонуси цього місяця
+              </span>
             </div>
             <a
               href="#register"
