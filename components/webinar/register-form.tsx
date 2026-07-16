@@ -22,7 +22,7 @@ export function WebinarRegisterForm() {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(values),
     });
-    if (res.ok) router.push("/webinar/thank-you");
+    if (res.ok) router.push("/thank-you");
   }
 
   return (
