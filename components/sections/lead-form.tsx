@@ -1,19 +1,17 @@
 "use client";
 
-import { useState } from "react";
-import { motion } from "framer-motion";
+import { useRouter } from "next/navigation";
 import { useForm, Controller } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as SelectPrimitive from "@radix-ui/react-select";
 import { ChevronDown } from "lucide-react";
 import { leadSchema, type LeadInput } from "@/lib/validations";
 import type { Lang } from "@/lib/i18n";
-import type { LeadSource, ThankYouContent } from "@/lib/types";
+import type { LeadSource } from "@/lib/types";
 
 type Props = {
   source: Exclude<LeadSource, "webinar_form">;
   buttonText: string;
-  thankYou: ThankYouContent;
   lang: Lang;
 };
 
@@ -40,8 +38,8 @@ const TEXT: Record<Lang, { name: string; phone: string; gradePlaceholder: string
   },
 };
 
-export function LeadForm({ source, buttonText, thankYou, lang }: Props) {
-  const [done, setDone] = useState(false);
+export function LeadForm({ source, buttonText, lang }: Props) {
+  const router = useRouter();
   const t = TEXT[lang];
   const {
     register,
@@ -59,20 +57,7 @@ export function LeadForm({ source, buttonText, thankYou, lang }: Props) {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(values),
     });
-    if (res.ok) setDone(true);
-  }
-
-  if (done) {
-    return (
-      <motion.div
-        initial={{ opacity: 0, scale: 0.92, y: 8 }}
-        animate={{ opacity: 1, scale: 1, y: 0 }}
-        transition={{ type: "spring", duration: 0.5, bounce: 0.4 }}
-        className="w-full max-w-[560px] rounded-2xl bg-[#fde6f4] px-8 py-5 text-[17px] text-[#f41a94]"
-      >
-        {thankYou.message}
-      </motion.div>
-    );
+    if (res.ok) router.push("/thank-you");
   }
 
   return (

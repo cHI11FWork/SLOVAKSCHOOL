@@ -73,7 +73,6 @@ export default async function Home() {
               <LeadForm
                 source="feedback_form"
                 buttonText={data.contact.submit_label}
-                thankYou={data.thankYou}
                 lang={lang}
               />
               <div className="text-sm text-[#979799]">{data.contact.footnote}</div>
